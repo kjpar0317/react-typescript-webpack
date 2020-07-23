@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import './styles.scss';
 
-import loginTlt from '@images/login/login_tit.png';
+import loginTlt from '@/images/login/login_tit.png';
 
 const LeftLoginForm : React.FC = () => {
 
