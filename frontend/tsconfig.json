@@ -1,15 +1,51 @@
 {
   "compilerOptions": {
     "jsx": "react",
-    "module": "commonjs",
+    "module": "esnext",
+    "moduleResolution": "node",
     "noImplicitAny": true,
     "outDir": "./public/dist/",
     "preserveConstEnums": true,
     "removeComments": true,
     "sourceMap": true,
-    "target": "es5"
+    "target": "esnext",
+    "noEmit": true,
+    "strict": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": [
+        "es6",
+        "dom",
+        "dom.iterable",
+        "esnext"
+    ],
+    "baseUrl": ".",
+    "paths": {
+        "@/*": ["./src/*"],
+        "@api/*": ["./src/api/*"],
+        "@components/*": ["./src/components/*"],
+        "@constants/*": ["./src/constants/*"],
+        "@features/*": ["./src/features/*"],
+        "@hooks/*": ["./src/hooks/*"],
+        "@images/*": ["./src/images/*"],
+        "@styles/*": ["./src/styles/*"],
+        "@utils/*": ["./src/utils/*"]
+    }
   },
+  "typeRoots": [
+    "./node_modules/@types",
+    "./typings"
+  ],
   "include": [
-    "src/index.tsx"
+    "./src/**/*",
+    "./typings/**/*.d.ts"
+  ],
+  "files": [
+    "node_modules/@types/react-dom/index.d.ts",
+    "node_modules/@types/react/index.d.ts",
+  ],
+  "exclude": [
+    "node_modules",
+    "./src/stories/**/*"
   ]
 }
