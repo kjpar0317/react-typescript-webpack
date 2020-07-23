@@ -26,10 +26,7 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-        "@components/*": ["../src/components/*"],
-        "@constants/*": ["../src/constants/*"],
-        "@features/*": ["../src/features/*"],
-        "@images/*": ["../src/images/*"],
+        "@/*": ["./src/*"],
     }
   },
   "typeRoots": [
