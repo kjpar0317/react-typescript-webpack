@@ -3,8 +3,8 @@ import createSagaMiddleware from 'redux-saga';
 
 import { all } from 'redux-saga/effects';
 
-import { LOGIN, loginReducer } from '@features/login/slice';
-import { watchLogin } from '@features/login/saga';
+import { LOGIN, loginReducer } from '@/features/login/slice';
+import { watchLogin } from '@/features/login/saga';
 
 import { ILoginInfo } from "login-interface";
 
