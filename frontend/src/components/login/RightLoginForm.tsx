@@ -3,7 +3,7 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
-import loginTltMsg from '@images/login/login_tit_msg.png';
+import loginTltMsg from '@/images/login/login_tit_msg.png';
 
 type RightLoginFormProps = {
     setUsername : (name : string) => void,
