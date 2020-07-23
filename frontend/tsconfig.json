@@ -22,14 +22,6 @@
     "baseUrl": ".",
     "paths": {
         "@/*": ["./src/*"],
-        "@api/*": ["./src/api/*"],
-        "@components/*": ["./src/components/*"],
-        "@constants/*": ["./src/constants/*"],
-        "@features/*": ["./src/features/*"],
-        "@hooks/*": ["./src/hooks/*"],
-        "@images/*": ["./src/images/*"],
-        "@styles/*": ["./src/styles/*"],
-        "@utils/*": ["./src/utils/*"]
     }
   },
   "typeRoots": [
