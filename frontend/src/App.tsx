@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { PublicRoute } from "./routers/PublicRoute";
 import { PrivateRoute } from "./routers/PrivateRoute";
 
-import LoginFeatures from '@features/login'
+import LoginFeatures from '@/features/login'
 import DashboardFeatures from '@/features/admin/dashboard';
 import UserFeatures from '@/features/admin/user';
 
