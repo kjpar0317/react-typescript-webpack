@@ -5,10 +5,7 @@ module.exports = ({ config, mode }) => {
       test: /\.(ts|tsx)$/,
       resolve: {
         alias: {
-          '@components': path.resolve(__dirname, '../src/components/'),
-          '@constants': path.resolve(__dirname, '../src/constants/'),
-          '@features': path.resolve(__dirname, '../src/features/'),
-          '@images': path.resolve(__dirname, '../src/images/'),
+          '@': path.resolve(__dirname, './src/'),
         },
       },
       use: [
