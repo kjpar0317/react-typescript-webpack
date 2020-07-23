@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import { LeftLoginForm, RightLoginForm } from '@components/login';
+import { LeftLoginForm, RightLoginForm } from '@/components/login';
 
 const useStyles = makeStyles((theme : Theme) => (
     createStyles({
