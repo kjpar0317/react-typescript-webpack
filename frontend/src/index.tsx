@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { App } from "./App";
 import { Helmet } from 'react-helmet';
-import { TITLE } from '@constants/index';
+import { TITLE } from '@/constants/index';
 import './index.scss';
 
 import createStore from './store';
