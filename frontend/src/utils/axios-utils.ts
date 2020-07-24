@@ -10,8 +10,6 @@ const axioUtils = axios.create({
 function responseValidate(error : any) {
     const config = error.config;
 
-    console.log(config);
-
     // 네트워크 연결 오류
     if (!error.response) {
         Swal.fire(
@@ -23,7 +21,7 @@ function responseValidate(error : any) {
     }
 
     // API 서버 접속 오류
-    if(error.response.status === 404) {
+    if(error.response.status === 404 || error.response.status === 504) {
         Swal.fire(
             "api error",
             "API 서버 연결 오류",
