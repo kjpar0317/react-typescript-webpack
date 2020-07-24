@@ -49,8 +49,10 @@ const IndexFeatures : React.FC = () => {
         if(sessionStorage.getItem('token')) {
             console.log('로그아웃 시켜야 함');
 
-            sessionStorage.setItem('username', '');
-            sessionStorage.setItem('token', '');
+            sessionStorage.removeItem('username');
+            sessionStorage.removeItem('token');
+
+            document.location.href = "/";
         }
 
         if(token) {
