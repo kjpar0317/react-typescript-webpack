@@ -5,7 +5,6 @@ const doLogin : any = (username : string, password : string) => {
         'username': username,
         'password': password
     }).then(res => {
-        sessionStorage.setItem('username', username);
         return res.data;
     });
 };
