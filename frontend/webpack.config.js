@@ -27,7 +27,7 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
     alias: {
-        '@': path.resolve(__dirname, './src/')
+        '@': path.resolve(__dirname, './src/'),
     }
   },
   devServer: {
@@ -45,7 +45,7 @@ module.exports = {
             target: REACT_APP_BASE_URI,
             ws: true,
         },
-        '*' : {
+        ['/auth'] : {
             target: REACT_APP_BASE_URI,
         }
     }
