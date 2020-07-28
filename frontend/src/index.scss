@@ -1,4 +1,10 @@
+* {
+	box-sizing: border-box;
+}
 body {
-    margin: 0;
-    padding: 0px 0px 0px 0px;
+	margin: 0;
+	padding: 0;
+	background-color: #d5dae5;
+	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
 }
