@@ -35,11 +35,7 @@ const Header : React.FC<HeaderProps> = ({onTrigger}) => {
         });
 
         if (confirmResult.value) {
-            await dispatch(loginAction.dologout());
-            setTimeout(function(){
-                // 2초 후 작동해야할 코드
-                document.location.href = "/";
-            }, 1000);
+            document.location.href = "/";
         }
     }
 
