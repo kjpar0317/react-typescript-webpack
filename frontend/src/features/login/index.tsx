@@ -47,12 +47,10 @@ const IndexFeatures : React.FC = () => {
     React.useEffect(() => {
         // 초기화
         if(sessionStorage.getItem('token')) {
-            console.log('로그아웃 시켜야 함');
-
             sessionStorage.removeItem('username');
             sessionStorage.removeItem('token');
 
-            document.location.href = "/";
+            handleLogout();
         }
 
         if(token) {
@@ -67,6 +65,12 @@ const IndexFeatures : React.FC = () => {
         e.preventDefault();
 
         dispatch(loginAction.dologin({ username, password }));
+    };
+
+    const handleLogout = async() => {
+        await dispatch(loginAction.dologout());
+
+        document.location.href = "/";
     };
 
     return (
