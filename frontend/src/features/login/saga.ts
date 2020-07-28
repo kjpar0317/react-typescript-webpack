@@ -1,7 +1,8 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import { doLogin } from '@/api/index';
+import { doLogin, doLogout } from '@/api/index';
 import { loginAction, loginSelector } from './slice';
 
+// 로그인 saga
 function* handleLogin() {
     const { loginSuccess, loginFail } = loginAction;
 
@@ -19,8 +20,24 @@ function* handleLogin() {
     }
 }
 
+// 로그아웃 saga
+function* handleLogout() {
+    const { doremove, loginFail } = loginAction;
+
+    try {
+        const logininfo = yield select(loginSelector.all);
+
+        yield call(doLogout, logininfo.username, logininfo.token);
+
+        yield put(doremove());
+    } catch (err) {
+        yield put(loginFail(err));
+    }
+}
+
 export function* watchLogin() {
-    const { dologin } = loginAction;
+    const { dologin, dologout } = loginAction;
 
     yield takeLatest(dologin, handleLogin);
+    yield takeLatest(dologout, handleLogout);
 }
