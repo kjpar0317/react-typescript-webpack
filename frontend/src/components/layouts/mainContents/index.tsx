@@ -29,4 +29,4 @@ const MainContents : React.FC<MainContentsProps> = (props) => {
     );
 };
 
-export default MainContents;
+export { MainContents };
