@@ -8,6 +8,7 @@ const env = require("dotenv");
 
 env.config();
 
+const devMode = process.env.NODE_ENV !== 'production';
 const { REACT_APP_BASE_URI } = process.env;
 
 module.exports = {
@@ -16,7 +17,7 @@ module.exports = {
   mode: "development",
   output: {
     path: path.resolve(__dirname, 'public/dist'),
-    publicPath: '/static/',
+    publicPath: '/',
     filename: '[name]-bundle.js',
     chunkFilename: '[name]-[chunkhash].js',
   },
@@ -31,6 +32,7 @@ module.exports = {
         '@': path.resolve(__dirname, './src/'),
     }
   },
+  devtool: 'source-map',
   devServer: {
     port: 3000,
     // host: '0.0.0.0',
@@ -46,7 +48,7 @@ module.exports = {
             target: REACT_APP_BASE_URI,
             ws: true,
         },
-        ['/auth'] : {
+        '/auth' : {
             target: REACT_APP_BASE_URI,
         }
     }
@@ -86,14 +88,15 @@ module.exports = {
         loader: "source-map-loader",
       },
       {
-        test: /\.(sa|sc|c)ss$/,
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+       },
+       {
+        test: /\.(sa|sc)ss$/,
         use: [
-         MiniCssExtractPlugin.loader,
+        devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
         {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-            },
+          loader: 'css-loader'
         },
         {
             loader: 'resolve-url-loader',
@@ -102,20 +105,18 @@ module.exports = {
             },
         },
         {
+            loader: 'postcss-loader',
+        },
+        {
             loader: 'sass-loader',
-            options: {
-              sourceMap: true
-            }
         }
-         //  'css-loader',
-        //  'sass-loader',
         ],
        },
        {
         test: /\.(png|jpg|jpeg|gif)(\?.*$|$)/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]',
+          name: 'images/[folder]/[name].[ext]',
         },
        },
        {
@@ -130,13 +131,16 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "public", "index.html"),
-    }),
+        template: path.resolve(__dirname, "public", "index.html"),
+        favicon: path.resolve(__dirname, "public", "favicon.ico"),
+      }),
     new MiniCssExtractPlugin({
-        filename: "[name].css",
-        chunkFilename: "[id].css"
+        filename: devMode ? '[name].css' : '[name].[hash].css',
+        chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
     }),
     new ForkTsCheckerPlugin(),
-    new HardSourceWebpackPlugin()
+    new HardSourceWebpackPlugin([{
+        test: /mini-css-extract-plugin[\\/]dist[\\/]loader/,
+    }])
   ],
 };
