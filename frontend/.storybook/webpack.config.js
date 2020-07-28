@@ -2,10 +2,11 @@ const path = require('path');
 
 module.exports = ({ config, mode }) => {
     config.module.rules.push({
-      test: /\.(ts|tsx)$/,
+      test: /\.(ts|tsx|js|jsx)$/,
+      exclude: /(node_modules|dist)/,
       resolve: {
         alias: {
-          '@': path.resolve(__dirname, '../src/'),
+            '@': path.resolve(__dirname, '../src/'),
         },
       },
       use: [
