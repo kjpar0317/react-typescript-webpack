@@ -8,8 +8,6 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import Swal from 'sweetalert2';
 
-import { loginAction } from '@/features/login/slice';
-
 import loginTlt from '@/images/login/login_tit.png';
 
 import '../styles.scss';
