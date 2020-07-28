@@ -6,6 +6,8 @@ import Badge from '@material-ui/core/Badge';
 import SettingsPower from '@material-ui/icons/SettingsPower';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
+import Swal from 'sweetalert2';
+
 import { loginAction } from '@/features/login/slice';
 
 import loginTlt from '@/images/login/login_tit.png';
@@ -20,9 +22,25 @@ const Header : React.FC<HeaderProps> = ({onTrigger}) => {
     const dispatch = useDispatch();
 
     const handleLogOut = async() => {
-        await dispatch(loginAction.dologout());
 
-        document.location.href = "/";
+        const confirmResult = await Swal.fire({
+            title: '로그아웃 하시겠습니까?',
+            text: "로그아웃 시 작업 내용이 삭제 될 수 있습니다!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '확인',
+            cancelButtonText: '취소'
+        });
+
+        if (confirmResult.value) {
+            await dispatch(loginAction.dologout());
+            setTimeout(function(){
+                // 2초 후 작동해야할 코드
+                document.location.href = "/";
+            }, 1000);
+        }
     }
 
     return (
@@ -50,4 +68,4 @@ const Header : React.FC<HeaderProps> = ({onTrigger}) => {
     );
 };
 
-export default Header;
+export { Header };
