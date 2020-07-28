@@ -40,4 +40,4 @@ const SideNavbar : React.FC<SideNavBarProps> = ({visible, menuItems}) => {
     );
 };
 
-export default SideNavbar;
+export { SideNavbar };
