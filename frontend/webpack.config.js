@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const env = require("dotenv");
 
 env.config();
@@ -116,7 +117,7 @@ module.exports = {
         test: /\.(png|jpg|jpeg|gif)(\?.*$|$)/,
         loader: 'file-loader',
         options: {
-          name: 'images/[folder]/[name].[ext]',
+            name: 'images/[folder]/[name].[ext]',
         },
        },
        {
@@ -141,6 +142,14 @@ module.exports = {
     new ForkTsCheckerPlugin(),
     new HardSourceWebpackPlugin([{
         test: /mini-css-extract-plugin[\\/]dist[\\/]loader/,
-    }])
+    }]),
+    new CopyWebpackPlugin({
+        patterns : [
+            { from: 'src/images', to: 'images' }
+        ],
+        options: {
+            concurrency: 100
+        }
+    })
   ],
 };
