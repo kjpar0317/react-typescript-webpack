@@ -19,9 +19,20 @@ const slice = createSlice({
             state.username = username;
             state.password = password;
         },
+        dologout: (state : ILoginInfo) => {
+        },
+        doremove: (state : ILoginInfo) => {
+            // delete state.username;
+            // delete state.password;
+            // delete state.token;
+            state.username = '';
+            state.password = '';
+            state.token = '';
+        },
         loginSuccess: (state : ILoginInfo, { payload: token }  : PayloadAction<string>) => {
             state.isLoading = false;
             state.token = token;
+            state.error = null;
         },
         loginFail: (state : ILoginInfo, { payload: error }  : PayloadAction<any>) => {
             state.isLoading = false;
