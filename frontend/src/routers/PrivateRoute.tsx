@@ -11,9 +11,7 @@ import IconPeople from '@material-ui/icons/People'
 import IconBarChart from '@material-ui/icons/BarChart'
 import IconLibraryBooks from '@material-ui/icons/LibraryBooks'
 
-import Header from '@/components/layouts/header';
-import SideNavbar from '@/components/layouts/sideNavbar';
-import MainContents from '@/components/layouts/mainContents';
+import { Header, SideNavbar, MainContents }  from '@/components/layouts';
 
 interface PrivateProps extends RouteProps {
 
@@ -29,15 +27,15 @@ const menuItems = [
           items: [
             {
               name: '전체',
-              link: '/',
+              link: '/admin/user',
             },
             {
               name: '퍼블릭',
-              link: '/',
+              link: '/admin/user',
             },
             {
                 name: '프라이빗',
-                link: '/',
+                link: '/admin/user',
             },
           ],
         },
@@ -46,11 +44,11 @@ const menuItems = [
             items: [
               {
                 name: '모니터링 대시보드',
-                link: '/',
+                link: '/admin/user',
               },
               {
                 name: '관리자 대시보드',
-                link: '/',
+                link: '/admin/user',
               },
             ],
           },
@@ -59,11 +57,11 @@ const menuItems = [
             items: [
               {
                 name: '모니터링 대시보드',
-                link: '/',
+                link: '/admin/user',
               },
               {
                 name: '관리자 대시보드',
-                link: '/',
+                link: '/admin/user',
               },
             ],
           },
@@ -71,7 +69,6 @@ const menuItems = [
     },
     {
       name: '퍼블릭 클라우드',
-      link: '/orders',
       Icon: IconShoppingCart,
       items: [
         {
@@ -79,23 +76,23 @@ const menuItems = [
           items: [
             {
               name: '컴퓨트',
-              link: '/',
+              link: '/admin/user',
             },
             {
               name: '볼륨',
-              link: '/',
+              link: '/admin/user',
             },
             {
                 name: '네트워크',
-                link: '/',
+                link: '/admin/user',
             },
             {
                 name: 'IAM',
-                link: '/',
+                link: '/admin/user',
             },
             {
                 name: '사용량',
-                link: '/',
+                link: '/admin/user',
             },
           ],
         },
@@ -104,23 +101,23 @@ const menuItems = [
             items: [
               {
                 name: '컴퓨트',
-                link: '/',
+                link: '/admin/user',
               },
               {
                 name: '디스크',
-                link: '/',
+                link: '/admin/user',
               },
               {
                   name: '네트워크',
-                  link: '/',
+                  link: '/admin/user',
               },
               {
                   name: '관리',
-                  link: '/',
+                  link: '/admin/user',
               },
               {
                   name: '사용량',
-                  link: '/',
+                  link: '/admin/user',
               },
             ],
           },
@@ -128,7 +125,6 @@ const menuItems = [
     },
     {
       name: '프라이빗 클라우드',
-      link: '/customers',
       Icon: IconPeople,
       items: [
         {
@@ -136,23 +132,23 @@ const menuItems = [
           items: [
             {
               name: '컴퓨트',
-              link: '/',
+              link: '/admin/user',
             },
             {
               name: '볼륨',
-              link: '/',
+              link: '/admin/user',
             },
             {
                 name: '네트워크',
-                link: '/',
+                link: '/admin/user',
             },
             {
                 name: '관리',
-                link: '/',
+                link: '/admin/user',
             },
             {
                 name: '사용량',
-                link: '/',
+                link: '/admin/user',
             },
           ],
         },
@@ -161,23 +157,23 @@ const menuItems = [
             items: [
               {
                 name: '컴퓨트',
-                link: '/',
+                link: '/admin/user',
               },
               {
                 name: '디스크',
-                link: '/',
+                link: '/admin/user',
               },
               {
                   name: '네트워크',
-                  link: '/',
+                  link: '/admin/user',
               },
               {
                   name: '관리',
-                  link: '/',
+                  link: '/admin/user',
               },
               {
                   name: '사용량',
-                  link: '/',
+                  link: '/admin/user',
               },
             ],
           },
@@ -186,19 +182,19 @@ const menuItems = [
             items: [
               {
                 name: '컴퓨트',
-                link: '/',
+                link: '/admin/user',
               },
               {
                 name: '데이터스토어',
-                link: '/',
+                link: '/admin/user',
               },
               {
                   name: '네트워크',
-                  link: '/',
+                  link: '/admin/user',
               },
               {
                   name: '사용량',
-                  link: '/',
+                  link: '/admin/user',
               },
             ],
           },
@@ -206,24 +202,23 @@ const menuItems = [
     },
     {
       name: '인증 & 권한',
-      link: '/reports',
       Icon: IconBarChart,
       items: [
         {
           name: '그룹',
-          link: '/'
+          link: '/admin/user'
         },
         {
           name: '사용자',
-          link: '/'
+          link: '/admin/user'
         },
         {
           name: '역할',
-          link: '/'
+          link: '/admin/user'
         },
         {
           name: '권한',
-          link: '/'
+          link: '/admin/user'
         },
       ]
     },
@@ -233,27 +228,27 @@ const menuItems = [
       items: [
         {
           name: '설정',
-          link: '/'
+          link: '/admin/user'
         },
         {
             name: '자원 승인',
-            link: '/'
+            link: '/admin/user'
           },
           {
             name: '자격 증명',
-            link: '/'
+            link: '/admin/user'
           },
           {
             name: '빌링',
-            link: '/'
+            link: '/admin/user'
           },
           {
             name: '사양',
-            link: '/'
+            link: '/admin/user'
           },
           {
             name: '관리자 보안 설정',
-            link: '/'
+            link: '/admin/user'
           },
       ],
     },
