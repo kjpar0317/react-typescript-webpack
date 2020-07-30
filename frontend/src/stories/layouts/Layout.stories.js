@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 // import { linkTo } from '@storybook/addon-links';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 
 import createStore from '@/store';
 
@@ -51,6 +51,6 @@ storiesOf('레이아웃 컴포넌트', module)
         </Provider>
     ))
     .add('헤더', () => <Header onTrigger={action('')}/>)
-    .add('사이드바', () => <SideNavbar visible='' menuItems={menuItems}/>)
+    .add('사이드바', () => <SideNavbar visible={true} menuItems={menuItems} onTrigger={action()} onSidebarOpen={action()}/>)
     .add('내용', () => <MainContents />)
     .addDecorator(withKnobs);
