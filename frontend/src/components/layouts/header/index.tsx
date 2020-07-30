@@ -1,5 +1,4 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
@@ -13,11 +12,16 @@ import loginTlt from '@/images/login/login_tit.png';
 import '../styles.scss';
 
 interface HeaderProps {
-    onTrigger: () => void;
+    onTrigger: (open) => void;
 }
 
 const Header : React.FC<HeaderProps> = ({onTrigger}) => {
-    const dispatch = useDispatch();
+    const [ open, setOpen ] = React.useState(false);
+
+    const handleOpenTrigger = () => {
+        setOpen(!open);
+        onTrigger(!open);
+    }
 
     const handleLogOut = async() => {
 
@@ -53,11 +57,12 @@ const Header : React.FC<HeaderProps> = ({onTrigger}) => {
                     aria-label="account of current user"
                     aria-haspopup="true"
                     color="inherit"
+                    onClick={() => handleLogOut()}
                 >
-                    <SettingsPower onClick={handleLogOut}/>
+                    <SettingsPower />
                 </IconButton>
             </div>
-            <a href="#" className="nav-trigger" onClick={() => onTrigger()}><span></span></a>
+            <a href="#" className="nav-trigger" onClick={() => handleOpenTrigger()}><span></span></a>
 		</div>
     );
 };
