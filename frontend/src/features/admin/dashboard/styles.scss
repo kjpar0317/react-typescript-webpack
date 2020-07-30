@@ -1,0 +1,27 @@
+/* main box container */
+.main {
+	display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    height: calc(100vh - 70px - 45px - 17px);
+
+    .widget {
+        flex-basis: 300px;
+        flex-grow: 10;
+        height: 300px;
+        margin: 15px;
+        border-radius: 6px;
+        background-color: #ffffff;
+        position: relative;
+
+        .title {
+            background-color: #eef1f7;
+            border-bottom: 1px solid #dfe4ec;
+            padding: 10px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            color: #617085;
+            font-weight: 600;
+        }
+    }
+}
