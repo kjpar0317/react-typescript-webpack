@@ -12,7 +12,7 @@ import loginTlt from '@/images/login/login_tit.png';
 import '../styles.scss';
 
 interface HeaderProps {
-    onTrigger: (open) => void;
+    onTrigger: (open : boolean) => void;
 }
 
 const Header : React.FC<HeaderProps> = ({onTrigger}) => {
