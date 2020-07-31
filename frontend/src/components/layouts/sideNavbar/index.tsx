@@ -24,10 +24,10 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) =>
 
 interface SideNavBarProps {
     visible: boolean;
-    menuItems: any;
+    menuItems: Array<any>;
     width: string;
-    onTrigger: (open) => void;
-    onSidebarOpen: (open) => void;
+    onTrigger: (open : boolean) => void;
+    onSidebarOpen: (open : boolean) => void;
 }
 
 const SideNavbar : React.FC<SideNavBarProps> = (props) => {
