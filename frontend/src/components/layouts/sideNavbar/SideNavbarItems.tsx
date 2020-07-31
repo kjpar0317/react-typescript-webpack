@@ -35,8 +35,8 @@ type AppMenuItemPropsWithoutItems = Omit<AppMenuItemPropTypes, 'items'>
 export type AppMenuItemProps = AppMenuItemPropsWithoutItems & {
     items?: AppMenuItemProps[];
     // setAnchorEl: (e) => void;
-    setAnchorEl: (e) => void;
-    setTargetId: (e) => void;
+    setAnchorEl: (e : any) => void;
+    setTargetId: (e : string) => void;
 }
 
 const useStyles = makeStyles(theme => createStyles({
@@ -88,7 +88,7 @@ const SideNavbarItem: React.FC<AppMenuItemProps> = props => {
         component={
             React.forwardRef<HTMLAnchorElement, any>((props, ref) => link ? <Link to={link} {...props} ref={ref as any}/> : <Link to={history.location.pathname} {...props} ref={ref as any} />)
         }
-        onClick={(e) => handleClick(e) }>
+        onClick={(e : React.MouseEvent<HTMLDivElement, MouseEvent>) => handleClick(e) }>
       {/* Display an icon if any */}
       {!!Icon && (
         <ListItemIcon className={classes.menuItemIcon} aria-controls={id} aria-haspopup="true" onClick={(e) => handlePopMenu(e)}>
@@ -102,7 +102,7 @@ const SideNavbarItem: React.FC<AppMenuItemProps> = props => {
     </ListItem>
   );
 
-  const MenuItemChildren = (props, isExpandable) => (
+  const MenuItemChildren = (props : any, isExpandable : boolean) => (
     isExpandable && <Collapse in={open} timeout="auto" unmountOnExit>
       <Divider />
       <List component="div" disablePadding>
