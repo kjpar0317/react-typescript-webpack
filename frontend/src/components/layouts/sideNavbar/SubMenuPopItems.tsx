@@ -23,7 +23,7 @@ const SubMenuPopItems : React.FC<SubMenuPopItemsProps> = (props) => {
     const [ menuOpen, setMenuOpen ] = React.useState(false);
     const [ anchorEl, setAnchorEl ] = React.useState(null);
 
-    const handleItemClick = event => {
+    const handleItemClick = (event : any) => {
         if (!anchorEl) {
             setAnchorEl(event.currentTarget);
         }
