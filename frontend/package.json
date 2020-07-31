@@ -49,6 +49,7 @@
     "@storybook/preset-typescript": "^3.0.0",
     "@storybook/react": "^5.3.19",
     "@types/classnames": "^2.2.10",
+    "@types/faker": "^4.1.12",
     "@types/lodash": "^4.14.158",
     "@types/lodash-webpack-plugin": "^0.11.4",
     "@types/react": "^16.9.43",
