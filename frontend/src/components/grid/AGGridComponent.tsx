@@ -99,11 +99,11 @@ var gridOptions = {
 */
 
 const AGGridComponent : React.FC<AGGridProps> = (props) => {
-    const onGridReady = (params) => {
+    const onGridReady = (params : any) => {
         params.api.sizeColumnsToFit();
     };
 
-    const handleClicked = (e) => {
+    const handleClicked = (e : any) => {
         console.log(e.data);
     };
 
