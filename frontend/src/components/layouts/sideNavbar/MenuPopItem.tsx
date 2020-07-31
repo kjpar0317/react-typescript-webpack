@@ -8,10 +8,10 @@ import SubMenuPopItems from './SubMenuPopItems';
 
 interface MenuPopItemsProps extends MenuProps {
     id: any;
-    menuItems: any;
+    menuItems: Array<any>;
     open: boolean;
     anchorEl: null | HTMLElement;
-    onClose: (e) => void;
+    onClose: (e : any) => void;
 }
 
 const useStyles = makeStyles(theme => createStyles({
@@ -23,7 +23,7 @@ const MenuPopItems : React.FC<MenuPopItemsProps> = ({id, open, menuItems, anchor
     const classes = useStyles();
     let history = useHistory();
 
-    const handleLink = (link) => {
+    const handleLink = (link : any) => {
         history.push(link);
     };
 
