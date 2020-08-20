@@ -32,21 +32,39 @@ function responseValidate(error : any) {
 
     // 토큰 재발급 처리
     if (sessionStorage.getItem('token') && error.response.status === 401) {
-        return axios.post(`${config.baseURL}/auth/token`, {
-                username: sessionStorage.getItem('username'),
-                access_token : sessionStorage.getItem('token')
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
+        const result = await axios
+            .post(
+                `${config.baseURL}/auth/token`,
+                {
+                    username: sessionStorage.getItem('username'),
+                    access_token: sessionStorage.getItem('token'),
                 },
-            }
-        ).then(res => {
-            console.log(res.data.resultMsg);
-            sessionStorage.setItem('token', res.data.resultData);
-            return;
-        }).catch(error => {
-            return error.response;
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                },
+            )
+            .catch((error) => {
+                return error.response;
+            });
+
+        // console.log(config);
+        // console.log(result);
+        sessionStorage.setItem('token', result.data.access_token);
+
+        const recall = await axios({
+            url: config.url,
+            method: config.method,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+            },
+            data: config.data,
+            params: config.params,
         });
+
+        return recall.data;
     } else {
         Swal.fire(
             error.response.data.error,
@@ -69,7 +87,7 @@ axioUtils.interceptors.request.use(
         const token = sessionStorage.getItem('token');
 
         if(token) {
-            config.headers['Authorization'] = 'Bearer ' + token;
+            config.headers['Authorization'] = 'Bearer ${token}';
         }
         config.headers['Content-Type'] = 'application/json';
 
