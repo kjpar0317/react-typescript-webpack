@@ -7,7 +7,7 @@ const axioUtils = axios.create({
     // timeout: 30000
 });
 
-function responseValidate(error : any) {
+async function responseValidate(error : any) {
     const config = error.config;
 
     // 네트워크 연결 오류
