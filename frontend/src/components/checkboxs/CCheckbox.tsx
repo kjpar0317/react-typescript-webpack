@@ -63,6 +63,7 @@ const CCheckbox: React.FC<CCheckboxProps> = (props) => {
         const index = findIndex(cloneItems, ['label', event.target.name]);
 
         cloneItems[index] = {
+            ...cloneItems[index],
             label: event.target.name,
             checked: event.target.checked,
         };
