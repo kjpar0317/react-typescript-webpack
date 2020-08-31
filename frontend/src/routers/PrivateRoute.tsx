@@ -42,13 +42,14 @@ export const PrivateRoute : React.FC<PrivateProps> = props => {
     };
     
     const getPaletteBackground = () => {
-        if (group === 'admin') {
-            return '#35475e';
-        } else if (group === 'group') {
-            return '#3e5d70';
-        } else {
-            return '#577080';
-        }
+        // if (group === 'admin') {
+        //     return '#35475e';
+        // } else if (group === 'group') {
+        //     return '#3e5d70';
+        // } else {
+        //     return '#577080';
+        // }
+        return '#35475e';
     };
 
     if (sessionStorage.getItem('token'))  {
