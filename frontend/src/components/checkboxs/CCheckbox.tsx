@@ -69,7 +69,7 @@ const CCheckbox: React.FC<CCheckboxProps> = (props) => {
 
         setCitems(cloneItems);
 
-        props.onChange && props.onChange(citems);
+        props.onChange && props.onChange(cloneItems);
         // setCitems({ ...citems, [event.target.name]: event.target.checked });
     };
 
