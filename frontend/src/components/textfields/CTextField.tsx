@@ -32,9 +32,10 @@ const useStyle = makeStyles((theme: Theme) =>
 export interface CTextFieldProps extends RouteProps {
     id: string;
     value: string;
-    label: string;
+    label?: string | undefined;
     defaultValue?: string;
     variant?: TextFieldProps['variant'];
+    style?: React.CSSProperties;
     required?: boolean;
     onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
@@ -46,6 +47,7 @@ const CTextField: React.FC<CTextFieldProps> = (props) => {
         label,
         defaultValue,
         variant,
+        style,
         required,
         onChange,
         ...other
@@ -70,6 +72,7 @@ const CTextField: React.FC<CTextFieldProps> = (props) => {
             defaultValue={defaultValue}
             variant={variant}
             className={classes.textStyle}
+            style={style}
             onChange={props.onChange}
         />
     );
