@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
         },
         formControl: {
-            margin: theme.spacing(3),
+            margin: 0,
         },
         ccheck1: {
             '&$checked': {
