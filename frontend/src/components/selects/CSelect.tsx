@@ -32,13 +32,14 @@ const BootstrapInput = withStyles((theme: Theme) =>
             'label + &': {
                 marginTop: theme.spacing(3),
             },
+            margin: 0,
         },
         input: {
             borderRadius: 4,
             position: 'relative',
             backgroundColor: theme.palette.background.paper,
             border: '1px solid #ced4da',
-            padding: '10px 10px 10px 10px',
+            padding: '10px 0px 10px 10px',
             transition: theme.transitions.create([
                 'border-color',
                 'box-shadow',
@@ -54,8 +55,8 @@ const BootstrapInput = withStyles((theme: Theme) =>
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        margin: {
-            margin: theme.spacing(1),
+        root: {
+            margin: 0,
         },
     }),
 );
@@ -96,11 +97,7 @@ const CSelect: React.FC<CSelectProps> = (props) => {
     };
 
     return (
-        <FormControl
-            className={classes.margin}
-            style={style}
-            disabled={disabled}
-        >
+        <FormControl className={classes.root} style={style} disabled={disabled}>
             {title && (
                 <InputLabel htmlFor={id}>{getCovertedLabel(title)}</InputLabel>
             )}
