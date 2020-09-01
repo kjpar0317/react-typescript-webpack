@@ -35,6 +35,7 @@ export interface CTextFieldProps extends RouteProps {
     label?: string | undefined;
     defaultValue?: string;
     variant?: TextFieldProps['variant'];
+    margin?: TextFieldProps['margin'];
     style?: React.CSSProperties;
     required?: boolean;
     onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -47,6 +48,7 @@ const CTextField: React.FC<CTextFieldProps> = (props) => {
         label,
         defaultValue,
         variant,
+        margin,
         style,
         required,
         onChange,
@@ -71,6 +73,7 @@ const CTextField: React.FC<CTextFieldProps> = (props) => {
             label={label}
             defaultValue={defaultValue}
             variant={variant}
+            margin={margin}
             className={classes.textStyle}
             style={style}
             onChange={props.onChange}
