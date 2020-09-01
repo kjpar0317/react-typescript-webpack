@@ -31,7 +31,8 @@ const useStyle = makeStyles((theme: Theme) =>
 
 export interface CTextFieldProps extends RouteProps {
     id: string;
-    value: string;
+    type?: string;
+    value: string | number;
     label?: string | undefined;
     defaultValue?: string;
     variant?: TextFieldProps['variant'];
@@ -44,6 +45,7 @@ export interface CTextFieldProps extends RouteProps {
 const CTextField: React.FC<CTextFieldProps> = (props) => {
     const {
         id,
+        type,
         value,
         label,
         defaultValue,
@@ -70,6 +72,7 @@ const CTextField: React.FC<CTextFieldProps> = (props) => {
         <TextField
             error={errorFlag}
             id={id}
+            type={type}
             label={label}
             defaultValue={defaultValue}
             variant={variant}
