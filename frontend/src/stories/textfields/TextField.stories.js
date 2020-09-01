@@ -44,6 +44,15 @@ storiesOf('TextField 컴포넌트', module)
                     },
                     'standard',
                 )}
+                margin={select(
+                    '텍스트 margin',
+                    {
+                        dense: 'dense',
+                        none: 'none',
+                        normal: 'normal',
+                    },
+                    'normal',
+                )}
                 required={select('필수값', { true: true, false: false }, false)}
                 {...actions}
             ></CTextField>
