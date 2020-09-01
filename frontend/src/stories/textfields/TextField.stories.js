@@ -33,6 +33,19 @@ storiesOf('TextField 컴포넌트', module)
         return (
             <CTextField
                 id="create-text"
+                type={type(
+                    '텍스트 타입',
+                    {
+                        없음: '',
+                        text: 'text',
+                        number: 'number',
+                        password: 'password',
+                        email: 'email',
+                        tel: 'tel',
+                        hidden: 'hidden',
+                    },
+                    '',
+                )}
                 value={value}
                 label={text('라벨', 'test')}
                 variant={select(
@@ -43,6 +56,15 @@ storiesOf('TextField 컴포넌트', module)
                         outlined: 'outlined',
                     },
                     'standard',
+                )}
+                margin={select(
+                    '텍스트 margin',
+                    {
+                        dense: 'dense',
+                        none: 'none',
+                        normal: 'normal',
+                    },
+                    'normal',
                 )}
                 required={select('필수값', { true: true, false: false }, false)}
                 {...actions}
