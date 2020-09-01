@@ -33,15 +33,13 @@ storiesOf('TextField 컴포넌트', module)
         return (
             <CTextField
                 id="create-text"
-                type={type(
+                type={select(
                     '텍스트 타입',
                     {
                         없음: '',
                         text: 'text',
                         number: 'number',
                         password: 'password',
-                        email: 'email',
-                        tel: 'tel',
                         hidden: 'hidden',
                     },
                     '',
