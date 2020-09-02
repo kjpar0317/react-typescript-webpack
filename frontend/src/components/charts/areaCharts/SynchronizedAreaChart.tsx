@@ -15,25 +15,28 @@ interface SynchronizedAreaChart {
     syncId?: string | undefined;
     data: Array<any>;
     xPvt: string;
-    yPvt: string;
+    yPvts: Array<string>;
     height?: number | string | undefined;
     strokeDasharray?: string | undefined;
-    storkColor?: string | undefined;
-    fillColor?: string | undefined;
+    storkColors?: Array<string> | undefined;
+    fillColors?: Array<string> | undefined;
     xRange?: XAxisProps['domain'];
     yRange?: YAxisProps['domain'];
 }
+
+const defaultStorkColors = ['#82ca9d', '#8884d8'];
+const defaultFillColors = ['#82ca9d', '#8884d8'];
 
 const SynchronizedAreaChart: React.FC<SynchronizedAreaChart> = (props) => {
     const {
         syncId = 'anyId',
         data,
         xPvt,
-        yPvt,
+        yPvts,
         height = '300px',
         strokeDasharray = '3 3',
-        storkColor = '#82ca9d',
-        fillColor = '#82ca9d',
+        storkColors = defaultStorkColors,
+        fillColors = defaultFillColors,
         xRange,
         yRange,
     } = props;
@@ -55,12 +58,17 @@ const SynchronizedAreaChart: React.FC<SynchronizedAreaChart> = (props) => {
                     <XAxis dataKey={xPvt} domain={xRange} />
                     <YAxis domain={yRange} />
                     <Tooltip />
-                    <Area
-                        type="monotone"
-                        dataKey={yPvt}
-                        stroke={storkColor}
-                        fill={fillColor}
-                    />
+                    {yPvts.map((yPvt: string, index: number) => {
+                        return (
+                            <Area
+                                key={`inarea-${index}`}
+                                type="monotone"
+                                dataKey={yPvt}
+                                stroke={storkColors[index]}
+                                fill={fillColors[index]}
+                            />
+                        );
+                    })}
                 </AreaChart>
             </ResponsiveContainer>
         </div>
