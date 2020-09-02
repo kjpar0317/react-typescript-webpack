@@ -11,7 +11,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import createStore from '@/store';
 import { customTheme } from '@/constants';
-import { CSwitch } from '@/components/switchs';
+import { CSwitch, CSwitchGroup } from '@/components/switchs';
 
 import locale_ko from '@/locale/ko.json';
 import locale_en from '@/locale/en.json';
@@ -81,6 +81,37 @@ storiesOf('Switch 컴포넌트', module)
                 },
                 '',
             )}
+            {...actions}
+        />
+    ))
+    .add('Switch Group', () => (
+        <CSwitchGroup
+            title={text('그룹 타이틀', '테스트')}
+            items={object('options', [
+                { label: '테스트1', name: 'test1', checked: true },
+                { label: '테스트2', name: 'test2', checked: true },
+            ])}
+            labelPlacement={select(
+                '텍스트 방향',
+                {
+                    없음: '',
+                    bottom: 'bottom',
+                    end: 'end',
+                    start: 'start',
+                    top: 'top',
+                },
+                '',
+            )}
+            row={select(
+                '방향',
+                {
+                    없음: '',
+                    horizontal: true,
+                    vertical: false,
+                },
+                '',
+            )}
+            helperText={text('그룹 하단 타이틀', '하단 테스트')}
             {...actions}
         />
     ))
