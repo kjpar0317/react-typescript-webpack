@@ -8,11 +8,12 @@ import Switch from '@material-ui/core/Switch';
 
 interface CSwitchProps {
     label: string;
+    id?: string | undefined;
     type?: 'cswitch1' | 'cswitch2' | 'cswitch3' | 'cswitch4' | undefined;
     labelPlacement?: FormControlLabelProps['labelPlacement'];
     checked?: boolean;
     disabled?: boolean;
-    onChange?(checked: boolean): any;
+    onChange?(checked: boolean, target?: any): any;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -69,7 +70,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const CSwitch: React.FC<CSwitchProps> = (props) => {
     const classes = useStyles();
-    const { label, type, checked, labelPlacement, disabled } = props;
+    const { label, id, type, checked, labelPlacement, disabled } = props;
     const [schecked, setSchecked] = useState(checked);
 
     const className =
@@ -84,7 +85,7 @@ const CSwitch: React.FC<CSwitchProps> = (props) => {
         dstChecked: boolean,
     ) => {
         setSchecked(dstChecked);
-        props.onChange && props.onChange(dstChecked);
+        props.onChange && props.onChange(dstChecked, event.target);
     };
 
     return (
@@ -93,6 +94,7 @@ const CSwitch: React.FC<CSwitchProps> = (props) => {
                 checked={schecked}
                 control={
                     <Switch
+                        id={id}
                         disableRipple
                         classes={{
                             switchBase: className,
