@@ -77,11 +77,11 @@ storiesOf('Chart 컴포넌트', module)
         <SynchronizedAreaChart
             data={object('차트 데이터', data)}
             xPvt={text('X축', 'name')}
-            yPvt={text('Y축', 'pv')}
+            yPvts={object('Y축들', ['pv', 'amt'])}
             height={text('높이', '400px')}
             strokeDasharray={text('차트 대시 모양', '0,12')}
-            storkColor={text('stork color', '#82ca9d')}
-            fillColor={text('fill color', '#82ca9d')}
+            storkColors={object('stork color', ['#82ca9d', '#82ca9d'])}
+            fillColors={object('fill color', ['#82ca9d', '#82ca9d'])}
             xRange={object('xAxis범위', [])}
             yRange={object('yAxis범위', [])}
         />
