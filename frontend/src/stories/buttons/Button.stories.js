@@ -10,13 +10,42 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import createStore from '@/store';
 import { customTheme } from '@/constants';
-import { CButton, CIconButton } from '@/components/buttons';
+import {
+    CButton,
+    CIconButton,
+    CButtonGroup,
+    CSplitButton,
+} from '@/components/buttons';
 
 const store = createStore();
 
 const actions = {
     onClick: action('onClick'),
 };
+
+const groupItems = [
+    {
+        name: 'test1',
+        onClick: function (e) {
+            console.log(e);
+        },
+    },
+    {
+        name: 'test2',
+        onClick: function (e) {
+            console.log(e);
+        },
+    },
+];
+
+const groupItems2 = [
+    {
+        name: 'test1',
+    },
+    {
+        name: 'test2',
+    },
+];
 
 storiesOf('Button 컴포넌트', module)
     .addDecorator((story) => (
@@ -82,6 +111,46 @@ storiesOf('Button 컴포넌트', module)
             )}
             tooltip={text('툴팁', '')}
             {...actions}
+        />
+    ))
+    .add('아이콘 그룹 버튼', () => (
+        <CButtonGroup
+            type={select(
+                '버튼 색깔 스타일',
+                { btn1: 'btn1', btn2: 'btn2', btn3: 'btn3', btn4: 'btn4' },
+                'btn1',
+            )}
+            variant={select(
+                '버튼 모양 스타일',
+                { contained: 'contained', outlined: 'outlined' },
+                'contained',
+            )}
+            size={select(
+                '버튼 크기',
+                { 없음: '', small: 'small', medium: 'medium', large: 'large' },
+                '',
+            )}
+            items={object('버튼 items', groupItems)}
+        />
+    ))
+    .add('아이콘 Split 버튼', () => (
+        <CSplitButton
+            type={select(
+                '버튼 색깔 스타일',
+                { btn1: 'btn1', btn2: 'btn2', btn3: 'btn3', btn4: 'btn4' },
+                'btn1',
+            )}
+            variant={select(
+                '버튼 모양 스타일',
+                { contained: 'contained', outlined: 'outlined' },
+                'contained',
+            )}
+            size={select(
+                '버튼 크기',
+                { 없음: '', small: 'small', medium: 'medium', large: 'large' },
+                '',
+            )}
+            items={object('버튼 items', groupItems)}
         />
     ))
     .addDecorator(withKnobs);
