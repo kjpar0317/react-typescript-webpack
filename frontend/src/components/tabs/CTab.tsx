@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
         default: {
             fontWeight: 600,
             color: 'black',
+            minWidth: 100,
         },
         ctab1: {
             fontWeight: 600,
@@ -33,7 +34,7 @@ export interface CTabProps extends TabProps {
 }
 
 const CTab: React.FC<CTabProps> = (props) => {
-    const { label, type, children, ...other } = props;
+    const { label, type, style, children, ...other } = props;
     const classes = useStyles();
 
     const className =
