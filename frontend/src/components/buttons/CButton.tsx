@@ -112,7 +112,7 @@ export interface CButtonProps {
     size?: 'small' | 'medium' | 'large' | undefined;
     sicon?: string;
     eicon?: string;
-    onClick?: () => void;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const CButton: React.FC<CButtonProps> = (props) => {
