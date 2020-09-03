@@ -60,7 +60,7 @@ export interface CIconButtonProps {
     size?: IconButtonProps['size'];
     edge?: IconButtonProps['edge'];
     tooltip?: TooltipProps['title'];
-    onClick?: () => void;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const CIconButton: React.FC<CIconButtonProps> = (props) => {
