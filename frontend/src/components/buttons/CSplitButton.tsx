@@ -221,27 +221,25 @@ const CSplitButton: React.FC<CSplitButtonProps> = (props) => {
                             <Paper>
                                 <ClickAwayListener onClickAway={handleClose}>
                                     <MenuList id="split-button-menu">
-                                        {items &&
-                                            items.map(
-                                                (item: any, index: number) => (
-                                                    <MenuItem
-                                                        key={`splitmenu-${index}`}
-                                                        disabled={index === 2}
-                                                        selected={
-                                                            index ===
-                                                            selectedIndex
-                                                        }
-                                                        onClick={(event: any) =>
-                                                            handleMenuItemClick(
-                                                                event,
-                                                                index,
-                                                            )
-                                                        }
-                                                    >
-                                                        {item.name}
-                                                    </MenuItem>
-                                                ),
-                                            )}
+                                        {items.map(
+                                            (item: any, index: number) => (
+                                                <MenuItem
+                                                    key={`splitmenu-${index}`}
+                                                    disabled={item.disabled}
+                                                    selected={
+                                                        index === selectedIndex
+                                                    }
+                                                    onClick={(event: any) =>
+                                                        handleMenuItemClick(
+                                                            event,
+                                                            index,
+                                                        )
+                                                    }
+                                                >
+                                                    {item.name}
+                                                </MenuItem>
+                                            ),
+                                        )}
                                     </MenuList>
                                 </ClickAwayListener>
                             </Paper>
