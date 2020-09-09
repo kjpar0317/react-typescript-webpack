@@ -34,7 +34,7 @@ storiesOf('Stepper 컴포넌트', module)
             </Provider>
         </IntlProvider>
     ))
-    .add('VMware Stepper', () => (
+    .add('Stepper 기본', () => (
         <CStepper
             type={select(
                 'stepper 스타일',
