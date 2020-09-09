@@ -18,6 +18,7 @@ const store = createStore();
 
 const actions = {
     onChange: action('onChange'),
+    onKeyPress: action('onKeyPress'),
 };
 
 storiesOf('TextField 컴포넌트', module)
@@ -40,6 +41,8 @@ storiesOf('TextField 컴포넌트', module)
                         text: 'text',
                         number: 'number',
                         password: 'password',
+                        email: 'email',
+                        tel: 'tel',
                         hidden: 'hidden',
                     },
                     '',
