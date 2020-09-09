@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { storiesOf } from '@storybook/react';
-import { withKnobs, select, text } from '@storybook/addon-knobs';
+import { withKnobs, select, text, number } from '@storybook/addon-knobs';
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
@@ -69,6 +69,7 @@ storiesOf('Tab 컴포넌트', module)
                             },
                             '',
                         )}
+                        width={number('탭 너비', 100)}
                     ></CTab>
                     <CTab
                         label="테스트 탭2"
@@ -83,6 +84,7 @@ storiesOf('Tab 컴포넌트', module)
                             },
                             '',
                         )}
+                        width={number('탭 너비', 100)}
                     ></CTab>
                 </CTabs>
                 <CTabPanel index={0} value={value}>
