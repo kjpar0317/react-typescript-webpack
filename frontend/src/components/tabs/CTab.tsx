@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme: Theme) =>
         default: {
             fontWeight: 600,
             color: 'black',
-            minWidth: 100,
         },
         ctab1: {
             fontWeight: 600,
@@ -30,11 +29,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export interface CTabProps extends TabProps {
     label: string;
+    width?: number;
     type?: 'ctab1' | 'ctab2' | 'ctab3' | 'ctab4' | undefined;
 }
 
 const CTab: React.FC<CTabProps> = (props) => {
-    const { label, type, style, children, ...other } = props;
+    const { label, type, width, children, ...other } = props;
     const classes = useStyles();
 
     const className =
@@ -44,7 +44,14 @@ const CTab: React.FC<CTabProps> = (props) => {
         (type === 'ctab4' && classes.ctab4) ||
         classes.default;
 
-    return <Tab label={label} {...other} className={className}></Tab>;
+    return (
+        <Tab
+            label={label}
+            style={{ minWidth: width }}
+            {...other}
+            className={className}
+        ></Tab>
+    );
 };
 
 export { CTab };
