@@ -40,6 +40,7 @@ export interface CTextFieldProps extends RouteProps {
     style?: React.CSSProperties;
     required?: boolean;
     onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    onKeyPress?: (data: any) => void;
 }
 
 const CTextField: React.FC<CTextFieldProps> = (props) => {
@@ -54,6 +55,7 @@ const CTextField: React.FC<CTextFieldProps> = (props) => {
         style,
         required,
         onChange,
+        onKeyPress,
         ...other
     } = props;
     const classes = useStyle();
@@ -79,7 +81,8 @@ const CTextField: React.FC<CTextFieldProps> = (props) => {
             margin={margin}
             className={classes.textStyle}
             style={style}
-            onChange={props.onChange}
+            onChange={onChange}
+            onKeyPress={onKeyPress}
         />
     );
 };
