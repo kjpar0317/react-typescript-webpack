@@ -10,7 +10,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import createStore from '@/store';
 import { customTheme } from '@/constants';
-import { CStepper } from '@/components/stepper';
+import { CStepper } from '@/components/steppers';
 
 import locale_ko from '@/locale/ko.json';
 import locale_en from '@/locale/en.json';
