@@ -1,4 +1,4 @@
-export * from './CAlternaeTimeline';
+export * from './CAlternateTimeline';
 export * from './CLeftTimeline';
 export * from './CRightTimeline';
 
