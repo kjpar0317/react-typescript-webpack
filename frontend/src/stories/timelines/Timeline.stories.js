@@ -11,7 +11,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import createStore from '@/store';
 import { customTheme } from '@/constants';
 import {
-    CAlternaeTimeline,
+    CAlternateTimeline,
     CLeftTimeline,
     CRightTimeline,
 } from '@/components/timelines';
@@ -39,7 +39,7 @@ storiesOf('Timeline 컴포넌트', module)
         </IntlProvider>
     ))
     .add('Timeline 기본', () => (
-        <CAlternaeTimeline
+        <CAlternateTimeline
             items={object('timeline items', [
                 {
                     variant: 'outlined',
