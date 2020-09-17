@@ -46,7 +46,7 @@ storiesOf('TextField 컴포넌트', module)
                     },
                     '',
                 )}
-                value={value}
+                defaultValue={text('디폴트 값', '')}
                 label={text('라벨', 'test')}
                 variant={select(
                     '텍스트 모양 스타일',
