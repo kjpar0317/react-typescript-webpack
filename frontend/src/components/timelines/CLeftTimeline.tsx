@@ -10,6 +10,7 @@ import TimelineDot from '@material-ui/lab/TimelineDot';
 import Paper from '@material-ui/core/Paper';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 
+import { MuiIcon } from '@/components/icons';
 import { CTimelineProps } from '.';
 
 const useStyles = makeStyles((theme) => ({
@@ -53,11 +54,6 @@ const useStyles = makeStyles((theme) => ({
 const CLeftTimeline: React.FC<CTimelineProps> = (props) => {
     const classes = useStyles();
     const { items } = props;
-
-    const MuiIcon = ({ icon }) => {
-        let resolved = require(`@material-ui/icons/${icon}`).default;
-        return React.createElement(resolved);
-    };
 
     return (
         <Timeline align="right">

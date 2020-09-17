@@ -4,6 +4,8 @@ import ToggleButton, { ToggleButtonProps } from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import Tooltip from '@material-ui/core/Tooltip';
 
+import { MuiIcon } from '@/components/icons';
+
 interface CToggleProps {
     id: string;
     items: Array<any>;
@@ -26,11 +28,6 @@ const CToggleGroup: React.FC<CToggleProps> = (props) => {
         setAlignment(newAlignment);
 
         props.onChange && props.onChange(newAlignment);
-    };
-
-    const MuiIcon = ({ icon }) => {
-        let resolved = require(`@material-ui/icons/${icon}`).default;
-        return React.createElement(resolved);
     };
 
     return (

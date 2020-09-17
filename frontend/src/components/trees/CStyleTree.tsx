@@ -3,16 +3,8 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem, { TreeItemProps } from '@material-ui/lab/TreeItem';
 import Typography from '@material-ui/core/Typography';
-import MailIcon from '@material-ui/icons/Mail';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Label from '@material-ui/icons/Label';
-import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
-import InfoIcon from '@material-ui/icons/Info';
-import ForumIcon from '@material-ui/icons/Forum';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import { SvgIconProps } from '@material-ui/core/SvgIcon';
+
+import { MuiIcon } from '@/components/icons';
 
 declare module 'csstype' {
     interface Properties {
@@ -85,11 +77,6 @@ const StyledTreeItem = (props: StyledTreeItemProps) => {
     const classes = useTreeItemStyles();
     const { labelText, labelIcon, labelInfo, color, bgColor, ...other } = props;
 
-    const MuiIcon = ({ icon }) => {
-        let resolved = require(`@material-ui/icons/${icon}`).default;
-        return React.createElement(resolved);
-    };
-
     return (
         <TreeItem
             label={
@@ -132,7 +119,7 @@ const useStyles = makeStyles(
 
 const CStyleTreeItem = (props: any) => {
     const { item } = props;
-    console.log(props);
+
     const MenuItemChildren = (item: any) => (
         <StyledTreeItem
             nodeId={item.id}
@@ -168,11 +155,6 @@ const CStyleTree: React.FC<CStyleTreeProps> = (props) => {
         expandIcon = 'ArrowRight',
     } = props;
     const classes = useStyles();
-
-    const MuiIcon = ({ icon }) => {
-        let resolved = require(`@material-ui/icons/${icon}`).default;
-        return React.createElement(resolved);
-    };
 
     const onNodeSelect = (event: object, value: Array<any> | string) => {
         props.onClick && props.onClick(value);

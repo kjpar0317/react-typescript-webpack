@@ -6,6 +6,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import DoneIcon from '@material-ui/icons/Done';
 
+import { MuiIcon } from '@/components/icons';
+
 interface CChipsProps {
     items: Array<any>;
     onClick?(e: any): any;
@@ -65,11 +67,6 @@ const CChips: React.FC<CChipsProps> = (props) => {
     const classes = useStyles();
     const { items } = props;
     const [citems, setCItems] = useState(items);
-
-    const MuiIcon = ({ icon }) => {
-        let resolved = require(`@material-ui/icons/${icon}`).default;
-        return React.createElement(resolved);
-    };
 
     const handleDelete = (label: any) => () => {
         const filter = citems.filter((item) => item.label !== label);

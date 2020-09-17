@@ -4,6 +4,8 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
 import Tooltip, { TooltipProps } from '@material-ui/core/Tooltip';
 
+import { MuiIcon } from '@/components/icons';
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         cbutton1: {
@@ -83,11 +85,6 @@ const CIconButton: React.FC<CIconButtonProps> = (props) => {
         (type === 'btn3' && classes.cbutton3) ||
         (type === 'btn4' && classes.cbutton4) ||
         classes.cbutton1;
-
-    const MuiIcon = ({ icon }) => {
-        let resolved = require(`@material-ui/icons/${icon}`).default;
-        return React.createElement(resolved);
-    };
 
     return (
         <Tooltip title={tooltip}>

@@ -2,6 +2,8 @@ import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Button, { ButtonProps } from '@material-ui/core/Button';
 
+import { MuiIcon } from '@/components/icons';
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         cbutton1: {
@@ -144,11 +146,6 @@ const CButton: React.FC<CButtonProps> = (props) => {
         (type === 'btn3' && classes.cbutton3) ||
         (type === 'btn4' && classes.cbutton4) ||
         classes.cbutton1;
-
-    const MuiIcon = ({ icon }) => {
-        let resolved = require(`@material-ui/icons/${icon}`).default;
-        return React.createElement(resolved);
-    };
 
     const startIcon = sicon && <MuiIcon icon={sicon} />;
     const endIcon = eicon && <MuiIcon icon={eicon} />;

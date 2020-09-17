@@ -17,14 +17,30 @@ interface CTreeProps {
     onChange?(mode: string, info: any): any;
 }
 
+interface NodeKeyProps {
+    treeIndex: number;
+}
+
+interface MoveNodeProps {
+    node: any;
+    nextParentNode: any;
+}
+
+interface NodeProps {
+    node: any;
+    path: string;
+    parentNode: any;
+}
+
+
 const CTree: React.FC<CTreeProps> = (props) => {
     const { items, canEdit = false } = props;
     const [treeData, setTreeData] = useState(items);
     const [addAsFirstChild] = useState(false);
 
-    const getNodeKey = ({ treeIndex }) => treeIndex;
+    const getNodeKey = ({ treeIndex } : NodeKeyProps) => treeIndex;
 
-    const handleMoveNode = ({ node, nextParentNode }) => {
+    const handleMoveNode = ({ node, nextParentNode } : MoveNodeProps) => {
         props.onChange &&
             props.onChange('move', {
                 current: node,
@@ -38,7 +54,7 @@ const CTree: React.FC<CTreeProps> = (props) => {
             canDrag={canEdit}
             onChange={(treeData: any) => setTreeData(treeData)}
             onMoveNode={handleMoveNode}
-            generateNodeProps={({ node, path, parentNode }) => ({
+            generateNodeProps={({ node, path, parentNode } : NodeProps) => ({
                 onClick: (event: any) => {
                     props.onClick && props.onClick(node);
                 },
