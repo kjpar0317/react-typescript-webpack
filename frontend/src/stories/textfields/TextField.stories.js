@@ -37,34 +37,36 @@ storiesOf('TextField 컴포넌트', module)
                 type={select(
                     '텍스트 타입',
                     {
-                        없음: '',
+                        없음: undefined,
                         text: 'text',
                         number: 'number',
                         password: 'password',
                         date: 'date',
                         hidden: 'hidden',
                     },
-                    '',
+                    undefined,
                 )}
                 defaultValue={text('디폴트 값', '')}
                 label={text('라벨', 'test')}
                 variant={select(
                     '텍스트 모양 스타일',
                     {
+                        없음: undefined,
                         standard: 'standard',
                         filled: 'filled',
                         outlined: 'outlined',
                     },
-                    'standard',
+                    undefined,
                 )}
                 margin={select(
                     '텍스트 margin',
                     {
+                        없음: undefined,
                         dense: 'dense',
                         none: 'none',
                         normal: 'normal',
                     },
-                    'normal',
+                    undefined,
                 )}
                 required={select('필수값', { true: true, false: false }, false)}
                 {...actions}
