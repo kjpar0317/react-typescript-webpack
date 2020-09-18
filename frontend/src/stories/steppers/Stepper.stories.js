@@ -39,23 +39,24 @@ storiesOf('Stepper 컴포넌트', module)
             type={select(
                 'stepper 스타일',
                 {
-                    없음: '',
+                    없음: undefined,
                     cstepper1: 'cstepper1',
                     cstepper2: 'cstepper2',
                     cstepper3: 'cstepper3',
                     cstepper4: 'cstepper4',
                 },
-                '',
+                undefined,
             )}
             items={object('stepper items', ['Step1', 'Step2', 'Step3'])}
             defaultStep={number('Default Step', 0)}
             orientation={select(
                 '방향',
                 {
+                    없음: undefined,
                     horizontal: 'horizontal',
                     vertical: 'vertical',
                 },
-                'horizontal',
+                undefined,
             )}
         />
     ))
