@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 
-import { COMMON } from '@/features/commonSlice';
+// import { COMMON } from '@/features/commonSlice';
 
 interface MainContentsProps extends RouteProps {}
 
@@ -34,45 +34,45 @@ const LARGE_PAD_LEFT_SIZE = '250px';
 const MainContents: React.FC<MainContentsProps> = (props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const { breakpoint, windowSize, customSidebar } = useSelector(
-        (state) => state[COMMON],
-    );
+    // const { breakpoint, windowSize, customSidebar } = useSelector(
+    //     (state) => state[COMMON],
+    // );
     const [paddingLeft, setPaddingLeft] = useState('0px');
     const history = useHistory();
     const arrPath = history.location.pathname.split('/');
 
-    useEffect(() => {
-        if (breakpoint === 'xs') {
-            setPaddingLeft('0px');
-        } else if (breakpoint === 'sm') {
-            setPaddingLeft(SMALL_PAD_LEFT_SIZE);
-        } else {
-            if (customSidebar) {
-                setPaddingLeft(LARGE_PAD_LEFT_SIZE);
-            } else {
-                setPaddingLeft(SMALL_PAD_LEFT_SIZE);
-            }
-        }
-    }, [breakpoint]);
+    // useEffect(() => {
+    //     if (breakpoint === 'xs') {
+    //         setPaddingLeft('0px');
+    //     } else if (breakpoint === 'sm') {
+    //         setPaddingLeft(SMALL_PAD_LEFT_SIZE);
+    //     } else {
+    //         if (customSidebar) {
+    //             setPaddingLeft(LARGE_PAD_LEFT_SIZE);
+    //         } else {
+    //             setPaddingLeft(SMALL_PAD_LEFT_SIZE);
+    //         }
+    //     }
+    // }, [breakpoint]);
 
-    useEffect(() => {
-        if (breakpoint === 'xs' || breakpoint === 'sm') {
-            return;
-        }
+    // useEffect(() => {
+    //     if (breakpoint === 'xs' || breakpoint === 'sm') {
+    //         return;
+    //     }
 
-        if (customSidebar) {
-            setPaddingLeft(LARGE_PAD_LEFT_SIZE);
-        } else {
-            setPaddingLeft(SMALL_PAD_LEFT_SIZE);
-        }
-    }, [customSidebar]);
+    //     if (customSidebar) {
+    //         setPaddingLeft(LARGE_PAD_LEFT_SIZE);
+    //     } else {
+    //         setPaddingLeft(SMALL_PAD_LEFT_SIZE);
+    //     }
+    // }, [customSidebar]);
 
     return (
         <div
             className={classes.mainContent}
             style={{
                 width: '100%',
-                height: windowSize.height,
+                // height: windowSize.height,
                 overflow: 'auto',
                 paddingLeft: paddingLeft,
             }}

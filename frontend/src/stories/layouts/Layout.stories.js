@@ -13,7 +13,7 @@ import { Header, SideNavbar, MainContents } from '@/components/layouts';
 
 import IconDashboard from '@material-ui/icons/Dashboard'
 
-import '@/components/layouts/styles.scss';
+// import '@/components/layouts/sideNavbar/styles.scss';
 
 const store = createStore();
 

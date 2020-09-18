@@ -12,7 +12,7 @@ import List from '@material-ui/core/List';
 import IconButton from '@material-ui/core/IconButton';
 import Code from '@material-ui/icons/Code';
 
-import { COMMON, commonAction } from '@/features/commonSlice';
+// import { COMMON, commonAction } from '@/features/commonSlice';
 
 import SideNavProfile from './SideNavProfile';
 import SideToggleButton from './SideToggleButton';
@@ -67,7 +67,7 @@ const SideNavbar: React.FC<SideNavBarProps> = (props) => {
     const theme = useTheme();
     const classes = useStyles(theme);
     const hisotry = useHistory();
-    const { breakpoint } = useSelector((state) => state[COMMON]);
+    // const { breakpoint } = useSelector((state) => state[COMMON]);
     const [open, setOpen] = useState(true);
     const [width, setWidth] = useState(LARGE_PAD_LEFT_SIZE);
     const [display, setDisplay] = useState('block');
@@ -77,33 +77,33 @@ const SideNavbar: React.FC<SideNavBarProps> = (props) => {
     const [targetId, setTargetId] = useState(null);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-    useEffect(() => {
-        if (breakpoint === 'xs') {
-            setWidth('100%');
-            setDisplay('none');
-            setDisplaySideTrigger('none');
-            // setZIndex(0);
-            props.onTrigger(false);
-        } else if (breakpoint === 'sm') {
-            setWidth(SMALL_PAD_LEFT_SIZE);
-            setDisplay('block');
-            setDisplaySideTrigger('none');
-            setZIndex(2);
-        } else {
-            setWidth(LARGE_PAD_LEFT_SIZE);
-            setDisplay('block');
-            setDisplaySideTrigger('block');
-            setZIndex(1);
-        }
-        dispatch(commonAction.changeScreen(true));
-        setOpen(true);
-    }, [breakpoint]);
+    // useEffect(() => {
+    //     if (breakpoint === 'xs') {
+    //         setWidth('100%');
+    //         setDisplay('none');
+    //         setDisplaySideTrigger('none');
+    //         // setZIndex(0);
+    //         props.onTrigger(false);
+    //     } else if (breakpoint === 'sm') {
+    //         setWidth(SMALL_PAD_LEFT_SIZE);
+    //         setDisplay('block');
+    //         setDisplaySideTrigger('none');
+    //         setZIndex(2);
+    //     } else {
+    //         setWidth(LARGE_PAD_LEFT_SIZE);
+    //         setDisplay('block');
+    //         setDisplaySideTrigger('block');
+    //         setZIndex(1);
+    //     }
+    //     dispatch(commonAction.changeScreen(true));
+    //     setOpen(true);
+    // }, [breakpoint]);
 
     useEffect(() => {
-        if (breakpoint === 'xs') {
-            setDisplay('none');
-            props.onTrigger(false);
-        }
+        // if (breakpoint === 'xs') {
+        //     setDisplay('none');
+        //     props.onTrigger(false);
+        // }
     }, [hisotry.location.pathname]);
 
     useEffect(() => {
@@ -131,7 +131,7 @@ const SideNavbar: React.FC<SideNavBarProps> = (props) => {
         } else {
             setWidth(LARGE_PAD_LEFT_SIZE);
         }
-        dispatch(commonAction.changeScreen(!open));
+        // dispatch(commonAction.changeScreen(!open));
         setOpen(!open);
     };
 

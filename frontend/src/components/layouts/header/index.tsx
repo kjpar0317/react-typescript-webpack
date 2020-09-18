@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { useIntl } from 'react-intl';
 import { filter } from 'lodash';
-import moment from 'moment';
-import 'moment/locale/ko';
+// import moment from 'moment';
+// import 'moment/locale/ko';
 
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -18,11 +18,11 @@ import Divider from '@material-ui/core/Divider';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import ReactCountryFlag from 'react-country-flag';
+// import ReactCountryFlag from 'react-country-flag';
 
 import Swal from 'sweetalert2';
 
-import { COMMON, commonAction } from '@/features/commonSlice';
+// import { COMMON, commonAction } from '@/features/commonSlice';
 
 import loginTlt from '@/images/login/login_tit.png';
 
@@ -96,9 +96,9 @@ const Header: React.FC<HeaderProps> = ({ onTrigger }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const { formatMessage } = useIntl();
-    const { breakpoint, notice, locale } = useSelector(
-        (state) => state[COMMON],
-    );
+    // const { breakpoint, notice, locale } = useSelector(
+    //     (state) => state[COMMON],
+    // );
     const [open, setOpen] = useState(false);
     const [langAnchorEl, setLangAnchorEl] = useState<HTMLButtonElement | null>(
         null,
@@ -125,31 +125,31 @@ const Header: React.FC<HeaderProps> = ({ onTrigger }) => {
         onTrigger(!open);
     };
 
-    useEffect(() => {
-        if (breakpoint === 'xs') {
-            setDisplayTrigger('block');
-            setDisplayToolbar('none');
-        } else {
-            setDisplayTrigger('none');
-            setDisplayToolbar('block');
-        }
-    }, [breakpoint]);
+    // useEffect(() => {
+    //     if (breakpoint === 'xs') {
+    //         setDisplayTrigger('block');
+    //         setDisplayToolbar('none');
+    //     } else {
+    //         setDisplayTrigger('none');
+    //         setDisplayToolbar('block');
+    //     }
+    // }, [breakpoint]);
 
     // 현재시간과 차이 구하는 함수
     const getFormatedDuration = (t1: any) => {
-        const t2 = moment();
-        const duration = moment.duration(t2.diff(t1));
+        // const t2 = moment();
+        // const duration = moment.duration(t2.diff(t1));
         let str = '';
 
-        if (duration.days() > 0) {
-            str = duration.days() + formatMessage({ id: 'w.dayAgo' });
-        } else if (duration.hours() > 0) {
-            str = duration.hours() + formatMessage({ id: 'w.hourAgo' });
-        } else if (duration.minutes() > 0) {
-            str = duration.minutes() + formatMessage({ id: 'w.minuteAgo' });
-        } else {
-            str = duration.seconds() + formatMessage({ id: 'w.secondAgo' });
-        }
+        // if (duration.days() > 0) {
+        //     str = duration.days() + formatMessage({ id: 'w.dayAgo' });
+        // } else if (duration.hours() > 0) {
+        //     str = duration.hours() + formatMessage({ id: 'w.hourAgo' });
+        // } else if (duration.minutes() > 0) {
+        //     str = duration.minutes() + formatMessage({ id: 'w.minuteAgo' });
+        // } else {
+        //     str = duration.seconds() + formatMessage({ id: 'w.secondAgo' });
+        // }
 
         return str;
     };
@@ -179,10 +179,10 @@ const Header: React.FC<HeaderProps> = ({ onTrigger }) => {
         setLangAnchorEl(event.currentTarget);
     };
 
-    const handleLangClick = (lang: string) => {
-        dispatch(commonAction.setLocale(lang));
-        setLangAnchorEl(null);
-    };
+    // const handleLangClick = (lang: string) => {
+    //     dispatch(commonAction.setLocale(lang));
+    //     setLangAnchorEl(null);
+    // };
 
     const handleLangClose = () => {
         setLangAnchorEl(null);
@@ -221,13 +221,13 @@ const Header: React.FC<HeaderProps> = ({ onTrigger }) => {
                     aria-haspopup="true"
                     onClick={handleLangOpen}
                 >
-                    <ReactCountryFlag
+                    {/* <ReactCountryFlag
                         countryCode={
                             filter(customCountryArr, ['code', locale])[0]
                                 .iconCode
                         }
                         svg
-                    />
+                    /> */}
                 </IconButton>
                 <Menu
                     id={langAnchorId}
@@ -236,7 +236,7 @@ const Header: React.FC<HeaderProps> = ({ onTrigger }) => {
                     onClose={handleLangClose}
                     elevation={0}
                 >
-                    {customCountryArr.map((item, index) => (
+                    {/* {customCountryArr.map((item, index) => (
                         <MenuItem key={index} className={classes.langFont}>
                             <ListItemIcon
                                 onClick={() => handleLangClick(item.code)}
@@ -248,7 +248,7 @@ const Header: React.FC<HeaderProps> = ({ onTrigger }) => {
                                 &nbsp;{item.text}
                             </ListItemIcon>
                         </MenuItem>
-                    ))}
+                    ))} */}
                 </Menu>
                 <IconButton
                     aria-controls={settingAnchorId}
@@ -278,9 +278,9 @@ const Header: React.FC<HeaderProps> = ({ onTrigger }) => {
                     color="inherit"
                     onClick={(e) => handleNoticeOpen(e)}
                 >
-                    <Badge badgeContent={notice.length} color="secondary">
+                    {/* <Badge badgeContent={notice.length} color="secondary">
                         <NotificationsIcon />
-                    </Badge>
+                    </Badge> */}
                 </IconButton>
                 <Popover
                     id={noticeAnchorId}
@@ -296,7 +296,7 @@ const Header: React.FC<HeaderProps> = ({ onTrigger }) => {
                         horizontal: 'center',
                     }}
                 >
-                    {[...notice].reverse().map((item: any, index: number) => (
+                    {/* {[...notice].reverse().map((item: any, index: number) => (
                         <div key={Math.random()}>
                             <div className={classes.largeNoticeFont}>
                                 {item.message} &nbsp;&nbsp;&nbsp;{' '}
@@ -311,7 +311,7 @@ const Header: React.FC<HeaderProps> = ({ onTrigger }) => {
                                 />
                             )}
                         </div>
-                    ))}
+                    ))} */}
                 </Popover>
                 <IconButton
                     edge="end"

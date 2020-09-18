@@ -10,11 +10,11 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 
-import { COMMON, commonAction } from '@/features/commonSlice';
+// import { COMMON, commonAction } from '@/features/commonSlice';
 
-import MultiToggle from 'react-multi-toggle';
+// import MultiToggle from 'react-multi-toggle';
 
-import './style.scss';
+import './styles.scss';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -43,32 +43,32 @@ const SideToggleButton: React.FC = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const { formatMessage } = useIntl();
-    const { group, breakpoint, customSidebar } = useSelector(
-        (state) => state[COMMON],
-    );
+    // const { group, breakpoint, customSidebar } = useSelector(
+    //     (state) => state[COMMON],
+    // );
     const [largeButtonDisplay, setLargeButtonDisplay] = useState('display');
     const [smallButtonDisplay, setSmallButtonDisplay] = useState('none');
     const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
     const [svalue, setSValue] = React.useState('A');
     const open = Boolean(anchorEl);
 
-    useEffect(() => {
-        if (breakpoint === 'xs') {
-            setLargeButtonDisplay('none');
-            setSmallButtonDisplay('none');
-        } else if (breakpoint === 'sm') {
-            setLargeButtonDisplay('none');
-            setSmallButtonDisplay('block');
-        } else {
-            if (customSidebar) {
-                setLargeButtonDisplay('block');
-                setSmallButtonDisplay('none');
-            } else {
-                setLargeButtonDisplay('none');
-                setSmallButtonDisplay('block');
-            }
-        }
-    }, [breakpoint, customSidebar]);
+    // useEffect(() => {
+    //     if (breakpoint === 'xs') {
+    //         setLargeButtonDisplay('none');
+    //         setSmallButtonDisplay('none');
+    //     } else if (breakpoint === 'sm') {
+    //         setLargeButtonDisplay('none');
+    //         setSmallButtonDisplay('block');
+    //     } else {
+    //         if (customSidebar) {
+    //             setLargeButtonDisplay('block');
+    //             setSmallButtonDisplay('none');
+    //         } else {
+    //             setLargeButtonDisplay('none');
+    //             setSmallButtonDisplay('block');
+    //         }
+    //     }
+    // }, [breakpoint, customSidebar]);
 
     const groupOptions = [
         {
@@ -89,7 +89,7 @@ const SideToggleButton: React.FC = () => {
     ];
 
     const handleSelGroup = (value: string) => {
-        dispatch(commonAction.changeGroup(value));
+        // dispatch(commonAction.changeGroup(value));
 
         const selGroup = find(groupOptions, { value: value }) as any;
 
@@ -114,11 +114,11 @@ const SideToggleButton: React.FC = () => {
                 className={classes.backgroud}
                 style={{ display: largeButtonDisplay }}
             >
-                <MultiToggle
+                {/* <MultiToggle
                     options={groupOptions}
                     selectedOption={group}
                     onSelectOption={handleSelGroup}
-                />
+                /> */}
             </div>
             <div
                 className={classes.root}
