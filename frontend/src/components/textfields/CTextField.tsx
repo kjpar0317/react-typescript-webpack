@@ -50,7 +50,7 @@ const CTextField: React.FC<CTextFieldProps> = (props) => {
         value,
         label,
         defaultValue,
-        variant,
+        variant = 'outlined',
         margin,
         style,
         required,
