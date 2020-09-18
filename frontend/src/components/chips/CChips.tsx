@@ -28,21 +28,33 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundColor: theme.palette.success.main,
             borderColor: theme.palette.success.dark,
             color: theme.palette.success.contrastText,
+            '&:hover, &:focus': {
+                backgroundColor: theme.palette.success.dark,
+            },
         },
         cchips2: {
             backgroundColor: theme.palette.info.main,
             borderColor: theme.palette.info.dark,
             color: theme.palette.info.contrastText,
+            '&:hover, &:focus': {
+                backgroundColor: theme.palette.info.dark,
+            },
         },
         cchips3: {
             backgroundColor: theme.palette.warning.main,
             borderColor: theme.palette.warning.dark,
             color: theme.palette.warning.contrastText,
+            '&:hover, &:focus': {
+                backgroundColor: theme.palette.warning.dark,
+            },
         },
         cchips4: {
             backgroundColor: theme.palette.error.main,
             borderColor: theme.palette.error.dark,
             color: theme.palette.error.contrastText,
+            '&:hover, &:focus': {
+                backgroundColor: theme.palette.error.dark,
+            },
         },
         cochips1: {
             borderColor: theme.palette.success.dark,
@@ -59,6 +71,9 @@ const useStyles = makeStyles((theme: Theme) =>
         cochips4: {
             borderColor: theme.palette.error.dark,
             color: theme.palette.error.dark,
+            '&:hover': {
+                backgroundColor: theme.palette.error.dark,
+            },
         },
     }),
 );
@@ -68,8 +83,8 @@ const CChips: React.FC<CChipsProps> = (props) => {
     const { items } = props;
     const [citems, setCItems] = useState(items);
 
-    const handleDelete = (label: any) => () => {
-        const filter = citems.filter((item) => item.label !== label);
+    const handleDelete = (id: any) => () => {
+        const filter = citems.filter((item) => item.id !== id);
         setCItems(filter);
         props.onDelete && props.onDelete(filter);
     };
@@ -104,17 +119,65 @@ const CChips: React.FC<CChipsProps> = (props) => {
                     undefined;
 
                 return (
-                    (item.icon && (
+                    (item.deleteable && item.icon && (
                         <Chip
                             label={item.label}
-                            icon={<MuiIcon icon={item.icon} />}
+                            icon={
+                                <span style={{ paddingLeft: '2px' }}>
+                                    <MuiIcon icon={item.icon} />
+                                </span>
+                            }
                             variant={item.variant}
                             disabled={item.disabled}
                             clickable={item.clickable}
+                            size={item.size}
                             className={className}
                             onClick={handleClick(item)}
-                            onDelete={handleDelete(item.label)}
+                            onDelete={handleDelete(item.id)}
                             deleteIcon={deleteIcon}
+                        />
+                    )) ||
+                    (item.deleteable && item.image && (
+                        <Chip
+                            label={item.label}
+                            avatar={<Avatar src={item.image} />}
+                            variant={item.variant}
+                            disabled={item.disabled}
+                            clickable={item.clickable}
+                            size={item.size}
+                            className={className}
+                            onClick={handleClick(item)}
+                            onDelete={handleDelete(item.id)}
+                            deleteIcon={deleteIcon}
+                        />
+                    )) ||
+                    (item.deleteable && (
+                        <Chip
+                            label={item.label}
+                            variant={item.variant}
+                            disabled={item.disabled}
+                            clickable={item.clickable}
+                            size={item.size}
+                            className={className}
+                            onClick={handleClick(item)}
+                            onDelete={handleDelete(item.id)}
+                            deleteIcon={deleteIcon}
+                        />
+                    )) ||
+                    (item.icon && (
+                        <Chip
+                            label={item.label}
+                            icon={
+                                <span style={{ paddingLeft: '2px' }}>
+                                    <MuiIcon icon={item.icon} />
+                                </span>
+                            }
+                            variant={item.variant}
+                            disabled={item.disabled}
+                            clickable={item.clickable}
+                            size={item.size}
+                            className={className}
+                            onClick={handleClick(item)}
                         />
                     )) ||
                     (item.image && (
@@ -124,10 +187,9 @@ const CChips: React.FC<CChipsProps> = (props) => {
                             variant={item.variant}
                             disabled={item.disabled}
                             clickable={item.clickable}
+                            size={item.size}
                             className={className}
                             onClick={handleClick(item)}
-                            onDelete={handleDelete(item.label)}
-                            deleteIcon={deleteIcon}
                         />
                     )) || (
                         <Chip
@@ -135,10 +197,9 @@ const CChips: React.FC<CChipsProps> = (props) => {
                             variant={item.variant}
                             disabled={item.disabled}
                             clickable={item.clickable}
+                            size={item.size}
                             className={className}
                             onClick={handleClick(item)}
-                            onDelete={handleDelete(item.label)}
-                            deleteIcon={deleteIcon}
                         />
                     )
                 );
