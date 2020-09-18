@@ -32,15 +32,14 @@ interface NodeProps {
     parentNode: any;
 }
 
-
 const CTree: React.FC<CTreeProps> = (props) => {
     const { items, canEdit = false } = props;
     const [treeData, setTreeData] = useState(items);
     const [addAsFirstChild] = useState(false);
 
-    const getNodeKey = ({ treeIndex } : NodeKeyProps) => treeIndex;
+    const getNodeKey = ({ treeIndex }: NodeKeyProps) => treeIndex;
 
-    const handleMoveNode = ({ node, nextParentNode } : MoveNodeProps) => {
+    const handleMoveNode = ({ node, nextParentNode }: MoveNodeProps) => {
         props.onChange &&
             props.onChange('move', {
                 current: node,
@@ -54,7 +53,7 @@ const CTree: React.FC<CTreeProps> = (props) => {
             canDrag={canEdit}
             onChange={(treeData: any) => setTreeData(treeData)}
             onMoveNode={handleMoveNode}
-            generateNodeProps={({ node, path, parentNode } : NodeProps) => ({
+            generateNodeProps={({ node, path, parentNode }: NodeProps) => ({
                 onClick: (event: any) => {
                     props.onClick && props.onClick(node);
                 },
@@ -113,9 +112,7 @@ const CTree: React.FC<CTreeProps> = (props) => {
                                         }).treeData,
                                     )
                                 }
-                            >
-                                Add Child
-                            </CIconButton>
+                            />
                             &nbsp;
                             <CIconButton
                                 type="btn4"
@@ -132,11 +129,9 @@ const CTree: React.FC<CTreeProps> = (props) => {
                                     );
 
                                     props.onChange &&
-                                        props.onChange('del', getNodeKey);
+                                        props.onChange('del', node);
                                 }}
-                            >
-                                Remove
-                            </CIconButton>
+                            />
                         </>
                     )) ||
                         '',
