@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { cloneDeep, findIndex } from 'lodash';
 
@@ -12,10 +12,8 @@ import { SelectProps } from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl, { FormControlProps } from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Input from '@material-ui/core/Input';
 import InputBase from '@material-ui/core/InputBase';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -44,7 +42,7 @@ const BootstrapInput = withStyles((theme: Theme) =>
             position: 'relative',
             backgroundColor: theme.palette.background.paper,
             border: '1px solid #ced4da',
-            padding: '10px 0px 10px 10px',
+            padding: '7px 0px 7px 10px',
             transition: theme.transitions.create([
                 'border-color',
                 'box-shadow',
@@ -70,6 +68,18 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+
+const MenuProps = {
+    PaperProps: {
+        style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width: 250,
+        },
+    },
+};
+
 const CSelectWithImage: React.FC<CSelectProps> = (props) => {
     const classes = useStyles();
     const { formatMessage } = useIntl();
@@ -83,8 +93,8 @@ const CSelectWithImage: React.FC<CSelectProps> = (props) => {
         emptyOptObj,
         disabled,
     } = props;
-    const [value, setValue] = React.useState(defaultValue);
-    const [open, setOpen] = React.useState(false);
+    const [value, setValue] = useState(defaultValue);
+    const [open, setOpen] = useState(false);
     let defaultItem: any = undefined;
 
     if (defaultValue) {
@@ -104,11 +114,11 @@ const CSelectWithImage: React.FC<CSelectProps> = (props) => {
 
     const handleChange = (event: any, child?: any) => {
         let cloneItems: any = cloneDeep(items);
-        var svalue = event.target.value as string;
+        var value = event.target.value as any;
 
-        var idx = findIndex(cloneItems, ['src', svalue]);
+        var idx = findIndex(cloneItems, ['value', value]);
 
-        setValue(event.target.value);
+        setValue(value);
 
         props.onChange &&
             props.onChange(cloneItems[idx].value, cloneItems[idx].label);
@@ -139,14 +149,19 @@ const CSelectWithImage: React.FC<CSelectProps> = (props) => {
                 inputProps={{
                     id: id,
                 }}
-                input={<BootstrapInput />}
+                input={
+                    ((!variant || variant === 'outlined') && (
+                        <BootstrapInput />
+                    )) || <Input />
+                }
+                MenuProps={MenuProps}
             >
                 {defaultValue && defaultItem && !open && (
                     <MenuItem value={value}>
                         <div style={{ float: 'left' }}>
                             <Avatar
                                 alt={defaultItem.label}
-                                src={defaultItem.src}
+                                src={defaultItem.id}
                                 className={classes.small}
                             />
                         </div>
@@ -155,13 +170,25 @@ const CSelectWithImage: React.FC<CSelectProps> = (props) => {
                         </div>
                     </MenuItem>
                 )}
+                {emptyOptObj && (
+                    <MenuItem value={emptyOptObj.value}>
+                        <div style={{ float: 'left' }}>
+                            <Avatar alt="N" className={classes.small}>
+                                N
+                            </Avatar>
+                        </div>
+                        <div style={{ float: 'left' }}>
+                            &nbsp;{getCovertedLabel(emptyOptObj.label)}
+                        </div>
+                    </MenuItem>
+                )}
                 {items.map((item: any, index: number) => {
                     return (
-                        <MenuItem value={item.src} key={index}>
+                        <MenuItem value={item.value} key={index}>
                             <div style={{ float: 'left' }}>
                                 <Avatar
                                     alt={item.label}
-                                    src={item.src}
+                                    src={item.image}
                                     className={classes.small}
                                 />
                             </div>
