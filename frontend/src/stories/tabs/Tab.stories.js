@@ -36,17 +36,18 @@ storiesOf('Tab 컴포넌트', module)
                     type={select(
                         '탭 외곽 스타일',
                         {
+                            없음: undefined,
                             ctabs1: 'ctabs1',
                             ctabs2: 'ctabs2',
                             ctabs3: 'ctabs3',
                             ctabs4: 'ctabs4',
                         },
-                        'ctabs1',
+                        undefined,
                     )}
                     variant={select(
                         '탭 스타일',
                         {
-                            없음: '',
+                            없음: undefined,
                             standard: 'standard',
                             fullWidth: 'fullWidth',
                             scrollable: 'scrollable',
@@ -61,13 +62,13 @@ storiesOf('Tab 컴포넌트', module)
                         type={select(
                             '탭 안 스타일',
                             {
-                                없음: '',
+                                없음: undefined,
                                 ctab1: 'ctab1',
                                 ctab2: 'ctab2',
                                 ctab3: 'ctab3',
                                 ctab4: 'ctab4',
                             },
-                            '',
+                            undefined,
                         )}
                         width={number('탭 너비', 100)}
                     ></CTab>
@@ -76,13 +77,13 @@ storiesOf('Tab 컴포넌트', module)
                         type={select(
                             '탭 안 스타일',
                             {
-                                없음: '',
+                                없음: undefined,
                                 ctab1: 'ctab1',
                                 ctab2: 'ctab2',
                                 ctab3: 'ctab3',
                                 ctab4: 'ctab4',
                             },
-                            '',
+                            undefined,
                         )}
                         width={number('탭 너비', 100)}
                     ></CTab>
