@@ -46,13 +46,13 @@ storiesOf('Checkbox 컴포넌트', module)
             type={select(
                 'checkbox 스타일',
                 {
-                    없음: '',
+                    없음: undefined,
                     ccheck1: 'ccheck1',
                     ccheck2: 'ccheck2',
                     ccheck3: 'ccheck3',
                     ccheck4: 'ccheck4',
                 },
-                '',
+                undefined,
             )}
             items={object('options', [
                 { label: '테스트1', checked: true },
@@ -61,29 +61,29 @@ storiesOf('Checkbox 컴포넌트', module)
             row={select(
                 '방향',
                 {
-                    없음: '',
+                    없음: undefined,
                     horizontal: true,
                     vertical: false,
                 },
-                '',
+                undefined,
             )}
             fullWidth={select(
                 'fullWidth',
                 {
-                    없음: '',
+                    없음: undefined,
                     true: true,
                     false: false,
                 },
-                '',
+                undefined,
             )}
             disabled={select(
                 'disabled',
                 {
-                    없음: '',
+                    없음: undefined,
                     true: true,
                     false: false,
                 },
-                '',
+                undefined,
             )}
             {...actions}
         />
