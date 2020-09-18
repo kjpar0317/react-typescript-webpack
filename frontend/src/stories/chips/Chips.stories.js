@@ -43,23 +43,45 @@ storiesOf('Chips 컴포넌트', module)
     .add('Chips 기본', () => (
         <CChips
             items={object('chips items', [
-                { label: '테스트' },
-                { label: '테스트2', type: 'cchips1' },
-                { label: '테스트3', type: 'cchips1', variant: 'outlined' },
-                { label: '테스트4', type: 'cchips1', disabled: true },
-                { label: '테스트5', type: 'cchips2', clickable: true },
-                { label: '테스트6', type: 'cchips2', icon: 'Done' },
+                { id: '1', label: '테스트' },
+                { id: '2', label: '테스트2', type: 'cchips1' },
                 {
-                    label: '테스트7',
-                    type: 'cchips4',
-                    image: 'https://sharryhong.github.io/image/tomcat.png',
+                    id: '3',
+                    label: '테스트3',
+                    type: 'cchips1',
+                    variant: 'outlined',
+                },
+                { id: '4', label: '테스트4', type: 'cchips1', disabled: true },
+                { id: '5', label: '테스트5', type: 'cchips2', clickable: true },
+                {
+                    id: '6',
+                    label: '테스트6',
+                    type: 'cchips2',
+                    icon: 'Done',
+                    deleteable: true,
                 },
                 {
+                    id: '7',
+                    label: '테스트7',
+                    type: 'cchips2',
+                    size: 'small',
+                    deleteable: true,
+                },
+                {
+                    id: '8',
                     label: '테스트8',
+                    type: 'cchips4',
+                    image: 'https://sharryhong.github.io/image/tomcat.png',
+                    deleteable: true,
+                },
+                {
+                    id: '9',
+                    label: '테스트9',
                     type: 'cchips3',
                     image:
                         'https://icons.iconarchive.com/icons/dakirby309/simply-styled/256/VMware-icon.png',
                     action: 'done',
+                    deleteable: true,
                 },
             ])}
             {...actions}
