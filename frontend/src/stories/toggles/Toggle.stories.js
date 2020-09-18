@@ -48,17 +48,22 @@ storiesOf('Toggle 컴포넌트', module)
             ])}
             size={select(
                 '버튼 크기',
-                { 없음: '', small: 'small', medium: 'medium', large: 'large' },
-                '',
+                {
+                    없음: undefined,
+                    small: 'small',
+                    medium: 'medium',
+                    large: 'large',
+                },
+                undefined,
             )}
             orientation={select(
                 '방향',
                 {
-                    없음: '',
+                    없음: undefined,
                     horizontal: 'horizontal',
                     vertical: 'vertical',
                 },
-                '',
+                undefined,
             )}
             {...actions}
         />
