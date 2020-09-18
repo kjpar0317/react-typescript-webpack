@@ -141,11 +141,11 @@ storiesOf('DataGrid 컴포넌트', module)
                     validated={select(
                         'validated',
                         {
-                            없음: '',
+                            없음: undefined,
                             true: true,
                             false: false,
                         },
-                        '없음',
+                        undefined,
                     )}
                     columnDefs={object('컬럼정보', fakeHeader())}
                     rowsPerPage={20}
