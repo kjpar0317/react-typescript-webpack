@@ -1,33 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { cloneDeep, findIndex } from 'lodash';
+import { includes, last, find, isEmpty, pull, findIndex } from 'lodash';
 
 import {
     createStyles,
+    Theme,
     makeStyles,
     withStyles,
-    Theme,
 } from '@material-ui/core/styles';
-import { SelectProps } from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl, { FormControlProps } from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputBase from '@material-ui/core/InputBase';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
+import FormControl from '@material-ui/core/FormControl';
+import Select, { SelectProps } from '@material-ui/core/Select';
 import Avatar from '@material-ui/core/Avatar';
 import MenuItem from '@material-ui/core/MenuItem';
+import Input from '@material-ui/core/Input';
+import InputBase from '@material-ui/core/InputBase';
+import InputLabel from '@material-ui/core/InputLabel';
+
+import { CChipForSelect } from '@/components/chips';
+import { MuiIcon } from '@/components/icons';
 
 interface CSelectProps {
     id: string;
     title?: string;
     variant?: SelectProps['variant'];
-    defaultValue?: number | string | undefined;
-    emptyOptObj?: any;
+    defaultValues?: any;
     items: Array<object>;
     style?: React.CSSProperties;
-    disabled?: FormControlProps['disabled'];
     onChange?(value: string | number, label?: string | undefined): void;
 }
 
@@ -44,7 +42,7 @@ const BootstrapInput = withStyles((theme: Theme) =>
             position: 'relative',
             backgroundColor: theme.palette.background.paper,
             border: '1px solid #ced4da',
-            padding: '10px 0px 10px 10px',
+            padding: '3px 0px 3px 10px',
             transition: theme.transitions.create([
                 'border-color',
                 'box-shadow',
@@ -60,31 +58,45 @@ const BootstrapInput = withStyles((theme: Theme) =>
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: {
-            margin: 0,
+        formControl: {
+            // margin: theme.spacing.unit,
+            minWidth: 120,
         },
         small: {
             width: theme.spacing(3),
             height: theme.spacing(3),
         },
+        menuItem: {
+            display: 'block',
+        },
     }),
 );
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+
+const MenuProps = {
+    PaperProps: {
+        style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width: 250,
+        },
+    },
+};
 
 const CSelectWithChip: React.FC<CSelectProps> = (props) => {
     const classes = useStyles();
     const { formatMessage } = useIntl();
-    const {
-        id,
-        title,
-        variant,
-        defaultValue,
-        style,
-        items,
-        emptyOptObj,
-        disabled,
-    } = props;
-    const [value, setValue] = React.useState(defaultValue);
-    const [open, setOpen] = React.useState(false);
+    const { id, title, variant, defaultValues = [], style, items } = props;
+    const [values, setValues] = useState<any>(defaultValues);
+    const [open, setOpen] = useState(false);
+    let defaultItems: any = undefined;
+
+    if (defaultValues) {
+        defaultItems = items.filter((item: any) => {
+            return includes(defaultValues, item.value);
+        });
+    }
 
     const getCovertedLabel = (val: string) => {
         if (val && (val.startsWith('w.') || val.startsWith('s.'))) {
@@ -94,60 +106,103 @@ const CSelectWithChip: React.FC<CSelectProps> = (props) => {
         }
     };
 
-    const handleChange = (event: any, child?: any) => {
-        let cloneItems: any = cloneDeep(items);
-        var svalue = event.target.value as string;
+    const handleClose = () => setOpen(false);
 
-        var idx = findIndex(cloneItems, ['src', svalue]);
+    const handleOpen = () => setOpen(true);
 
-        setValue(event.target.value);
+    const handleChange = (event: any) => {
+        var vitems = event.target.value as Array<any>;
 
-        props.onChange &&
-            props.onChange(cloneItems[idx].value, cloneItems[idx].label);
-    };
+        if (
+            findIndex(values, (f: any) => {
+                return f === last(vitems).value;
+            }) >= 0
+        ) {
+            setValues(pull(values, last(vitems).value));
+        } else {
+            setValues(values.concat(last(vitems).value));
+        }
 
-    const handleClose = () => {
         setOpen(false);
     };
 
-    const handleOpen = () => {
-        setOpen(true);
+    const handleDelete = (value: any) => {
+        setValues(pull(values, value));
+        setOpen(false);
     };
 
     return (
-        <FormControl className={classes.root} style={style} disabled={disabled}>
+        <FormControl className={classes.formControl} onChange={handleChange}>
             {title && (
                 <InputLabel htmlFor={id}>{getCovertedLabel(title)}</InputLabel>
             )}
             <Select
+                multiple
+                value={values}
+                defaultValue={defaultValues}
+                renderValue={(selected: any) => {
+                    return (
+                        <div style={{ float: 'left', display: 'flex' }}>
+                            {values &&
+                                items
+                                    .filter((item: any) => {
+                                        return !isEmpty(
+                                            find(values, (f: any) => {
+                                                return f === item.value;
+                                            }),
+                                        );
+                                    })
+                                    .map((item: any) => (
+                                        <CChipForSelect
+                                            key={item.value}
+                                            item={item}
+                                        />
+                                    ))}
+                        </div>
+                    );
+                }}
+                displayEmpty
                 open={open}
-                id={id}
-                value={value}
-                variant={variant}
-                autoWidth
                 onClose={handleClose}
                 onOpen={handleOpen}
                 onChange={handleChange}
-                inputProps={{
-                    id: id,
-                }}
-                input={<BootstrapInput />}
+                input={
+                    ((!variant || variant === 'outlined') && (
+                        <BootstrapInput />
+                    )) || <Input />
+                }
+                MenuProps={MenuProps}
+                style={style}
             >
+                {defaultValues && defaultItems && !open && (
+                    <div style={{ float: 'left', display: 'flex' }}>
+                        {defaultItems.map((item: any) => (
+                            <CChipForSelect key={item.value} item={item} />
+                        ))}
+                    </div>
+                )}
                 {items.map((item: any, index: number) => {
+                    const checkIcon = findIndex(values, (f: any) => {
+                        return f === item.value;
+                    }) >= 0 && <MuiIcon icon="Check" />;
                     return (
-                        <MenuItem value={item.src} key={index}>
+                        <MenuItem
+                            key={index}
+                            value={item}
+                            className={classes.menuItem}
+                        >
                             <div style={{ float: 'left' }}>
                                 <Avatar
                                     alt={item.label}
-                                    src={item.src}
+                                    src={item.image}
                                     className={classes.small}
                                 />
                             </div>
                             <div style={{ float: 'left' }}>
                                 &nbsp;{item.label}
                             </div>
-                            <div style={{ float: 'right' }}>
-                                &nbsp;{item.label}
+                            <div style={{ float: 'right', color: 'green' }}>
+                                {checkIcon}
                             </div>
                         </MenuItem>
                     );
