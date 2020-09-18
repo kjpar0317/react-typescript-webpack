@@ -85,6 +85,14 @@ const CSelectWithImage: React.FC<CSelectProps> = (props) => {
     } = props;
     const [value, setValue] = React.useState(defaultValue);
     const [open, setOpen] = React.useState(false);
+    let defaultItem: any = undefined;
+
+    if (defaultValue) {
+        let cloneItems: any = cloneDeep(items);
+        var idx = findIndex(cloneItems, ['value', defaultValue]);
+
+        defaultItem = cloneItems[idx];
+    }
 
     const getCovertedLabel = (val: string) => {
         if (val && (val.startsWith('w.') || val.startsWith('s.'))) {
@@ -133,6 +141,20 @@ const CSelectWithImage: React.FC<CSelectProps> = (props) => {
                 }}
                 input={<BootstrapInput />}
             >
+                {defaultValue && defaultItem && !open && (
+                    <MenuItem value={value}>
+                        <div style={{ float: 'left' }}>
+                            <Avatar
+                                alt={defaultItem.label}
+                                src={defaultItem.src}
+                                className={classes.small}
+                            />
+                        </div>
+                        <div style={{ float: 'left' }}>
+                            &nbsp;{defaultItem.label}
+                        </div>
+                    </MenuItem>
+                )}
                 {items.map((item: any, index: number) => {
                     return (
                         <MenuItem value={item.src} key={index}>
