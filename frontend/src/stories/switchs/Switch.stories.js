@@ -45,41 +45,42 @@ storiesOf('Switch 컴포넌트', module)
             type={select(
                 '버튼 색깔 스타일',
                 {
+                    없음: undefined,
                     cswitch1: 'cswitch1',
                     cswitch2: 'cswitch2',
                     cswitch3: 'cswitch3',
                     cswitch4: 'cswitch4',
                 },
-                'cswitch1',
+                undefined,
             )}
             checked={select(
                 'checked',
                 {
-                    없음: '',
+                    없음: undefined,
                     true: true,
                     false: false,
                 },
-                '',
+                undefined,
             )}
             labelPlacement={select(
                 '텍스트 방향',
                 {
-                    없음: '',
+                    없음: undefined,
                     bottom: 'bottom',
                     end: 'end',
                     start: 'start',
                     top: 'top',
                 },
-                '',
+                undefined,
             )}
             disabled={select(
                 'disabled',
                 {
-                    없음: '',
+                    없음: undefined,
                     true: true,
                     false: false,
                 },
-                '',
+                undefined,
             )}
             {...actions}
         />
@@ -94,22 +95,22 @@ storiesOf('Switch 컴포넌트', module)
             labelPlacement={select(
                 '텍스트 방향',
                 {
-                    없음: '',
+                    없음: undefined,
                     bottom: 'bottom',
                     end: 'end',
                     start: 'start',
                     top: 'top',
                 },
-                '',
+                undefined,
             )}
             row={select(
                 '방향',
                 {
-                    없음: '',
+                    없음: undefined,
                     horizontal: true,
                     vertical: false,
                 },
-                '',
+                undefined,
             )}
             helperText={text('그룹 하단 타이틀', '하단 테스트')}
             {...actions}
