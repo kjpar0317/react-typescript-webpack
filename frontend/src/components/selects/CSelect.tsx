@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { cloneDeep, findIndex } from 'lodash';
 
@@ -12,6 +12,7 @@ import { SelectProps } from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl, { FormControlProps } from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import Input from '@material-ui/core/Input';
 import InputBase from '@material-ui/core/InputBase';
 
 interface CSelectProps {
@@ -74,7 +75,7 @@ const CSelect: React.FC<CSelectProps> = (props) => {
         emptyOptObj,
         disabled,
     } = props;
-    const [value, setValue] = React.useState(defaultValue);
+    const [value, setValue] = useState(defaultValue);
 
     const getCovertedLabel = (val: string) => {
         if (val && (val.startsWith('w.') || val.startsWith('s.'))) {
@@ -86,7 +87,7 @@ const CSelect: React.FC<CSelectProps> = (props) => {
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         let cloneItems: any = cloneDeep(items);
-        var svalue = event.target.value as string;
+        var svalue = event.target.value as any;
 
         var idx = findIndex(cloneItems, ['value', svalue]);
 
@@ -106,7 +107,11 @@ const CSelect: React.FC<CSelectProps> = (props) => {
                 value={value}
                 variant={variant}
                 onChange={handleChange}
-                input={<BootstrapInput />}
+                input={
+                    ((!variant || variant === 'outlined') && (
+                        <BootstrapInput />
+                    )) || <Input />
+                }
             >
                 {emptyOptObj && (
                     <option aria-label="None" value={emptyOptObj.value}>
