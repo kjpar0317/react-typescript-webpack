@@ -46,33 +46,33 @@ storiesOf('Radio 컴포넌트', module)
             type={select(
                 '탭 외곽 스타일',
                 {
-                    없음: '',
+                    없음: undefined,
                     cradio1: 'cradio1',
                     cradio2: 'cradio2',
                     cradio3: 'cradio3',
                     cradio4: 'cradio4',
                 },
-                '',
+                undefined,
             )}
             row={select(
                 '방향',
                 {
-                    없음: '',
+                    없음: undefined,
                     horizontal: true,
                     vertical: false,
                 },
-                '',
+                undefined,
             )}
             labelPlacement={select(
                 '텍스트 방향',
                 {
-                    없음: '',
+                    없음: undefined,
                     bottom: 'bottom',
                     end: 'end',
                     start: 'start',
                     top: 'top',
                 },
-                '',
+                undefined,
             )}
             items={object('radio', [
                 { label: '테스트1', value: '1' },
@@ -82,20 +82,20 @@ storiesOf('Radio 컴포넌트', module)
             fullWidth={select(
                 'fullWidth',
                 {
-                    없음: '',
+                    없음: undefined,
                     true: true,
                     false: false,
                 },
-                '',
+                undefined,
             )}
             disabled={select(
                 'disabled',
                 {
-                    없음: '',
+                    없음: undefined,
                     true: true,
                     false: false,
                 },
-                '',
+                undefined,
             )}
             {...actions}
         />
