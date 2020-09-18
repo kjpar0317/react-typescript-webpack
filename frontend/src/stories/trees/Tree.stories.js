@@ -2,8 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
-import { DragDropContextProvider } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -107,15 +107,17 @@ const treedata2 = [
 
 storiesOf('Tree 컴포넌트', module)
     .addDecorator((story) => (
-        <IntlProvider locale="ko" messages={messages['ko']}>
-            <Provider store={store}>
-                <Router>
-                    <ThemeProvider theme={createMuiTheme(customTheme)}>
-                        <Route path="/" component={() => story()} />
-                    </ThemeProvider>
-                </Router>
-            </Provider>
-        </IntlProvider>
+        <DndProvider backend={HTML5Backend}>
+            <IntlProvider locale="ko" messages={messages['ko']}>
+                <Provider store={store}>
+                    <Router>
+                        <ThemeProvider theme={createMuiTheme(customTheme)}>
+                            <Route path="/" component={() => story()} />
+                        </ThemeProvider>
+                    </Router>
+                </Provider>
+            </IntlProvider>
+        </DndProvider>
     ))
     .add('Tree 기본', () => (
         <div style={{ height: '500px' }}>
@@ -161,10 +163,5 @@ storiesOf('Tree 컴포넌트', module)
                 {...actions}
             />
         </div>
-    ))
-    .addDecorator((doTheThing) => (
-        <DragDropContextProvider backend={HTML5Backend}>
-            {doTheThing()}
-        </DragDropContextProvider>
     ))
     .addDecorator(withKnobs);
