@@ -47,16 +47,16 @@ storiesOf('Select 컴포넌트', module)
         <CSelect
             id="test-select"
             title={text('타이틀', '테스트 타이틀')}
-            // variant={select(
-            //     'Select 모양 스타일',
-            //     {
-            //         없음: '',
-            //         filled: 'filled',
-            //         outlined: 'outlined',
-            //         standard: 'standard',
-            //     },
-            //     '',
-            // )}
+            variant={select(
+                'Select 모양 스타일',
+                {
+                    없음: '',
+                    filled: 'filled',
+                    outlined: 'outlined',
+                    standard: 'standard',
+                },
+                '',
+            )}
             items={object('options', [
                 { label: '테스트1', value: '1' },
                 { label: '테스트2', value: '2' },
@@ -84,12 +84,12 @@ storiesOf('Select 컴포넌트', module)
                 {
                     label: '테스트1',
                     value: '1',
-                    src: 'https://sharryhong.github.io/image/tomcat.png',
+                    image: 'https://sharryhong.github.io/image/tomcat.png',
                 },
                 {
                     label: '테스트2',
                     value: '2',
-                    src:
+                    image:
                         'https://icons.iconarchive.com/icons/dakirby309/simply-styled/256/VMware-icon.png',
                 },
             ])}
@@ -104,7 +104,7 @@ storiesOf('Select 컴포넌트', module)
                 undefined,
             )}
             emptyOptObj={object('empty option', { label: '미할당', value: '' })}
-            defaultValue={text('초기값', '')}
+            defaultValue={text('초기값', '1')}
             style={object('CSS', { width: '200px' })}
             disabled={select(
                 'disabled',
@@ -118,7 +118,7 @@ storiesOf('Select 컴포넌트', module)
             {...actions}
         />
     ))
-    .add('Select Chips(개발중)', () => (
+    .add('Select Chips', () => (
         <CSelectWithChip
             id="test-select"
             title={text('타이틀', '테스트 타이틀')}
@@ -126,28 +126,27 @@ storiesOf('Select 컴포넌트', module)
                 {
                     label: '테스트1',
                     value: '1',
-                    src: 'https://sharryhong.github.io/image/tomcat.png',
+                    image: 'https://sharryhong.github.io/image/tomcat.png',
                 },
                 {
                     label: '테스트2',
                     value: '2',
-                    src:
+                    image:
                         'https://icons.iconarchive.com/icons/dakirby309/simply-styled/256/VMware-icon.png',
                 },
             ])}
             variant={select(
                 'Select 모양 스타일',
                 {
-                    없음: undefined,
+                    없음: '',
                     filled: 'filled',
                     outlined: 'outlined',
                     standard: 'standard',
                 },
-                undefined,
+                '',
             )}
-            emptyOptObj={object('empty option', { label: '미할당', value: '' })}
-            defaultValue={text('초기값', '')}
-            style={object('CSS', { width: '200px' })}
+            defaultValues={object('초기값', ['1'])}
+            style={object('CSS', { width: '500px' })}
             disabled={select(
                 'disabled',
                 {
