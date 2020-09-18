@@ -28,7 +28,7 @@ interface MoveNodeProps {
 
 interface NodeProps {
     node: any;
-    path: string;
+    path: any;
     parentNode: any;
 }
 
