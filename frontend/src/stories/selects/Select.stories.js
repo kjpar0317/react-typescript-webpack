@@ -67,11 +67,11 @@ storiesOf('Select 컴포넌트', module)
             disabled={select(
                 'disabled',
                 {
-                    없음: '',
+                    없음: undefined,
                     true: true,
                     false: false,
                 },
-                '',
+                undefined,
             )}
             {...actions}
         />
@@ -96,12 +96,12 @@ storiesOf('Select 컴포넌트', module)
             variant={select(
                 'Select 모양 스타일',
                 {
-                    없음: 'outlined',
+                    없음: undefined,
                     filled: 'filled',
                     outlined: 'outlined',
                     standard: 'standard',
                 },
-                'outlined',
+                undefined,
             )}
             emptyOptObj={object('empty option', { label: '미할당', value: '' })}
             defaultValue={text('초기값', '')}
@@ -109,11 +109,11 @@ storiesOf('Select 컴포넌트', module)
             disabled={select(
                 'disabled',
                 {
-                    없음: '',
+                    없음: undefined,
                     true: true,
                     false: false,
                 },
-                '',
+                undefined,
             )}
             {...actions}
         />
@@ -138,12 +138,12 @@ storiesOf('Select 컴포넌트', module)
             variant={select(
                 'Select 모양 스타일',
                 {
-                    없음: 'outlined',
+                    없음: undefined,
                     filled: 'filled',
                     outlined: 'outlined',
                     standard: 'standard',
                 },
-                'outlined',
+                undefined,
             )}
             emptyOptObj={object('empty option', { label: '미할당', value: '' })}
             defaultValue={text('초기값', '')}
@@ -151,11 +151,11 @@ storiesOf('Select 컴포넌트', module)
             disabled={select(
                 'disabled',
                 {
-                    없음: '',
+                    없음: undefined,
                     true: true,
                     false: false,
                 },
-                '',
+                undefined,
             )}
             {...actions}
         />
