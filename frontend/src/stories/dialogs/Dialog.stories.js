@@ -50,31 +50,35 @@ storiesOf('Dialog 컴포넌트', module)
             modules={object('버튼 사용 모듈들', ['create', 'close'])}
             variant={select(
                 '버튼 모양 스타일',
-                { contained: 'contained', outlined: 'outlined' },
-                'contained',
+                {
+                    없음: undefined,
+                    contained: 'contained',
+                    outlined: 'outlined',
+                },
+                undefined,
             )}
             validated={select(
                 'validated',
                 {
-                    없음: '',
+                    없음: undefined,
                     true: true,
                     false: false,
                 },
-                '없음',
+                undefined,
             )}
             open={true}
             fullWidth={true}
             maxWidth={select(
                 '다이얼로그 크기',
                 {
-                    없음: '',
+                    없음: undefined,
                     xs: 'xs',
                     sm: 'sm',
                     md: 'md',
                     lg: 'lg',
                     xl: 'xl',
                 },
-                '',
+                undefined,
             )}
             {...actions}
         >
@@ -91,17 +95,21 @@ storiesOf('Dialog 컴포넌트', module)
             modules={object('버튼 사용 모듈들', ['create', 'close'])}
             variant={select(
                 '버튼 모양 스타일',
-                { contained: 'contained', outlined: 'outlined' },
-                'contained',
+                {
+                    없음: undefined,
+                    contained: 'contained',
+                    outlined: 'outlined',
+                },
+                undefined,
             )}
             validated={select(
                 'validated',
                 {
-                    없음: '',
+                    없음: undefined,
                     true: true,
                     false: false,
                 },
-                '없음',
+                undefined,
             )}
             {...actions}
         />
