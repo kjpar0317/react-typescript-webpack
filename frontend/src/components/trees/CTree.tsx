@@ -8,7 +8,6 @@ import SortableTree, {
 import 'react-sortable-tree/style.css';
 
 import { CIconButton } from '@/components/buttons';
-import { ContactSupportOutlined } from '@material-ui/icons';
 
 interface CTreeProps {
     items: Array<any>;
