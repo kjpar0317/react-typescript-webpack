@@ -6,7 +6,7 @@ import LinearProgress, {
 
 interface CBorderLinearProps {
     type?: string;
-    value?: number;
+    value: number;
     valueBuffer?: number;
     variant?: LinearProgressProps['variant'];
     borderRadius?: number;
