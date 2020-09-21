@@ -8,7 +8,7 @@ import {
     makeStyles,
     withStyles,
 } from '@material-ui/core/styles';
-import FormControl from '@material-ui/core/FormControl';
+import FormControl, { FormControlProps } from '@material-ui/core/FormControl';
 import Select, { SelectProps } from '@material-ui/core/Select';
 import Avatar from '@material-ui/core/Avatar';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -26,7 +26,8 @@ interface CSelectProps {
     defaultValues?: any;
     items: Array<object>;
     style?: React.CSSProperties;
-    onChange?(value: string | number, label?: string | undefined): void;
+    disabled?: FormControlProps['disabled'];
+    onChange?(values: any): void;
 }
 
 const BootstrapInput = withStyles((theme: Theme) =>
@@ -87,7 +88,15 @@ const MenuProps = {
 const CSelectWithChip: React.FC<CSelectProps> = (props) => {
     const classes = useStyles();
     const { formatMessage } = useIntl();
-    const { id, title, variant, defaultValues = [], style, items } = props;
+    const {
+        id,
+        title,
+        variant,
+        defaultValues = [],
+        style,
+        disabled = false,
+        items,
+    } = props;
     const [values, setValues] = useState<any>(defaultValues);
     const [open, setOpen] = useState(false);
     let defaultItems: any = undefined;
@@ -118,9 +127,13 @@ const CSelectWithChip: React.FC<CSelectProps> = (props) => {
                 return f === last(vitems).value;
             }) >= 0
         ) {
-            setValues(pull(values, last(vitems).value));
+            const tvalues = pull(values, last(vitems).value);
+            setValues(tvalues);
+            props.onChange && props.onChange(tvalues);
         } else {
+            const tvalues = values.concat(last(vitems).value);
             setValues(values.concat(last(vitems).value));
+            props.onChange && props.onChange(tvalues);
         }
 
         setOpen(false);
@@ -132,7 +145,11 @@ const CSelectWithChip: React.FC<CSelectProps> = (props) => {
     };
 
     return (
-        <FormControl className={classes.formControl} onChange={handleChange}>
+        <FormControl
+            className={classes.formControl}
+            onChange={handleChange}
+            disabled={disabled}
+        >
             {title && (
                 <InputLabel htmlFor={id}>{getCovertedLabel(title)}</InputLabel>
             )}
