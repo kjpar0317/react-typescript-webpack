@@ -18,6 +18,7 @@ interface CSplitButtonProps {
     variant?: ButtonProps['variant'];
     items: Array<any>;
     size?: ButtonGroupProps['size'];
+    onClick?: (index: number) => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -152,6 +153,8 @@ const CSplitButton: React.FC<CSplitButtonProps> = (props) => {
     ) => {
         setSelectedIndex(index);
         setOpen(false);
+
+        props.onClick && props.onClick(index);
     };
 
     const handleToggle = () => {
