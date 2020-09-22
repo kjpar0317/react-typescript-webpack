@@ -16,6 +16,8 @@ import { CRadioGroup } from '@/components/radios';
 import locale_ko from '@/locale/ko.json';
 import locale_en from '@/locale/en.json';
 
+import markdown from './radios.md';
+
 const store = createStore();
 
 const messages = {
@@ -39,66 +41,70 @@ storiesOf('Radio 컴포넌트', module)
             </Provider>
         </IntlProvider>
     ))
-    .add('Radio 그룹', () => (
-        <CRadioGroup
-            id="test-radio"
-            title={text('타이틀', '테스트 타이틀')}
-            type={select(
-                '탭 외곽 스타일',
-                {
-                    없음: undefined,
-                    cradio1: 'cradio1',
-                    cradio2: 'cradio2',
-                    cradio3: 'cradio3',
-                    cradio4: 'cradio4',
-                },
-                undefined,
-            )}
-            row={select(
-                '방향',
-                {
-                    없음: undefined,
-                    horizontal: true,
-                    vertical: false,
-                },
-                undefined,
-            )}
-            labelPlacement={select(
-                '텍스트 방향',
-                {
-                    없음: undefined,
-                    bottom: 'bottom',
-                    end: 'end',
-                    start: 'start',
-                    top: 'top',
-                },
-                undefined,
-            )}
-            items={object('radio', [
-                { label: '테스트1', value: '1' },
-                { label: '테스트2', value: '2' },
-            ])}
-            defaultValue={text('초기값', '')}
-            fullWidth={select(
-                'fullWidth',
-                {
-                    없음: undefined,
-                    true: true,
-                    false: false,
-                },
-                undefined,
-            )}
-            disabled={select(
-                'disabled',
-                {
-                    없음: undefined,
-                    true: true,
-                    false: false,
-                },
-                undefined,
-            )}
-            {...actions}
-        />
-    ))
+    .add(
+        'Radio 그룹',
+        () => (
+            <CRadioGroup
+                id="test-radio"
+                title={text('타이틀', '테스트 타이틀')}
+                type={select(
+                    '탭 외곽 스타일',
+                    {
+                        없음: undefined,
+                        cradio1: 'cradio1',
+                        cradio2: 'cradio2',
+                        cradio3: 'cradio3',
+                        cradio4: 'cradio4',
+                    },
+                    undefined,
+                )}
+                row={select(
+                    '방향',
+                    {
+                        없음: undefined,
+                        horizontal: true,
+                        vertical: false,
+                    },
+                    undefined,
+                )}
+                labelPlacement={select(
+                    '텍스트 방향',
+                    {
+                        없음: undefined,
+                        bottom: 'bottom',
+                        end: 'end',
+                        start: 'start',
+                        top: 'top',
+                    },
+                    undefined,
+                )}
+                items={object('radio', [
+                    { label: '테스트1', value: '1' },
+                    { label: '테스트2', value: '2' },
+                ])}
+                defaultValue={text('초기값', '')}
+                fullWidth={select(
+                    'fullWidth',
+                    {
+                        없음: undefined,
+                        true: true,
+                        false: false,
+                    },
+                    undefined,
+                )}
+                disabled={select(
+                    'disabled',
+                    {
+                        없음: undefined,
+                        true: true,
+                        false: false,
+                    },
+                    undefined,
+                )}
+                {...actions}
+            />
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
 
     .addDecorator(withKnobs);
