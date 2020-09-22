@@ -16,6 +16,8 @@ import { CToggleGroup } from '@/components/toggles';
 import locale_ko from '@/locale/ko.json';
 import locale_en from '@/locale/en.json';
 
+import markdown from './toggles.md';
+
 const store = createStore();
 
 const messages = {
@@ -39,34 +41,38 @@ storiesOf('Toggle 컴포넌트', module)
             </Provider>
         </IntlProvider>
     ))
-    .add('Toggle 그룹', () => (
-        <CToggleGroup
-            id="test-toggle"
-            items={object('options', [
-                { id: 'test1', name: '테스트1', icon: 'PlayArrow' },
-                { id: 'test2', name: '테스트2', icon: 'Stop' },
-            ])}
-            size={select(
-                '버튼 크기',
-                {
-                    없음: undefined,
-                    small: 'small',
-                    medium: 'medium',
-                    large: 'large',
-                },
-                undefined,
-            )}
-            orientation={select(
-                '방향',
-                {
-                    없음: undefined,
-                    horizontal: 'horizontal',
-                    vertical: 'vertical',
-                },
-                undefined,
-            )}
-            {...actions}
-        />
-    ))
+    .add(
+        'Toggle 그룹',
+        () => (
+            <CToggleGroup
+                id="test-toggle"
+                items={object('options', [
+                    { id: 'test1', name: '테스트1', icon: 'PlayArrow' },
+                    { id: 'test2', name: '테스트2', icon: 'Stop' },
+                ])}
+                size={select(
+                    '버튼 크기',
+                    {
+                        없음: undefined,
+                        small: 'small',
+                        medium: 'medium',
+                        large: 'large',
+                    },
+                    undefined,
+                )}
+                orientation={select(
+                    '방향',
+                    {
+                        없음: undefined,
+                        horizontal: 'horizontal',
+                        vertical: 'vertical',
+                    },
+                    undefined,
+                )}
+                {...actions}
+            />
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
 
     .addDecorator(withKnobs);
