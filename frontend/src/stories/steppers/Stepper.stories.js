@@ -15,6 +15,8 @@ import { CStepper } from '@/components/steppers';
 import locale_ko from '@/locale/ko.json';
 import locale_en from '@/locale/en.json';
 
+import markdown from './steppers.md';
+
 const store = createStore();
 
 const messages = {
@@ -34,30 +36,34 @@ storiesOf('Stepper 컴포넌트', module)
             </Provider>
         </IntlProvider>
     ))
-    .add('Stepper 기본', () => (
-        <CStepper
-            type={select(
-                'stepper 스타일',
-                {
-                    없음: undefined,
-                    cstepper1: 'cstepper1',
-                    cstepper2: 'cstepper2',
-                    cstepper3: 'cstepper3',
-                    cstepper4: 'cstepper4',
-                },
-                undefined,
-            )}
-            items={object('stepper items', ['Step1', 'Step2', 'Step3'])}
-            defaultStep={number('Default Step', 0)}
-            orientation={select(
-                '방향',
-                {
-                    없음: undefined,
-                    horizontal: 'horizontal',
-                    vertical: 'vertical',
-                },
-                undefined,
-            )}
-        />
-    ))
+    .add(
+        'Stepper 기본',
+        () => (
+            <CStepper
+                type={select(
+                    'stepper 스타일',
+                    {
+                        없음: undefined,
+                        cstepper1: 'cstepper1',
+                        cstepper2: 'cstepper2',
+                        cstepper3: 'cstepper3',
+                        cstepper4: 'cstepper4',
+                    },
+                    undefined,
+                )}
+                items={object('stepper items', ['Step1', 'Step2', 'Step3'])}
+                defaultStep={number('Default Step', 0)}
+                orientation={select(
+                    '방향',
+                    {
+                        없음: undefined,
+                        horizontal: 'horizontal',
+                        vertical: 'vertical',
+                    },
+                    undefined,
+                )}
+            />
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
     .addDecorator(withKnobs);
