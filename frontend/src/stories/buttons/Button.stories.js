@@ -17,6 +17,8 @@ import {
     CSplitButton,
 } from '@/components/buttons';
 
+import markdown from './buttons.md';
+
 const store = createStore();
 
 const actions = {
@@ -57,146 +59,167 @@ storiesOf('Button 컴포넌트', module)
             </Router>
         </Provider>
     ))
-    .add('일반 버튼', () => (
-        <CButton
-            type={select(
-                '버튼 색깔 스타일',
-                {
-                    없음: undefined,
-                    btn1: 'btn1',
-                    btn2: 'btn2',
-                    btn3: 'btn3',
-                    btn4: 'btn4',
-                },
-                undefined,
-            )}
-            variant={select(
-                '버튼 모양 스타일',
-                {
-                    없음: undefined,
-                    contained: 'contained',
-                    outlined: 'outlined',
-                },
-                undefined,
-            )}
-            size={select(
-                '버튼 크기',
-                {
-                    없음: undefined,
-                    small: 'small',
-                    medium: 'medium',
-                    large: 'large',
-                },
-                undefined,
-            )}
-            sicon={text('앞버튼', '')}
-            eicon={text('뒤버튼', '')}
-            style={object('css', { width: '150px' })}
-            {...actions}
-        >
-            {object('버튼텍스트', '테스트 버튼')}
-        </CButton>
-    ))
-    .add('아이콘 버튼', () => (
-        <CIconButton
-            icon={text('아이콘 모양', 'Alarm')}
-            type={select(
-                '버튼 색깔 스타일',
-                {
-                    없음: undefined,
-                    btn1: 'btn1',
-                    btn2: 'btn2',
-                    btn3: 'btn3',
-                    btn4: 'btn4',
-                },
-                undefined,
-            )}
-            size={select(
-                '버튼 크기',
-                { 없음: undefined, small: 'small', medium: 'medium' },
-                undefined,
-            )}
-            edge={select(
-                '버튼 위치',
-                { 없음: undefined, start: 'start', end: 'end' },
-                undefined,
-            )}
-            disabled={select(
-                'disabled',
-                {
-                    없음: undefined,
-                    true: true,
-                    false: false,
-                },
-                undefined,
-            )}
-            tooltip={text('툴팁', '')}
-            {...actions}
-        />
-    ))
-    .add('아이콘 그룹 버튼', () => (
-        <CButtonGroup
-            type={select(
-                '버튼 색깔 스타일',
-                {
-                    없음: undefined,
-                    btn1: 'btn1',
-                    btn2: 'btn2',
-                    btn3: 'btn3',
-                    btn4: 'btn4',
-                },
-                undefined,
-            )}
-            variant={select(
-                '버튼 모양 스타일',
-                {
-                    없음: undefined,
-                    contained: 'contained',
-                    outlined: 'outlined',
-                },
-                undefined,
-            )}
-            size={select(
-                '버튼 크기',
-                { 없음: '', small: 'small', medium: 'medium', large: 'large' },
-                undefined,
-            )}
-            items={object('버튼 items', groupItems)}
-        />
-    ))
-    .add('아이콘 Split 버튼', () => (
-        <CSplitButton
-            type={select(
-                '버튼 색깔 스타일',
-                {
-                    없음: undefined,
-                    btn1: 'btn1',
-                    btn2: 'btn2',
-                    btn3: 'btn3',
-                    btn4: 'btn4',
-                },
-                undefined,
-            )}
-            variant={select(
-                '버튼 모양 스타일',
-                {
-                    없음: undefined,
-                    contained: 'contained',
-                    outlined: 'outlined',
-                },
-                undefined,
-            )}
-            size={select(
-                '버튼 크기',
-                {
-                    없음: undefined,
-                    small: 'small',
-                    medium: 'medium',
-                    large: 'large',
-                },
-                undefined,
-            )}
-            items={object('버튼 items', groupItems)}
-        />
-    ))
+    .add(
+        '일반 버튼',
+        () => (
+            <CButton
+                type={select(
+                    '버튼 색깔',
+                    {
+                        없음: undefined,
+                        btn1: 'btn1',
+                        btn2: 'btn2',
+                        btn3: 'btn3',
+                        btn4: 'btn4',
+                    },
+                    undefined,
+                )}
+                variant={select(
+                    '버튼 스타일',
+                    {
+                        없음: undefined,
+                        contained: 'contained',
+                        outlined: 'outlined',
+                    },
+                    undefined,
+                )}
+                size={select(
+                    '버튼 크기',
+                    {
+                        없음: undefined,
+                        small: 'small',
+                        medium: 'medium',
+                        large: 'large',
+                    },
+                    undefined,
+                )}
+                sicon={text('앞버튼 아이콘', '')}
+                eicon={text('뒤버튼 아이콘', '')}
+                style={object('css', { width: '150px' })}
+                {...actions}
+            >
+                {object('버튼텍스트', '테스트 버튼')}
+            </CButton>
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
+    .add(
+        '아이콘 버튼',
+        () => (
+            <CIconButton
+                icon={text('아이콘 모양', 'Alarm')}
+                type={select(
+                    '버튼 색깔',
+                    {
+                        없음: undefined,
+                        btn1: 'btn1',
+                        btn2: 'btn2',
+                        btn3: 'btn3',
+                        btn4: 'btn4',
+                    },
+                    undefined,
+                )}
+                size={select(
+                    '버튼 크기',
+                    { 없음: undefined, small: 'small', medium: 'medium' },
+                    undefined,
+                )}
+                edge={select(
+                    '버튼 위치',
+                    { 없음: undefined, start: 'start', end: 'end' },
+                    undefined,
+                )}
+                disabled={select(
+                    'disabled',
+                    {
+                        없음: undefined,
+                        true: true,
+                        false: false,
+                    },
+                    undefined,
+                )}
+                tooltip={text('툴팁', '')}
+                {...actions}
+            />
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
+    .add(
+        '아이콘 그룹 버튼',
+        () => (
+            <CButtonGroup
+                type={select(
+                    '버튼 색깔 스타일',
+                    {
+                        없음: undefined,
+                        btn1: 'btn1',
+                        btn2: 'btn2',
+                        btn3: 'btn3',
+                        btn4: 'btn4',
+                    },
+                    undefined,
+                )}
+                variant={select(
+                    '버튼 모양 스타일',
+                    {
+                        없음: undefined,
+                        contained: 'contained',
+                        outlined: 'outlined',
+                    },
+                    undefined,
+                )}
+                size={select(
+                    '버튼 크기',
+                    {
+                        없음: '',
+                        small: 'small',
+                        medium: 'medium',
+                        large: 'large',
+                    },
+                    undefined,
+                )}
+                items={object('버튼 items', groupItems)}
+            />
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
+    .add(
+        '아이콘 Split 버튼',
+        () => (
+            <CSplitButton
+                type={select(
+                    '버튼 색깔 스타일',
+                    {
+                        없음: undefined,
+                        btn1: 'btn1',
+                        btn2: 'btn2',
+                        btn3: 'btn3',
+                        btn4: 'btn4',
+                    },
+                    undefined,
+                )}
+                variant={select(
+                    '버튼 모양 스타일',
+                    {
+                        없음: undefined,
+                        contained: 'contained',
+                        outlined: 'outlined',
+                    },
+                    undefined,
+                )}
+                size={select(
+                    '버튼 크기',
+                    {
+                        없음: undefined,
+                        small: 'small',
+                        medium: 'medium',
+                        large: 'large',
+                    },
+                    undefined,
+                )}
+                items={object('버튼 items', groupItems)}
+            />
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
     .addDecorator(withKnobs);
