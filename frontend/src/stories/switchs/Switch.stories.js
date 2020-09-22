@@ -16,6 +16,8 @@ import { CSwitch, CSwitchGroup } from '@/components/switchs';
 import locale_ko from '@/locale/ko.json';
 import locale_en from '@/locale/en.json';
 
+import markdown from './switchs.md';
+
 const store = createStore();
 
 const messages = {
@@ -39,82 +41,90 @@ storiesOf('Switch 컴포넌트', module)
             </Provider>
         </IntlProvider>
     ))
-    .add('Switch 일반', () => (
-        <CSwitch
-            label={text('타이틀', '테스트 라벨')}
-            type={select(
-                '버튼 색깔 스타일',
-                {
-                    없음: undefined,
-                    cswitch1: 'cswitch1',
-                    cswitch2: 'cswitch2',
-                    cswitch3: 'cswitch3',
-                    cswitch4: 'cswitch4',
-                },
-                undefined,
-            )}
-            checked={select(
-                'checked',
-                {
-                    없음: undefined,
-                    true: true,
-                    false: false,
-                },
-                undefined,
-            )}
-            labelPlacement={select(
-                '텍스트 방향',
-                {
-                    없음: undefined,
-                    bottom: 'bottom',
-                    end: 'end',
-                    start: 'start',
-                    top: 'top',
-                },
-                undefined,
-            )}
-            disabled={select(
-                'disabled',
-                {
-                    없음: undefined,
-                    true: true,
-                    false: false,
-                },
-                undefined,
-            )}
-            {...actions}
-        />
-    ))
-    .add('Switch Group', () => (
-        <CSwitchGroup
-            title={text('그룹 타이틀', '테스트')}
-            items={object('options', [
-                { label: '테스트1', name: 'test1', checked: true },
-                { label: '테스트2', name: 'test2', checked: true },
-            ])}
-            labelPlacement={select(
-                '텍스트 방향',
-                {
-                    없음: undefined,
-                    bottom: 'bottom',
-                    end: 'end',
-                    start: 'start',
-                    top: 'top',
-                },
-                undefined,
-            )}
-            row={select(
-                '방향',
-                {
-                    없음: undefined,
-                    horizontal: true,
-                    vertical: false,
-                },
-                undefined,
-            )}
-            helperText={text('그룹 하단 타이틀', '하단 테스트')}
-            {...actions}
-        />
-    ))
+    .add(
+        'Switch 일반',
+        () => (
+            <CSwitch
+                label={text('타이틀', '테스트 라벨')}
+                type={select(
+                    '버튼 색깔 스타일',
+                    {
+                        없음: undefined,
+                        cswitch1: 'cswitch1',
+                        cswitch2: 'cswitch2',
+                        cswitch3: 'cswitch3',
+                        cswitch4: 'cswitch4',
+                    },
+                    undefined,
+                )}
+                checked={select(
+                    'checked',
+                    {
+                        없음: undefined,
+                        true: true,
+                        false: false,
+                    },
+                    undefined,
+                )}
+                labelPlacement={select(
+                    '텍스트 방향',
+                    {
+                        없음: undefined,
+                        bottom: 'bottom',
+                        end: 'end',
+                        start: 'start',
+                        top: 'top',
+                    },
+                    undefined,
+                )}
+                disabled={select(
+                    'disabled',
+                    {
+                        없음: undefined,
+                        true: true,
+                        false: false,
+                    },
+                    undefined,
+                )}
+                {...actions}
+            />
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
+    .add(
+        'Switch Group',
+        () => (
+            <CSwitchGroup
+                title={text('그룹 타이틀', '테스트')}
+                items={object('options', [
+                    { label: '테스트1', name: 'test1', checked: true },
+                    { label: '테스트2', name: 'test2', checked: true },
+                ])}
+                labelPlacement={select(
+                    '텍스트 방향',
+                    {
+                        없음: undefined,
+                        bottom: 'bottom',
+                        end: 'end',
+                        start: 'start',
+                        top: 'top',
+                    },
+                    undefined,
+                )}
+                row={select(
+                    '방향',
+                    {
+                        없음: undefined,
+                        horizontal: true,
+                        vertical: false,
+                    },
+                    undefined,
+                )}
+                helperText={text('그룹 하단 타이틀', '하단 테스트')}
+                {...actions}
+            />
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
 
     .addDecorator(withKnobs);
