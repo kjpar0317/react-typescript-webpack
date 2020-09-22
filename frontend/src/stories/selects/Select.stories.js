@@ -20,6 +20,8 @@ import {
 import locale_ko from '@/locale/ko.json';
 import locale_en from '@/locale/en.json';
 
+import markdown from './selects.md';
+
 const store = createStore();
 
 const messages = {
@@ -43,121 +45,139 @@ storiesOf('Select 컴포넌트', module)
             </Provider>
         </IntlProvider>
     ))
-    .add('Select 박스', () => (
-        <CSelect
-            id="test-select"
-            title={text('타이틀', '테스트 타이틀')}
-            variant={select(
-                'Select 모양 스타일',
-                {
-                    없음: '',
-                    filled: 'filled',
-                    outlined: 'outlined',
-                    standard: 'standard',
-                },
-                '',
-            )}
-            items={object('options', [
-                { label: '테스트1', value: '1' },
-                { label: '테스트2', value: '2' },
-            ])}
-            emptyOptObj={object('empty option', { label: '미할당', value: '' })}
-            defaultValue={text('초기값', '')}
-            style={object('CSS', { width: '200px' })}
-            disabled={select(
-                'disabled',
-                {
-                    없음: undefined,
-                    true: true,
-                    false: false,
-                },
-                undefined,
-            )}
-            {...actions}
-        />
-    ))
-    .add('Select 이미지 박스', () => (
-        <CSelectWithImage
-            id="test-select"
-            title={text('타이틀', '테스트 타이틀')}
-            items={object('options', [
-                {
-                    label: '테스트1',
-                    value: '1',
-                    image: 'https://sharryhong.github.io/image/tomcat.png',
-                },
-                {
-                    label: '테스트2',
-                    value: '2',
-                    image:
-                        'https://icons.iconarchive.com/icons/dakirby309/simply-styled/256/VMware-icon.png',
-                },
-            ])}
-            variant={select(
-                'Select 모양 스타일',
-                {
-                    없음: undefined,
-                    filled: 'filled',
-                    outlined: 'outlined',
-                    standard: 'standard',
-                },
-                undefined,
-            )}
-            emptyOptObj={object('empty option', { label: '미할당', value: '' })}
-            defaultValue={text('초기값', '1')}
-            style={object('CSS', { width: '200px' })}
-            disabled={select(
-                'disabled',
-                {
-                    없음: undefined,
-                    true: true,
-                    false: false,
-                },
-                undefined,
-            )}
-            {...actions}
-        />
-    ))
-    .add('Select Chips', () => (
-        <CSelectWithChip
-            id="test-select"
-            title={text('타이틀', '테스트 타이틀')}
-            items={object('options', [
-                {
-                    label: '테스트1',
-                    value: '1',
-                    image: 'https://sharryhong.github.io/image/tomcat.png',
-                },
-                {
-                    label: '테스트2',
-                    value: '2',
-                    image:
-                        'https://icons.iconarchive.com/icons/dakirby309/simply-styled/256/VMware-icon.png',
-                },
-            ])}
-            variant={select(
-                'Select 모양 스타일',
-                {
-                    없음: '',
-                    filled: 'filled',
-                    outlined: 'outlined',
-                    standard: 'standard',
-                },
-                '',
-            )}
-            defaultValues={object('초기값', ['1'])}
-            style={object('CSS', { width: '500px' })}
-            disabled={select(
-                'disabled',
-                {
-                    없음: undefined,
-                    true: true,
-                    false: false,
-                },
-                undefined,
-            )}
-            {...actions}
-        />
-    ))
+    .add(
+        'Select 박스',
+        () => (
+            <CSelect
+                id="test-select"
+                title={text('타이틀', '테스트 타이틀')}
+                variant={select(
+                    'Select 모양 스타일',
+                    {
+                        없음: '',
+                        filled: 'filled',
+                        outlined: 'outlined',
+                        standard: 'standard',
+                    },
+                    '',
+                )}
+                items={object('options', [
+                    { label: '테스트1', value: '1' },
+                    { label: '테스트2', value: '2' },
+                ])}
+                emptyOptObj={object('empty option', {
+                    label: '미할당',
+                    value: '',
+                })}
+                defaultValue={text('초기값', '')}
+                style={object('CSS', { width: '200px' })}
+                disabled={select(
+                    'disabled',
+                    {
+                        없음: undefined,
+                        true: true,
+                        false: false,
+                    },
+                    undefined,
+                )}
+                {...actions}
+            />
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
+    .add(
+        'Select 이미지 박스',
+        () => (
+            <CSelectWithImage
+                id="test-select"
+                title={text('타이틀', '테스트 타이틀')}
+                items={object('options', [
+                    {
+                        label: '테스트1',
+                        value: '1',
+                        image: 'https://sharryhong.github.io/image/tomcat.png',
+                    },
+                    {
+                        label: '테스트2',
+                        value: '2',
+                        image:
+                            'https://icons.iconarchive.com/icons/dakirby309/simply-styled/256/VMware-icon.png',
+                    },
+                ])}
+                variant={select(
+                    'Select 모양 스타일',
+                    {
+                        없음: undefined,
+                        filled: 'filled',
+                        outlined: 'outlined',
+                        standard: 'standard',
+                    },
+                    undefined,
+                )}
+                emptyOptObj={object('empty option', {
+                    label: '미할당',
+                    value: '',
+                })}
+                defaultValue={text('초기값', '1')}
+                style={object('CSS', { width: '200px' })}
+                disabled={select(
+                    'disabled',
+                    {
+                        없음: undefined,
+                        true: true,
+                        false: false,
+                    },
+                    undefined,
+                )}
+                {...actions}
+            />
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
+    .add(
+        'Select Chips',
+        () => (
+            <CSelectWithChip
+                id="test-select"
+                title={text('타이틀', '테스트 타이틀')}
+                items={object('options', [
+                    {
+                        label: '테스트1',
+                        value: '1',
+                        image: 'https://sharryhong.github.io/image/tomcat.png',
+                    },
+                    {
+                        label: '테스트2',
+                        value: '2',
+                        image:
+                            'https://icons.iconarchive.com/icons/dakirby309/simply-styled/256/VMware-icon.png',
+                    },
+                ])}
+                variant={select(
+                    'Select 모양 스타일',
+                    {
+                        없음: '',
+                        filled: 'filled',
+                        outlined: 'outlined',
+                        standard: 'standard',
+                    },
+                    '',
+                )}
+                defaultValues={object('초기값', ['1'])}
+                style={object('CSS', { width: '500px' })}
+                disabled={select(
+                    'disabled',
+                    {
+                        없음: undefined,
+                        true: true,
+                        false: false,
+                    },
+                    undefined,
+                )}
+                {...actions}
+            />
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
 
     .addDecorator(withKnobs);
