@@ -16,6 +16,8 @@ import { CDialog, CDialogTitle, CDialogAction } from '@/components/dialogs';
 import locale_ko from '@/locale/ko.json';
 import locale_en from '@/locale/en.json';
 
+import markdown from './dialogs.md';
+
 const store = createStore();
 
 const messages = {
@@ -43,48 +45,52 @@ storiesOf('Dialog 컴포넌트', module)
             </Provider>
         </IntlProvider>
     ))
-    .add('Dialog 전체', () => (
-        <CDialog
-            id="create-dialog"
-            title={text('title', '테스트 타이틀')}
-            modules={object('버튼 사용 모듈들', ['create', 'close'])}
-            variant={select(
-                '버튼 모양 스타일',
-                {
-                    없음: undefined,
-                    contained: 'contained',
-                    outlined: 'outlined',
-                },
-                undefined,
-            )}
-            validated={select(
-                'validated',
-                {
-                    없음: undefined,
-                    true: true,
-                    false: false,
-                },
-                undefined,
-            )}
-            open={true}
-            fullWidth={true}
-            maxWidth={select(
-                '다이얼로그 크기',
-                {
-                    없음: undefined,
-                    xs: 'xs',
-                    sm: 'sm',
-                    md: 'md',
-                    lg: 'lg',
-                    xl: 'xl',
-                },
-                undefined,
-            )}
-            {...actions}
-        >
-            {text('내용', '테스트 내용')}
-        </CDialog>
-    ))
+    .add(
+        'Dialog 전체',
+        () => (
+            <CDialog
+                id="create-dialog"
+                title={text('title', '테스트 타이틀')}
+                modules={object('버튼 사용 모듈들', ['create', 'close'])}
+                variant={select(
+                    '버튼 모양 스타일',
+                    {
+                        없음: undefined,
+                        contained: 'contained',
+                        outlined: 'outlined',
+                    },
+                    undefined,
+                )}
+                validated={select(
+                    'validated',
+                    {
+                        없음: undefined,
+                        true: true,
+                        false: false,
+                    },
+                    undefined,
+                )}
+                open={true}
+                fullWidth={true}
+                maxWidth={select(
+                    '다이얼로그 크기',
+                    {
+                        없음: undefined,
+                        xs: 'xs',
+                        sm: 'sm',
+                        md: 'md',
+                        lg: 'lg',
+                        xl: 'xl',
+                    },
+                    undefined,
+                )}
+                {...actions}
+            >
+                {text('내용', '테스트 내용')}
+            </CDialog>
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
     .add('Dialog 타이틀', () => (
         <CDialogTitle id="create-dialog" {...actions}>
             {text('제목', '테스트')}
