@@ -16,6 +16,8 @@ import { CCheckbox } from '@/components/checkboxs';
 import locale_ko from '@/locale/ko.json';
 import locale_en from '@/locale/en.json';
 
+import markdown from './checkboxs.md';
+
 const store = createStore();
 
 const messages = {
@@ -39,54 +41,58 @@ storiesOf('Checkbox 컴포넌트', module)
             </Provider>
         </IntlProvider>
     ))
-    .add('Checkbox', () => (
-        <CCheckbox
-            id="test-checkbox"
-            title={text('타이틀', '테스트 타이틀')}
-            type={select(
-                'checkbox 스타일',
-                {
-                    없음: undefined,
-                    ccheck1: 'ccheck1',
-                    ccheck2: 'ccheck2',
-                    ccheck3: 'ccheck3',
-                    ccheck4: 'ccheck4',
-                },
-                undefined,
-            )}
-            items={object('options', [
-                { label: '테스트1', checked: true },
-                { label: '테스트2', checked: false },
-            ])}
-            row={select(
-                '방향',
-                {
-                    없음: undefined,
-                    horizontal: true,
-                    vertical: false,
-                },
-                undefined,
-            )}
-            fullWidth={select(
-                'fullWidth',
-                {
-                    없음: undefined,
-                    true: true,
-                    false: false,
-                },
-                undefined,
-            )}
-            disabled={select(
-                'disabled',
-                {
-                    없음: undefined,
-                    true: true,
-                    false: false,
-                },
-                undefined,
-            )}
-            {...actions}
-        />
-    ))
+    .add(
+        'Checkbox',
+        () => (
+            <CCheckbox
+                id="test-checkbox"
+                title={text('타이틀', '테스트 타이틀')}
+                type={select(
+                    'checkbox 색깔',
+                    {
+                        없음: undefined,
+                        ccheck1: 'ccheck1',
+                        ccheck2: 'ccheck2',
+                        ccheck3: 'ccheck3',
+                        ccheck4: 'ccheck4',
+                    },
+                    undefined,
+                )}
+                items={object('options', [
+                    { label: '테스트1', checked: true },
+                    { label: '테스트2', checked: false },
+                ])}
+                row={select(
+                    '방향',
+                    {
+                        없음: undefined,
+                        horizontal: true,
+                        vertical: false,
+                    },
+                    undefined,
+                )}
+                fullWidth={select(
+                    'fullWidth',
+                    {
+                        없음: undefined,
+                        true: true,
+                        false: false,
+                    },
+                    undefined,
+                )}
+                disabled={select(
+                    'disabled',
+                    {
+                        없음: undefined,
+                        true: true,
+                        false: false,
+                    },
+                    undefined,
+                )}
+                {...actions}
+            />
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
 
     .addDecorator(withKnobs);
