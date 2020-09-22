@@ -12,6 +12,8 @@ import createStore from '@/store';
 import { customTheme } from '@/constants';
 import { SynchronizedAreaChart } from '@/components/charts/areaCharts';
 
+import markdown from './charts.md';
+
 const store = createStore();
 
 const actions = {
@@ -73,17 +75,24 @@ storiesOf('Chart 컴포넌트', module)
             </Router>
         </Provider>
     ))
-    .add('SynchronizedAreaChart 차트', () => (
-        <SynchronizedAreaChart
-            data={object('차트 데이터', data)}
-            xPvt={text('X축', 'name')}
-            yPvts={object('Y축들', ['pv', 'amt'])}
-            height={text('높이', '400px')}
-            strokeDasharray={text('차트 대시 모양', '0,12')}
-            storkColors={object('stork color', ['#82ca9d', '#82ca9d'])}
-            fillColors={object('fill color', ['#82ca9d', '#82ca9d'])}
-            xRange={object('xAxis범위', [])}
-            yRange={object('yAxis범위', [])}
-        />
-    ))
+    .add(
+        'SynchronizedAreaChart 차트',
+        () => (
+            <SynchronizedAreaChart
+                data={object('차트 데이터', data)}
+                xPvt={text('X축', 'name')}
+                yPvts={object('Y축들', ['pv', 'amt'])}
+                height={text('높이', '400px')}
+                strokeDasharray={text('차트 안 대시 모양', '0,12')}
+                storkColors={object('차트 테두리 color', [
+                    '#82ca9d',
+                    '#82ca9d',
+                ])}
+                fillColors={object('차트 color', ['#82ca9d', '#82ca9d'])}
+                xRange={object('xAxis범위', [])}
+                yRange={object('yAxis범위', [])}
+            />
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
     .addDecorator(withKnobs);
