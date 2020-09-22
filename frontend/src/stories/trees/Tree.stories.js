@@ -18,6 +18,8 @@ import { CTree, CFileTree, CStyleTree } from '@/components/trees';
 import locale_ko from '@/locale/ko.json';
 import locale_en from '@/locale/en.json';
 
+import markdown from './trees.md';
+
 const store = createStore();
 
 const messages = {
@@ -119,49 +121,61 @@ storiesOf('Tree 컴포넌트', module)
             </IntlProvider>
         </DndProvider>
     ))
-    .add('Tree 기본', () => (
-        <div style={{ height: '500px' }}>
-            <CTree
-                items={object('tree items', treedata)}
-                canEdit={select(
-                    '수정 가능 여부',
-                    {
-                        없음: undefined,
-                        가능: true,
-                        불가능: false,
-                    },
-                    undefined,
-                )}
-                {...actions}
-            />
-        </div>
-    ))
-    .add('Tree 파일용', () => (
-        <div style={{ height: '500px' }}>
-            <CFileTree
-                items={object('tree items', treedata)}
-                canEdit={select(
-                    '수정 가능 여부',
-                    {
-                        없음: undefined,
-                        가능: true,
-                        불가능: false,
-                    },
-                    undefined,
-                )}
-                {...actions}
-            />
-        </div>
-    ))
-    .add('Tree Style Custom', () => (
-        <div style={{ height: '500px' }}>
-            <CStyleTree
-                items={object('tree items', treedata2)}
-                defaultExpanded={object('default값(배열(id))', ['1'])}
-                collapseIcon={text('펼침 아이콘', undefined)}
-                expandIcon={text('접힘 아이콘', undefined)}
-                {...actions}
-            />
-        </div>
-    ))
+    .add(
+        'Tree 기본',
+        () => (
+            <div style={{ height: '500px' }}>
+                <CTree
+                    items={object('tree items', treedata)}
+                    canEdit={select(
+                        '수정 가능 여부',
+                        {
+                            없음: undefined,
+                            가능: true,
+                            불가능: false,
+                        },
+                        undefined,
+                    )}
+                    {...actions}
+                />
+            </div>
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
+    .add(
+        'Tree 파일용',
+        () => (
+            <div style={{ height: '500px' }}>
+                <CFileTree
+                    items={object('tree items', treedata)}
+                    canEdit={select(
+                        '수정 가능 여부',
+                        {
+                            없음: undefined,
+                            가능: true,
+                            불가능: false,
+                        },
+                        undefined,
+                    )}
+                    {...actions}
+                />
+            </div>
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
+    .add(
+        'Tree Style Custom',
+        () => (
+            <div style={{ height: '500px' }}>
+                <CStyleTree
+                    items={object('tree items', treedata2)}
+                    defaultExpanded={object('default값(배열(id))', ['1'])}
+                    collapseIcon={text('펼침 아이콘', undefined)}
+                    expandIcon={text('접힘 아이콘', undefined)}
+                    {...actions}
+                />
+            </div>
+        ),
+        { notes: { 메뉴얼: markdown } },
+    )
     .addDecorator(withKnobs);
