@@ -18,6 +18,7 @@ interface CSplitButtonProps {
     variant?: ButtonProps['variant'];
     items: Array<any>;
     size?: ButtonGroupProps['size'];
+    style?: React.CSSProperties;
     onClick?: (index: number) => void;
 }
 
@@ -127,7 +128,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const CSplitButton: React.FC<CSplitButtonProps> = (props) => {
     const classes = useStyles();
-    const { id, type, variant, items, size } = props;
+    const { id, type, variant, items, size, style } = props;
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLDivElement>(null);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
@@ -173,7 +174,7 @@ const CSplitButton: React.FC<CSplitButtonProps> = (props) => {
     };
 
     return (
-        <Grid container direction="column" alignItems="center">
+        <Grid container direction="column">
             <Grid item xs={12}>
                 <ButtonGroup
                     variant="contained"
@@ -181,6 +182,7 @@ const CSplitButton: React.FC<CSplitButtonProps> = (props) => {
                     ref={anchorRef}
                     aria-label={id}
                     size={size}
+                    style={style}
                 >
                     <Button
                         className={buttonType}
