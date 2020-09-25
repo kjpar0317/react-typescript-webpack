@@ -62,6 +62,7 @@ export interface CIconButtonProps {
     size?: IconButtonProps['size'];
     edge?: IconButtonProps['edge'];
     tooltip?: TooltipProps['title'];
+    style?: React.CSSProperties;
     onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
@@ -74,6 +75,7 @@ const CIconButton: React.FC<CIconButtonProps> = (props) => {
         size,
         edge,
         tooltip = '',
+        style,
         onClick,
         ...other
     } = props;
@@ -94,6 +96,7 @@ const CIconButton: React.FC<CIconButtonProps> = (props) => {
                 disabled={disabled}
                 size={size}
                 edge={edge}
+                style={style}
                 onClick={onClick}
             >
                 <MuiIcon icon={icon} />
