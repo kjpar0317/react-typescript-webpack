@@ -139,6 +139,7 @@ storiesOf('Button 컴포넌트', module)
                     undefined,
                 )}
                 tooltip={text('툴팁', '')}
+                style={object('css', {})}
                 {...actions}
             />
         ),
@@ -179,6 +180,7 @@ storiesOf('Button 컴포넌트', module)
                     undefined,
                 )}
                 items={object('버튼 items', groupItems)}
+                style={object('css', {})}
             />
         ),
         { notes: { 메뉴얼: markdown } },
@@ -218,6 +220,7 @@ storiesOf('Button 컴포넌트', module)
                     undefined,
                 )}
                 items={object('버튼 items', groupItems)}
+                style={object('css', {})}
             />
         ),
         { notes: { 메뉴얼: markdown } },
