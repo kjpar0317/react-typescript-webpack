@@ -10,6 +10,7 @@ interface CButtonGroup {
     variant?: ButtonProps['variant'];
     items: Array<any>;
     size?: ButtonGroupProps['size'];
+    style?: React.CSSProperties;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -123,7 +124,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const CButtonGroup: React.FC<CButtonGroup> = (props) => {
     const classes = useStyles();
-    const { id, type, variant, items, size } = props;
+    const { id, type, variant, items, size, style } = props;
 
     const buttonType =
         (variant === 'contained' && type === 'btn1' && classes.cbutton1) ||
@@ -162,6 +163,7 @@ const CButtonGroup: React.FC<CButtonGroup> = (props) => {
                                     MouseEvent
                                 >,
                             ) => item.onClick(e)}
+                            style={style}
                         >
                             {item.name}
                         </Button>
