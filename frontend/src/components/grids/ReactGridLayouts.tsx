@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Responsive, WidthProvider, Layout } from 'react-grid-layout';
+import { Responsive, WidthProvider } from 'react-grid-layout';
 
 import { GridRenderItem } from './GridRenderItem';
 import { CIconButton } from '@/components/buttons';
@@ -22,7 +22,7 @@ interface GridLayoutProps {
 
 const ReactGridLayouts = React.memo<GridLayoutProps>((props) => {
     const { items, width, mounted, isDroppable, isEdit } = props;
-    const [layouts, setLayouts] = useState<Layout>(props.layouts);
+    const [layouts, setLayouts] = useState<Array<any>>(props.layouts);
     let [maxConunt, setMaxCount] = useState<number>(props.layouts.length);
 
     useEffect(() => {
@@ -77,15 +77,15 @@ const ReactGridLayouts = React.memo<GridLayoutProps>((props) => {
             onDrop={onDrop}
             breakpoints={{ lg: 1280, md: 800, sm: 600, xs: 0, xxs: 0 }}
             cols={{ lg: 12, md: 12, sm: 12, xs: 12, xxs: 12 }}
-            marin={[10, 10]}
+            margin={[10, 10]}
             measureBeforeMount={false}
             useCSSTransforms={mounted}
             isDroppable={isDroppable}
         >
             {layouts &&
-                layouts.map((layout: Layout, index: number) => {
+                layouts.map((layout: any, index: number) => {
                     const filter: any = items.filter(
-                        (data: Layout) => data.i === layout.i,
+                        (data: any) => data.i === layout.i,
                     );
 
                     return (

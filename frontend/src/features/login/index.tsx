@@ -57,7 +57,7 @@ const IndexFeatures : React.FC = () => {
             sessionStorage.setItem('username', username);
             sessionStorage.setItem('token', token);
 
-            history.push('/admin/dashboard');
+            history.push('/dashboard');
         }
     }, [token]);
 

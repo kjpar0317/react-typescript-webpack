@@ -7,3 +7,5 @@ declare module "login-interface" {
         error: any
     }
 }
+
+declare module 'react-grid-layout';

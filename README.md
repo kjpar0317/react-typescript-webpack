@@ -7,3 +7,5 @@ npm run start
 npm run build
 
 npm run storybook
+
+npm --max-old-space-size=8192 run start

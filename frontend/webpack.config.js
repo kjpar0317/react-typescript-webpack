@@ -47,9 +47,9 @@ module.exports = {
         proxy: {
             '/api': {
                 target: REACT_APP_BASE_URI,
-                ws: true
+                // ws: true
             },
-            '/auth': {
+            '/login': {
                 target: REACT_APP_BASE_URI,
             },
         },

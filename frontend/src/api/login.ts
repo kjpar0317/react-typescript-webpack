@@ -2,7 +2,7 @@ import axioUtils from '@/utils/axios-utils';
 
 // 로그인 처리
 export const doLogin : any = (username : string, password : string) => {
-    return axioUtils.post(`/auth/login`, {
+    return axioUtils.post(`/login`, {
         'username': username,
         'password': password
     }).then(res => {

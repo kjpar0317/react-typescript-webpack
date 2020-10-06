@@ -2,13 +2,6 @@ import React, { useState } from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import red from '@material-ui/core/colors/red';
-
-import IconDashboard from '@material-ui/icons/Dashboard'
-import IconShoppingCart from '@material-ui/icons/ShoppingCart'
-import IconPeople from '@material-ui/icons/People'
-import IconBarChart from '@material-ui/icons/BarChart'
-import IconLibraryBooks from '@material-ui/icons/LibraryBooks'
 
 import { Header, SideNavbar, MainContents }  from '@/components/layouts';
 import {
@@ -30,7 +23,7 @@ interface PrivateProps extends RouteProps {
 export const PrivateRoute : React.FC<PrivateProps> = props => {
     const [ navTrigger, setNavTrigger ] = useState(true);
     const [ sidebarOpen, setSidebarOpen ] = useState(true);
-    
+
     const getCustomTheme = () => {
         let theme: any = customTheme;
 
@@ -40,7 +33,7 @@ export const PrivateRoute : React.FC<PrivateProps> = props => {
 
         return theme;
     };
-    
+
     const getPaletteBackground = () => {
         // if (group === 'admin') {
         //     return '#35475e';
@@ -56,8 +49,8 @@ export const PrivateRoute : React.FC<PrivateProps> = props => {
         return (
             <ThemeProvider theme={createMuiTheme(getCustomTheme())}>
                 <Header onTrigger={ setNavTrigger } />
-                <SideNavbar visible={navTrigger} menuItems={menuItems} onTrigger={setNavTrigger} onSidebarOpen={setSidebarOpen} />
-                <MainContents sidebarOpen={sidebarOpen}>
+                <SideNavbar visible={navTrigger} menuItems={menuItems} onTrigger={setNavTrigger} />
+                <MainContents>
                     <Route {...props} />
                 </MainContents>
             </ThemeProvider>

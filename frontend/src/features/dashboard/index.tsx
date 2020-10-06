@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
-import { COMMON } from '@/features/commonSlice';
+// import { COMMON } from '@/features/commonSlice';
 
 import { ReactGridLayouts } from '@/components/grids';
 import { DropTarget } from 'react-dnd';
@@ -141,11 +141,11 @@ const useStyles = makeStyles(() =>
     }),
 );
 
-const TestDashboardFeatures: React.FC<{}> = () => {
+const DashboardFeatures: React.FC<{}> = () => {
     const classes = useStyles();
-    const { customSidebar, windowSize } = useSelector((state) => {
-        return state[COMMON];
-    });
+    // const { customSidebar, windowSize } = useSelector((state) => {
+    //     return state[COMMON];
+    // });
     const [mounted, setMounted] = useState(false);
     const [width, setWidth] = useState(0);
 
@@ -153,13 +153,13 @@ const TestDashboardFeatures: React.FC<{}> = () => {
         setMounted(true);
     }, []);
 
-    useEffect(() => {
-        if (customSidebar) {
-            setWidth(windowSize.width - 290);
-        } else {
-            setWidth(windowSize.width - 70);
-        }
-    }, [customSidebar]);
+    // useEffect(() => {
+    //     if (customSidebar) {
+    //         setWidth(windowSize.width - 290);
+    //     } else {
+    //         setWidth(windowSize.width - 70);
+    //     }
+    // }, [customSidebar]);
 
     return (
         <div className={classes.dashboard}>
@@ -173,4 +173,4 @@ const TestDashboardFeatures: React.FC<{}> = () => {
     );
 };
 
-export default withRouter(TestDashboardFeatures);
+export default withRouter(DashboardFeatures);
