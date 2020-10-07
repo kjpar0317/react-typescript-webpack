@@ -18,7 +18,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-// import ReactCountryFlag from 'react-country-flag';
+import ReactCountryFlag from 'react-country-flag';
 
 import Swal from 'sweetalert2';
 

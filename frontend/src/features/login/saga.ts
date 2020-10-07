@@ -13,7 +13,7 @@ function* handleLogin() {
         const res = yield call(doLogin, logininfo.username, logininfo.password);
 
         yield put(
-            loginSuccess(res.resultData),
+            loginSuccess(res),
         );
     } catch (err) {
         yield put(loginFail(err));
