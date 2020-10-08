@@ -16,7 +16,7 @@ import Collapse from '@material-ui/core/Collapse';
 import IconExpandLess from '@material-ui/icons/ExpandLess';
 import IconExpandMore from '@material-ui/icons/ExpandMore';
 
-// import { COMMON } from '@/features/commonSlice';
+import { COMMON } from '@/features/commonSlice';
 import { MuiIcon } from '@/components/icons';
 
 // React runtime PropTypes
@@ -56,13 +56,13 @@ const SideNavbarItem: React.FC<AppMenuItemProps> = (props) => {
     const { name, icon, role, link, fopen, items = [] } = props;
     const classes = useStyles();
     const { formatMessage } = useIntl();
-    // const { breakpoint, group, queryParams } = useSelector(
-    //     (state) => state[COMMON],
-    // );
+    const { breakpoint, group, queryParams } = useSelector(
+        (state) => state[COMMON],
+    );
     const [open, setOpen] = React.useState(false);
     const history = useHistory();
 
-    let isSelected = link && link.startsWith(history.location.pathname);
+    // let isSelected = link && link.startsWith(history.location.pathname);
     let isExpandable = items && items.length > 0;
 
     // Dynamic하게 변경되는것은 예외처리.. (나중에 다시 한번 생각해보자)
@@ -71,14 +71,16 @@ const SideNavbarItem: React.FC<AppMenuItemProps> = (props) => {
             true) ||
         isExpandable;
 
-    // const query = !isEmpty(queryParams) ? `?${qs.stringify(queryParams)}` : '';
+    const query = !isEmpty(queryParams) ? `?${qs.stringify(queryParams)}` : '';
 
-    // React.useEffect(() => {
-    //     if (breakpoint === 'sm') {
-    //         setOpen(false);
-    //         isExpandable = false;
-    //     }
-    // }, [breakpoint]);
+    let isSelected = link && link === history.location.pathname + query;
+
+    React.useEffect(() => {
+        if (breakpoint === 'sm') {
+            setOpen(false);
+            isExpandable = false;
+        }
+    }, [breakpoint]);
 
     React.useEffect(() => {
         if (!fopen) {
@@ -97,16 +99,16 @@ const SideNavbarItem: React.FC<AppMenuItemProps> = (props) => {
     };
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        // if (breakpoint != 'sm' && fopen) {
-        //     setOpen(!open);
-        //     isExpandable = false;
-        // }
+        if (breakpoint != 'sm' && fopen) {
+            setOpen(!open);
+            isExpandable = false;
+        }
     };
 
     const handlePopMenu = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        // if (isExpandable && (!fopen || breakpoint === 'sm')) {
-        //     props.setAnchorEl(e.currentTarget);
-        // }
+        if (isExpandable && (!fopen || breakpoint === 'sm')) {
+            props.setAnchorEl(e.currentTarget);
+        }
         props.setTargetId(name);
     };
 
@@ -118,7 +120,7 @@ const SideNavbarItem: React.FC<AppMenuItemProps> = (props) => {
 
     const MenuItemRoot = (props: any) =>
         // <ListItem button className={classes.menuItem} component={SomePathLink} to={link}
-        // includes(role, group) && (
+        includes(role, group) && (
             <ListItem
                 button
                 className={classes.menuItem}
@@ -127,12 +129,11 @@ const SideNavbarItem: React.FC<AppMenuItemProps> = (props) => {
                         link ? (
                             <Link to={link} {...props} ref={ref as any} />
                         ) : (
-                            // <Link
-                            //     to={`${history.location.pathname}${query}`}
-                            //     {...props}
-                            //     ref={ref as any}
-                            // />
-                            <Link to={link} {...props} ref={ref as any} />
+                            <Link
+                                to={`${history.location.pathname}${query}`}
+                                {...props}
+                                ref={ref as any}
+                            />
                         ),
                 )}
                 onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
@@ -152,36 +153,36 @@ const SideNavbarItem: React.FC<AppMenuItemProps> = (props) => {
                         {<MuiIcon icon={icon} />}
                     </ListItemIcon>
                 )}
-                {/* {breakpoint != 'sm' && fopen && (
+                {breakpoint != 'sm' && fopen && (
                     <ListItemText primary={convmenu} inset={!icon} />
-                )} */}
+                )}
                 {/* Display the expand menu if the item has children */}
-                {/* {isExpandable && !open && breakpoint != 'sm' && fopen && (
+                {isExpandable && !open && breakpoint != 'sm' && fopen && (
                     <IconExpandMore />
                 )}
                 {isExpandable && open && breakpoint != 'sm' && fopen && (
                     <IconExpandLess />
-                )} */}
+                )}
             </ListItem>
-        // );
+        );
 
-    // const MenuItemChildren = (props: any, isExpandable: boolean) =>
-    //     includes(role, group) &&
-    //     isExpandable && (
-    //         <Collapse in={open} timeout="auto" unmountOnExit>
-    //             <Divider />
-    //             <List component="div" disablePadding>
-    //                 {items.map((item, index) => (
-    //                     <SideNavbarItem {...item} key={index} fopen={fopen} />
-    //                 ))}
-    //             </List>
-    //         </Collapse>
-    //     );
+    const MenuItemChildren = (props: any, isExpandable: boolean) =>
+        includes(role, group) &&
+        isExpandable && (
+            <Collapse in={open} timeout="auto" unmountOnExit>
+                <Divider />
+                <List component="div" disablePadding>
+                    {items.map((item, index) => (
+                        <SideNavbarItem {...item} key={index} fopen={fopen} />
+                    ))}
+                </List>
+            </Collapse>
+        );
 
     return (
         <>
             {MenuItemRoot(props)}
-            {/* {MenuItemChildren(props, isExpandable)} */}
+            {MenuItemChildren(props, isExpandable)}
         </>
     );
 };
