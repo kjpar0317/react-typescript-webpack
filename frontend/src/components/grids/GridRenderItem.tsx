@@ -1,6 +1,11 @@
 import React from 'react';
 
 import { ImageWidget, TextWidget, AreaChartWidget } from '@/components/widgets';
+import {
+    LAYOUT_TYPE_CHART_AREA,
+    LAYOUT_TYPE_IMAGE,
+    LAYOUT_TYPE_TEXT,
+} from '@/constants';
 
 interface GridRenderItemProps {
     item: any;
@@ -8,17 +13,23 @@ interface GridRenderItemProps {
 
 const GridRenderItem: React.FC<GridRenderItemProps> = ({ item }) => {
     const renderElement = () => {
-        if (item.type === 'image') {
-            return <ImageWidget data={item.data} />;
-        } else if (item.type === 'text') {
-            return <TextWidget data={item.data} />;
-        } else if (item.type === 'areachart') {
+        if (item.wgType === LAYOUT_TYPE_IMAGE) {
+            return <ImageWidget title={item.wgTitle} data={item.wgItem} />;
+        } else if (item.wgType === LAYOUT_TYPE_TEXT) {
+            return (
+                <TextWidget
+                    title={item.wgTitle}
+                    text={item.wgItem.text}
+                    subtext={item.wgItem.subtext}
+                />
+            );
+        } else if (item.wgType === LAYOUT_TYPE_CHART_AREA) {
             return (
                 <AreaChartWidget
-                    title="테스트 차트"
-                    data={item.data}
-                    xPvt={item.xPvt}
-                    yPvts={item.yPvts}
+                    title={item.wgTitle}
+                    data={item.wgItem.data}
+                    xPvt={item.wgItem.xPvt}
+                    yPvts={item.wgItem.yPvts}
                     height="100%"
                 />
             );
