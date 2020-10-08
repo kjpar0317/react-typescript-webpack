@@ -14,6 +14,8 @@ import locale_en from '@/locale/en.json';
 import {
     TextWidget,
     ImageWidget,
+    CloudWidget,
+    CloudFeeWidget,
     AreaChartWidget,
 } from '@/components/widgets';
 
@@ -25,12 +27,83 @@ const messages = {
 };
 
 const imagedata = {
-    title: '해가 지는 동안 산들.여름의 아름다운 자연 풍경',
     image:
         'https://image.shutterstock.com/image-photo/mountains-during-sunset-beautiful-natural-600w-407021107.jpg',
     text: '좋네',
 };
-const textdata = { title: '테스트7', text: 'Wow. Failed!!' };
+
+const cloudData = {
+    all: {
+        title: '퍼블릭 클라우드',
+        color: '#037bfc',
+        data: [
+            { name: '실행', value: 0 },
+            { name: '중지', value: 1 },
+            { name: '기타', value: 1 },
+        ],
+    },
+    items: [
+        {
+            title: 'AWS EC2',
+            lastUpdatedAt: '2020-01-01 11:22:33',
+            data: [
+                { name: '실행', value: 0 },
+                { name: '중지', value: 0 },
+                { name: '기타', value: 1 },
+            ],
+        },
+        {
+            title: 'AZURE',
+            lastUpdatedAt: '2020-02-01 11:22:33',
+            data: [
+                { name: '실행', value: 2 },
+                { name: '중지', value: 0 },
+                { name: '기타', value: 1 },
+            ],
+        },
+    ],
+};
+
+const cloudFeeData = {
+    info: {
+        title: '퍼블릭 클라우드 요금',
+        color: '#037bfc',
+    },
+    items: [
+        {
+            title: 'AWS EC2',
+            lastUpdatedAt: '2020-01-01 11:22:33',
+            data: [
+                {
+                    name: '이번달',
+                    complete: 100,
+                    inprogress: 80,
+                },
+                {
+                    name: '저번달',
+                    complete: 100,
+                    inprogress: 100,
+                },
+            ],
+        },
+        {
+            title: 'AZURE',
+            lastUpdatedAt: '2020-02-01 11:22:33',
+            data: [
+                {
+                    name: '이번달',
+                    complete: 100,
+                    inprogress: 5,
+                },
+                {
+                    name: '저번달',
+                    complete: 100,
+                    inprogress: 50,
+                },
+            ],
+        },
+    ],
+};
 
 const chartData = [
     {
@@ -87,8 +160,28 @@ storiesOf('Widgets 컴포넌트', module)
             </IntlProvider>
         </Provider>
     ))
-    .add('텍스트 위젯', () => <TextWidget data={object('내용', textdata)} />)
-    .add('이미지 위젯', () => <ImageWidget data={object('내용', imagedata)} />)
+    .add('텍스트 위젯', () => (
+        <TextWidget
+            title={text('텍스트 제목', '글짜 테스트')}
+            text={text(
+                '텍스트 내용',
+                'For advisers, the turbulent economic waters of recent years have been difficult to navigate – Brexit uncertainty, trade wars and monetary policy all continue to add pressure.',
+            )}
+            subtext={text('서브 텍스트 내용', '')}
+        />
+    ))
+    .add('이미지 위젯', () => (
+        <ImageWidget
+            title={text('이미지 제목', '이미지 테스트')}
+            data={object('내용', imagedata)}
+        />
+    ))
+    .add('클라우드 위젯', () => (
+        <CloudWidget chartData={object('차트 object', cloudData)} />
+    ))
+    .add('클라우드 요금 위젯', () => (
+        <CloudFeeWidget feeData={object('내용', cloudFeeData)} />
+    ))
     .add('Area Chart 위젯', () => (
         <AreaChartWidget
             title={text('타이틀', '테스트')}
