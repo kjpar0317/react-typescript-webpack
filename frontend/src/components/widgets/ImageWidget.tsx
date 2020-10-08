@@ -30,30 +30,32 @@ const useStyles = makeStyles({
 });
 
 interface ImageWidgetProps {
+    title: string;
     data: any;
 }
 
 const ImageWidget: React.FC<ImageWidgetProps> = (props) => {
     const classes = useStyles();
+    const { title, data } = props;
 
     return (
         <Card className={classes.root}>
             <CardActionArea classes={{ root: classes.area }}>
                 <CardMedia
                     className={classes.media}
-                    image={props.data.image}
-                    title={props.data.title}
+                    image={data.image}
+                    title={title}
                 />
                 <CardContent classes={{ root: classes.content }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                        {props.data.title}
+                        {title}
                     </Typography>
                     <Typography
                         variant="body2"
                         color="textSecondary"
                         component="p"
                     >
-                        {props.data.text}
+                        {data.text}
                     </Typography>
                 </CardContent>
             </CardActionArea>

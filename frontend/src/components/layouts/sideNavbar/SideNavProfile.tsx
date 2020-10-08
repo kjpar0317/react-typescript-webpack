@@ -4,7 +4,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import { green, pink } from '@material-ui/core/colors';
 import Avatar from '@material-ui/core/Avatar';
 
-// import { COMMON } from '@/features/commonSlice';
+import { COMMON } from '@/features/commonSlice';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -45,42 +45,42 @@ const LARGE_PROFILE_SIZE = '80px';
 
 const SideNavProfile: React.FC<ISideNavProfileProps> = (props) => {
     const classes = useStyles();
-    // const { breakpoint, customSidebar } = useSelector((state) => state[COMMON]);
+    const { breakpoint, customSidebar } = useSelector((state) => state[COMMON]);
     const [height, setHeight] = useState(LARGE_PROFILE_SIZE);
     const [largeDisplayImg, setLargeDisplayImg] = useState('flex');
     const [smallDisplayImg, setSmallDisplayImg] = useState('none');
 
-    // useEffect(() => {
-    //     if (breakpoint === 'xs') {
-    //         setLargeDisplayImg('none');
-    //         setSmallDisplayImg('none');
-    //         setHeight('0px');
-    //     } else if (breakpoint === 'sm') {
-    //         setLargeDisplayImg('none');
-    //         setSmallDisplayImg('flex');
-    //         setHeight(SMALL_PROFILE_SIZE);
-    //     } else {
-    //         setLargeDisplayImg('flex');
-    //         setSmallDisplayImg('none');
-    //         setHeight(LARGE_PROFILE_SIZE);
-    //     }
-    // }, [breakpoint]);
+    useEffect(() => {
+        if (breakpoint === 'xs') {
+            setLargeDisplayImg('none');
+            setSmallDisplayImg('none');
+            setHeight('0px');
+        } else if (breakpoint === 'sm') {
+            setLargeDisplayImg('none');
+            setSmallDisplayImg('flex');
+            setHeight(SMALL_PROFILE_SIZE);
+        } else {
+            setLargeDisplayImg('flex');
+            setSmallDisplayImg('none');
+            setHeight(LARGE_PROFILE_SIZE);
+        }
+    }, [breakpoint]);
 
-    // useEffect(() => {
-    //     if (breakpoint === 'xs' || breakpoint === 'sm') {
-    //         return;
-    //     }
+    useEffect(() => {
+        if (breakpoint === 'xs' || breakpoint === 'sm') {
+            return;
+        }
 
-    //     if (customSidebar) {
-    //         setLargeDisplayImg('flex');
-    //         setSmallDisplayImg('none');
-    //         setHeight(LARGE_PROFILE_SIZE);
-    //     } else {
-    //         setLargeDisplayImg('none');
-    //         setSmallDisplayImg('flex');
-    //         setHeight(SMALL_PROFILE_SIZE);
-    //     }
-    // }, [customSidebar]);
+        if (customSidebar) {
+            setLargeDisplayImg('flex');
+            setSmallDisplayImg('none');
+            setHeight(LARGE_PROFILE_SIZE);
+        } else {
+            setLargeDisplayImg('none');
+            setSmallDisplayImg('flex');
+            setHeight(SMALL_PROFILE_SIZE);
+        }
+    }, [customSidebar]);
 
     return (
         <>

@@ -3,23 +3,24 @@ import createSagaMiddleware from 'redux-saga';
 
 import { all } from 'redux-saga/effects';
 
+import { COMMON, commonReducer } from '@/features/commonSlice';
+
 import { LOGIN, loginReducer } from '@/features/login/slice';
 import { watchLogin } from '@/features/login/saga';
 
-import { ILoginInfo } from "login-interface";
-
-export type RootState = {
-    userinfo: ILoginInfo;
-};
+import { DASHBOARD, dashboardReducer } from '@/features/dashboard/slice';
+import { watchDashboard } from '@/features/dashboard/saga';
 
 export const rootReducer = combineReducers({
     [LOGIN]: loginReducer,
+    [COMMON]: commonReducer,
+    [DASHBOARD]: dashboardReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
 
 function* rootSaga() {
-    yield all([watchLogin()]);
+    yield all([watchLogin(), watchDashboard()]);
 }
 
 const createStore = () => {
@@ -31,5 +32,7 @@ const createStore = () => {
     sagaMiddleware.run(rootSaga);
     return store;
 };
+
+export type RootState = ReturnType<typeof rootReducer>
 
 export default createStore;

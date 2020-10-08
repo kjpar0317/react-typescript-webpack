@@ -31,11 +31,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface TextWidgetProps {
-    data: any;
+    title: string;
+    subtext: string;
+    text: string;
 }
 
 const TextWidget: React.FC<TextWidgetProps> = (props) => {
     const classes = useStyles();
+    const { title, subtext, text } = props;
 
     return (
         <Card className={classes.root}>
@@ -45,9 +48,9 @@ const TextWidget: React.FC<TextWidgetProps> = (props) => {
                         <MoreVertIcon />
                     </IconButton>
                 }
-                title={props.data.title}
+                title={title}
                 titleTypographyProps={{ variant: 'h6' }}
-                subheader="마지막 업데이트 : 2020-01-02 13:45:44"
+                subheader={subtext}
             />
             <CardActionArea classes={{ root: classes.area }}>
                 <CardContent classes={{ root: classes.content }}>
@@ -56,7 +59,7 @@ const TextWidget: React.FC<TextWidgetProps> = (props) => {
                         color="textSecondary"
                         component="p"
                     >
-                        {props.data.text}
+                        {text}
                     </Typography>
                 </CardContent>
             </CardActionArea>

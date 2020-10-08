@@ -1,15 +1,14 @@
 import React from 'react';
 
 import { ImageWidget, TextWidget, AreaChartWidget } from '@/components/widgets';
-import {
-    LAYOUT_TYPE_CHART_AREA,
-    LAYOUT_TYPE_IMAGE,
-    LAYOUT_TYPE_TEXT,
-} from '@/constants';
 
 interface GridRenderItemProps {
     item: any;
 }
+
+const LAYOUT_TYPE_CHART_AREA = 'CA';
+const LAYOUT_TYPE_IMAGE = 'I';
+const LAYOUT_TYPE_TEXT = 'T';
 
 const GridRenderItem: React.FC<GridRenderItemProps> = ({ item }) => {
     const renderElement = () => {

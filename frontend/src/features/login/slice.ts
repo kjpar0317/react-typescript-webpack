@@ -4,6 +4,7 @@ import { ILoginInfo } from "login-interface";
 const initState : ILoginInfo = {
     isLoading: false,
     token: '',
+    tokenType: '',
     username: '',
     password: '',
     error: null,

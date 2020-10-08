@@ -2,8 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import moment from 'moment';
 import 'moment/locale/ko';
 
-import { MAX_TOAST_POP } from '@/constants';
+// import { MAX_TOAST_POP } from '@/constants';
 import { ICommon, INotice, IWindowSize, MESSAGE_TYPE } from 'common-interface';
+
+const MAX_TOAST_POP = 10;
 
 const initState: ICommon = {
     customSidebar: false,
