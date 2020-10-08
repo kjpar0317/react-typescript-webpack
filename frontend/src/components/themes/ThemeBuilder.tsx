@@ -3,7 +3,9 @@ import React from 'react';
 import { LeftThemeBuilder } from './LeftThemeBuilder';
 import { RightThemeBuilder } from './RightThemeBuilder';
 
-const ThemeBuilder: React.FC = () => {
+interface ThemeBuilderProps {}
+
+const ThemeBuilder: React.FC<ThemeBuilderProps> = () => {
     return (
         <>
             <div style={{ width: '20%', float: 'left' }}>
