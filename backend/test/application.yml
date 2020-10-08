@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: dev
+
+  output:
+    ansi:
+      enabled: DETECT
+  
+  batch:
+    job:
+      enabled: false
+        
+  main:
+    allow-bean-definition-overriding: true
