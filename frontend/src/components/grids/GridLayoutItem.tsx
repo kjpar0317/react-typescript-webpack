@@ -16,7 +16,7 @@ const GridLayoutItem: React.FC<GridLayoutItemProps> = ({ item }) => {
             onDragStart={(e: any) => {
                 e.dataTransfer.dropEffect = 'copy';
                 // text/html
-                e.dataTransfer.setData('text/plain', item.wid);
+                e.dataTransfer.setData('text/plain', item.wgId);
             }}
         >
             <GridRenderItem item={item} />
