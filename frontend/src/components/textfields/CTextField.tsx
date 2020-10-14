@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { RouteProps } from 'react-router-dom';
 
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -38,6 +38,7 @@ export interface CTextFieldProps extends RouteProps {
     variant?: TextFieldProps['variant'];
     margin?: TextFieldProps['margin'];
     style?: React.CSSProperties;
+    rows?: number | string;
     required?: boolean;
     onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     onKeyPress?: (data: any) => void;
@@ -54,21 +55,31 @@ const CTextField: React.FC<CTextFieldProps> = (props) => {
         margin = 'dense',
         style,
         required,
+        rows = 0,
         onChange,
         onKeyPress,
         ...other
     } = props;
     const classes = useStyle();
+    const [multiline, setMultiline] = useState<boolean>(false);
+    const [errorFlag, setErrorFlag] = useState<boolean>(false);
 
-    let errorFlag = false;
-
-    if (required) {
-        if (!value) {
-            errorFlag = true;
-        } else {
-            errorFlag = false;
+    useEffect(() => {
+        if (required) {
+            if (!value) {
+                setErrorFlag(true);
+            } else {
+                setErrorFlag(false);
+            }
         }
-    }
+
+        if(Number(rows) > 1) {
+            setMultiline(true);
+        } else {
+            setMultiline(false);
+        }
+    }, [required, value, rows]);
+
 
     return (
         <TextField
@@ -81,6 +92,8 @@ const CTextField: React.FC<CTextFieldProps> = (props) => {
             margin={margin}
             className={classes.textStyle}
             style={style}
+            multiline={multiline}
+            rows={rows}
             onChange={onChange}
             onKeyPress={onKeyPress}
         />
