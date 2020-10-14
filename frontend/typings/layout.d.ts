@@ -25,9 +25,11 @@ declare module 'layout-interface' {
         description?: string; // 설명
         xSize?: number; // X 사이즈
         ySize?: number; // Y 사이즈
-        // method: string; // 호출 방식
+        method: string; // 호출 방식 post? get?
+        params?: string; // 호출 파라메터
         pageUrl?: string; // Page URL
         jsonUrl?: string; // JSON URL
+        respObjNm?: string; // response object name
         // templateUrl: string; // Template URL
         useYn: boolean; // 사용여부
         // nessYn: boolean; // 필수여부
@@ -44,6 +46,12 @@ declare module 'layout-interface' {
         // certiYn: boolean; // 인증 여부
         // certiUrl: string; // 인증 URL
         personalYn?: boolean; // 개인사용 여부
+        option1: string; // 옵션1
+        option2: string; // 옵션2
+        option3: string; // 옵션3
+        option4: string; // 옵션4
+        option5: string; // 옵션5
+        wgDefault: string; // Default 값
         error?: any;
     }
 
