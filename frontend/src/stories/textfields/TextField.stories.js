@@ -8,6 +8,7 @@ import {
     withKnobs,
     select,
     optionsKnob as options,
+    object,
     text,
 } from '@storybook/addon-knobs';
 
@@ -46,6 +47,7 @@ storiesOf('TextField 컴포넌트', module)
                             number: 'number',
                             password: 'password',
                             date: 'date',
+                            time: 'time',
                             hidden: 'hidden',
                         },
                         undefined,
@@ -72,11 +74,15 @@ storiesOf('TextField 컴포넌트', module)
                         },
                         undefined,
                     )}
+                    rows={
+                        text('최대 라인 수', '')
+                    }
                     required={select(
                         '필수값',
                         { true: true, false: false },
                         false,
                     )}
+                    style={object('css', {})}
                     {...actions}
                 ></CTextField>
             );
