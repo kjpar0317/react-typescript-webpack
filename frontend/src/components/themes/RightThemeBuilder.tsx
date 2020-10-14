@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-    merge,
-    cloneDeep,
-    clone,
-    filter,
-    isEmpty,
-    includes,
-    sortBy,
-} from 'lodash';
+import { useIntl } from 'react-intl';
+import { merge, cloneDeep, filter, includes, pick } from 'lodash';
 
 import { dashboardAction, dashboardSelector } from '@/features/dashboard/slice';
 import { ReactGridLayouts } from '@/components/grids';
 import { getLayouts } from '@/api';
+import { CDialog } from '@/components/dialogs';
+import { WidgetUserSettings } from './layout/WidgetUserSettings';
 
 export interface TargetBoxProps {}
 
 const RightThemeBuilder: React.FC<TargetBoxProps> = () => {
     const dispatch = useDispatch();
-    const { activeIndex, publicLayout, privateLayouts } = useSelector(
-        dashboardSelector.all,
-    );
+    const { formatMessage } = useIntl();
+    const {
+        activeIndex,
+        publicLayout,
+        privateLayouts,
+        tempLayout,
+    } = useSelector(dashboardSelector.all);
     const [items, setItems] = useState<any>([]);
-    const [tlayout, setTLayout] = useState<any>([]);
     const [mounted, setMounted] = useState(false);
+    const [openSetting, setOpenSetting] = useState(false);
+    const [selLayout, setSelLayout] = useState<any>({});
 
     useEffect(() => {
         let layouts: Array<any> = [];
@@ -39,14 +39,15 @@ const RightThemeBuilder: React.FC<TargetBoxProps> = () => {
 
     useEffect(() => {
         if (privateLayouts.length > 0) {
-            setItems(privateLayouts[activeIndex]);
+            if (tempLayout.length === 0) {
+                setItems(privateLayouts[activeIndex]);
+            }
         }
     }, [privateLayouts]);
 
     useEffect(() => {
         if (mounted) {
             let cloneItems: Array<any> = cloneDeep(items);
-            // let cloneItems: Array<any> = items;
 
             cloneItems.map((layout: any) => {
                 if (includes(layout.i, ',')) {
@@ -55,46 +56,85 @@ const RightThemeBuilder: React.FC<TargetBoxProps> = () => {
                 }
             });
 
+            console.log(cloneItems);
+
             dispatch(dashboardAction.setTempLayout(cloneItems));
+
             setMounted(false);
         }
     }, [mounted]);
 
     const handleLayoutChange = (layouts: Array<any>) => {
-        let cloneItems: Array<any> = cloneDeep(layouts);
-
         if (layouts.length > 0) {
             var bDropped = false;
-            cloneItems.map((layout: any) => {
+            layouts.map((layout: any) => {
                 if (includes(layout.i, ',')) {
                     const tarr = layout.i.split(',');
                     merge(layout, getLayouts(Number(tarr[1])));
 
-                    setTLayout(layout);
+                    // setTLayout(layout);
                 } else if (layout.i === '__dropping-elem__') {
                     // 드롭 중인 것??
                     bDropped = true;
                 } else {
                     // 일반, 삭제
-                    merge(layout, filter(items, (f) => f.i === layout.i)[0]);
+                    const previnfo = filter(items, (f) => f.i === layout.i);
+
+                    if (previnfo.length > 0) {
+                        merge(
+                            layout,
+                            pick(previnfo[0], [
+                                'wgId',
+                                'wgGb',
+                                'wgType',
+                                'wgTitle',
+                                'method',
+                                'pageUrl',
+                                'jsonUrl',
+                                'params',
+                                'respObjNm',
+                                'option1',
+                                'option2',
+                                'option3',
+                                'option4',
+                                'option5',
+                                'wgDefault'
+                            ]),
+                        );
+                    }
                 }
             });
 
-            if (!isEmpty(tlayout)) {
-                cloneItems.concat(tlayout);
-                setTLayout({});
-            }
-
             if (!bDropped) {
-                setItems(cloneItems);
+                setItems(layouts);
                 setMounted(true);
             }
-        } else {
-            dispatch(dashboardAction.setTempLayout([]));
+        }
+    };
+
+    const handleLayoutSetting = (id: string) => {
+        const filtered = items.filter((f: any) => f.i === id);
+
+        if (filtered.length > 0) {
+            // console.log(filtered[0]);
+            setSelLayout(filtered[0]);
+            setOpenSetting(true);
         }
     };
 
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {};
+
+    const handleUpdateSetting = () => {
+        alert('ddddd');
+    };
+
+    const handleCloseSetting = () => {
+        setOpenSetting(false);
+    };
+
+    const handleUpdateUserSettings = (data: any) => {
+        console.log(data);
+    };
 
     return (
         // <div ref={drop} style={{ opacity }}>
@@ -104,9 +144,19 @@ const RightThemeBuilder: React.FC<TargetBoxProps> = () => {
                 isDroppable={true}
                 isEdit={true}
                 width={950}
-                nEndLayoutId={privateLayouts[activeIndex].length}
                 onLayoutChange={handleLayoutChange}
+                onLayoutSetting={handleLayoutSetting}
             />
+            <CDialog
+                id="settingsDlg"
+                title={ formatMessage({id: 'w.t.multi'}, {arg0: formatMessage({id: 'w.user'}), arg1: formatMessage({id: 'w.setting'})})}
+                modules={['update', 'close']}
+                open={openSetting}
+                onUpdate={handleUpdateSetting}
+                onClose={handleCloseSetting}
+            >
+                {selLayout && <WidgetUserSettings {...selLayout} onChange={handleUpdateUserSettings} />}
+            </CDialog>
         </div>
     );
 };
