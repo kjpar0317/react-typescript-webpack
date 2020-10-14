@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { pick, cloneDeep } from 'lodash';
+import { cloneDeep, maxBy, split } from 'lodash';
 
 import { Responsive, WidthProvider } from 'react-grid-layout';
 
@@ -17,8 +17,8 @@ interface GridLayoutProps {
     mounted?: boolean;
     isDroppable?: boolean;
     isEdit?: boolean;
-    nEndLayoutId?: number;
     onLayoutChange?(layouts: Array<any>): void;
+    onLayoutSetting?(i: string): void;
 }
 
 const ReactGridLayouts = React.memo<GridLayoutProps>((props) => {
@@ -28,31 +28,23 @@ const ReactGridLayouts = React.memo<GridLayoutProps>((props) => {
         mounted,
         isDroppable,
         isEdit,
-        nEndLayoutId = 0,
     } = props;
     const [layouts, setLayouts] = useState<Array<any>>([]);
-    const [maxCount, setMaxCount] = useState<number>(nEndLayoutId + 1);
+    const [maxCount, setMaxCount] = useState<number>(0);
 
     useEffect(() => {
         if (items.length > 0) {
-            let cloneItems = cloneDeep(items);
+            setLayouts(items);
+            const tempObj = maxBy(items, (o : any) => {
+                const splited = split(o.i, ',');
 
-            let tlayouts = cloneItems.map((item) => {
-                return pick(item, [
-                    'i',
-                    'x',
-                    'y',
-                    'w',
-                    'h',
-                    'minW',
-                    'minH',
-                    'maxW',
-                    'maxH',
-                    'static',
-                ]);
-            });
-
-            setLayouts(tlayouts);
+                if(splited.length > 1) {
+                    return splited[0];
+                } else {
+                    return o.i;
+                }
+            })
+            setMaxCount(Number(tempObj.i) + 1);
         }
     }, [items]);
 
@@ -67,7 +59,7 @@ const ReactGridLayouts = React.memo<GridLayoutProps>((props) => {
     const onLayoutChange = (val: any) => {
         // setLayouts(val);
 
-        console.log(val);
+        // console.log(val);
 
         props.onLayoutChange && props.onLayoutChange(val);
     };
@@ -91,10 +83,14 @@ const ReactGridLayouts = React.memo<GridLayoutProps>((props) => {
             }
         });
 
-        console.log(cloneItems);
+        // console.log(cloneItems);
 
         setLayouts(cloneItems);
         setMaxCount(maxCount + 1);
+    };
+
+    const onSettings = (id: string) => {
+        props.onLayoutSetting && props.onLayoutSetting(id);
     };
 
     const onDelete = (id: string) => {
@@ -115,8 +111,8 @@ const ReactGridLayouts = React.memo<GridLayoutProps>((props) => {
                 breakpoints={{ lg: 1280, md: 800, sm: 600, xs: 0, xxs: 0 }}
                 cols={{ lg: 12, md: 12, sm: 12, xs: 12, xxs: 12 }}
                 marin={[10, 10]}
-                measureBeforeMount={true}
-                mounted={mounted}
+                measureBeforeMount={false}
+                // useCSSTransforms={mounted}
                 isBounded={true}
                 isDroppable={isDroppable}
             >
@@ -140,14 +136,30 @@ const ReactGridLayouts = React.memo<GridLayoutProps>((props) => {
                                             position: 'inherit',
                                         }}
                                     >
-                                        <CIconButton
-                                            type="btn4"
-                                            icon="Clear"
-                                            tooltip="Delete"
-                                            size="small"
-                                            style={{ float: 'right' }}
-                                            onClick={() => onDelete(layout.i)}
-                                        />
+                                        {!layout.static && (
+                                            <CIconButton
+                                                type="btn4"
+                                                icon="Clear"
+                                                tooltip="Delete"
+                                                size="small"
+                                                style={{ float: 'right' }}
+                                                onClick={() =>
+                                                    onDelete(layout.i)
+                                                }
+                                            />
+                                        )}
+                                        {!layout.static && (
+                                            <CIconButton
+                                                type="btn1"
+                                                icon="Settings"
+                                                tooltip="Settings"
+                                                size="small"
+                                                style={{ float: 'right' }}
+                                                onClick={() =>
+                                                    onSettings(layout.i)
+                                                }
+                                            />
+                                        )}
                                     </div>
                                 )}
                                 <GridRenderItem item={filter[0]} />
