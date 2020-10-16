@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
-import { merge, cloneDeep, filter, includes, pick } from 'lodash';
+import { merge, cloneDeep, filter, includes, pick, findIndex } from 'lodash';
 
 import { dashboardAction, dashboardSelector } from '@/features/dashboard/slice';
 import { ReactGridLayouts } from '@/components/grids';
@@ -44,6 +44,12 @@ const RightThemeBuilder: React.FC<TargetBoxProps> = () => {
             }
         }
     }, [privateLayouts]);
+
+    useEffect(() => {
+        if (tempLayout.length > 0) {
+            setItems(tempLayout);
+        }
+    }, [tempLayout]);
 
     useEffect(() => {
         if (mounted) {
@@ -125,7 +131,14 @@ const RightThemeBuilder: React.FC<TargetBoxProps> = () => {
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {};
 
     const handleUpdateSetting = () => {
-        alert('ddddd');
+        let cloneitems = cloneDeep(privateLayouts[activeIndex]);
+
+        const fidx = findIndex(cloneitems, (f: any) => { return f.i === selLayout.i });
+
+        cloneitems[fidx] = selLayout;
+
+        // dashboardAction.setPrivateLayouts(clonePrivates);
+        dispatch(dashboardAction.setTempLayout(cloneitems));
     };
 
     const handleCloseSetting = () => {
@@ -133,7 +146,7 @@ const RightThemeBuilder: React.FC<TargetBoxProps> = () => {
     };
 
     const handleUpdateUserSettings = (data: any) => {
-        console.log(data);
+        setSelLayout(data);
     };
 
     return (
@@ -155,7 +168,7 @@ const RightThemeBuilder: React.FC<TargetBoxProps> = () => {
                 onUpdate={handleUpdateSetting}
                 onClose={handleCloseSetting}
             >
-                {selLayout && <WidgetUserSettings {...selLayout} onChange={handleUpdateUserSettings} />}
+                <WidgetUserSettings {...selLayout} onChange={handleUpdateUserSettings} />
             </CDialog>
         </div>
     );
