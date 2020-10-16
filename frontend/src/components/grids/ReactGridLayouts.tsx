@@ -112,6 +112,7 @@ const ReactGridLayouts = React.memo<GridLayoutProps>((props) => {
                 cols={{ lg: 12, md: 12, sm: 12, xs: 12, xxs: 12 }}
                 marin={[10, 10]}
                 measureBeforeMount={false}
+                mounted={mounted}
                 // useCSSTransforms={mounted}
                 isBounded={true}
                 isDroppable={isDroppable}
