@@ -48,7 +48,7 @@ const WidgetUserSettings: React.FC = (props: any) => {
     const classes = useStyles();
     const { formatMessage } = useIntl();
     const { wgGb, wgTitle, method, pageUrl, jsonUrl, params, respObjNm, option1, option2, option3, option4, option5 } = props;
-    const [ textProps, setTextProps ] = useState<any>({});
+    const [ textProps, setTextProps ] = useState<any>(props);
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const cloneitem = cloneDeep(textProps);
@@ -69,15 +69,7 @@ const WidgetUserSettings: React.FC = (props: any) => {
                             { formatMessage({id: 'w.title'}) }
                         </th>
                         <td>
-                            <CTextField id='wgTitle' type='text' defaultValue={wgTitle} value={textProps.title} onChange={handleChange} required />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            { formatMessage({id: 'w.subtitle'}) }
-                        </th>
-                        <td>
-                            <CTextField id='option2' type='text' onChange={handleChange} value={textProps.subtitle} />
+                            <CTextField id='wgTitle' type='text' defaultValue={wgTitle} value={textProps.wgTitle} onChange={handleChange} required />
                         </td>
                     </tr>
                     <tr>
@@ -85,7 +77,15 @@ const WidgetUserSettings: React.FC = (props: any) => {
                             { formatMessage({id: 'w.content'}) }
                         </th>
                         <td>
-                            <CTextField id='option1' type='text' onChange={handleChange} value={textProps.content} required />
+                            <CTextField id='option1' type='text' onChange={handleChange} value={textProps.option1} required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            { formatMessage({id: 'w.subtitle'}) }
+                        </th>
+                        <td>
+                            <CTextField id='option2' type='text' onChange={handleChange} value={textProps.option2} />
                         </td>
                     </tr>
                 </tbody>
@@ -102,7 +102,7 @@ const WidgetUserSettings: React.FC = (props: any) => {
                             { formatMessage({id: 'w.title'}) }
                         </th>
                         <td>
-                            <CTextField id='wgTitle' type='text' defaultValue={wgTitle} value={textProps.title} onChange={handleChange} required />
+                            <CTextField id='wgTitle' type='text' defaultValue={wgTitle} value={textProps.wgTitle} onChange={handleChange} required />
                         </td>
                     </tr>
                     <tr>
@@ -110,7 +110,7 @@ const WidgetUserSettings: React.FC = (props: any) => {
                             { formatMessage({id: 'w.xpvt'}) }
                         </th>
                         <td>
-                            <CTextField id='option1' type='text' defaultValue={option1} onChange={handleChange} value={textProps.xPvt}  />
+                            <CTextField id='option1' type='text' defaultValue={option1} onChange={handleChange} value={textProps.option1}  />
                         </td>
                     </tr>
                     <tr>
@@ -118,7 +118,7 @@ const WidgetUserSettings: React.FC = (props: any) => {
                             { formatMessage({id: 'w.ypvts'}) }
                         </th>
                         <td>
-                            <CTextField id='option2' type='text' defaultValue={option2} value={textProps.yPvts} onChange={handleChange} required />
+                            <CTextField id='option2' type='text' defaultValue={option2} value={textProps.option2} onChange={handleChange} required />
                         </td>
                     </tr>
                     <tr>
@@ -126,7 +126,7 @@ const WidgetUserSettings: React.FC = (props: any) => {
                             { formatMessage({id: 'w.xrange'}) }
                         </th>
                         <td>
-                            <CTextField id='option3' type='text' defaultValue={option3} value={textProps.xRange} onChange={handleChange} />
+                            <CTextField id='option3' type='text' defaultValue={option3} value={textProps.option3} onChange={handleChange} />
                         </td>
                     </tr>
                     <tr>
@@ -163,10 +163,18 @@ const WidgetUserSettings: React.FC = (props: any) => {
                     </tr>
                     <tr>
                         <th>
-                            { formatMessage({id: 'w.selColor'}) }
+                            { formatMessage({id: 'w.backgroundColor'}) }
                         </th>
                         <td>
-                            <CTextField id='option4' type='text' defaultValue={option4} value={textProps.selColor} onChange={handleChange} />
+                            <CTextField id='option4' type='text' defaultValue={option4} value={textProps.option4} onChange={handleChange} />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            { formatMessage({id: 'w.borderColor'}) }
+                        </th>
+                        <td>
+                            <CTextField id='option5' type='text' defaultValue={option5} value={textProps.option5} onChange={handleChange} />
                         </td>
                     </tr>
                 </tbody>
@@ -183,7 +191,7 @@ const WidgetUserSettings: React.FC = (props: any) => {
                             { formatMessage({id: 'w.title'}) }
                         </th>
                         <td>
-                            <CTextField id='wgTitle' type='text' defaultValue={wgTitle} value={textProps.title} onChange={handleChange} required />
+                            <CTextField id='wgTitle' type='text' defaultValue={wgTitle} value={textProps.wgTitle} onChange={handleChange} required />
                         </td>
                     </tr>
                     <tr>
@@ -191,7 +199,7 @@ const WidgetUserSettings: React.FC = (props: any) => {
                             { formatMessage({id: 'w.imageUrl'}) }
                         </th>
                         <td>
-                            <CTextField id='pageUrl' type='text' defaultValue={pageUrl} value={textProps.subtitle} onChange={handleChange} />
+                            <CTextField id='pageUrl' type='text' defaultValue={pageUrl} value={textProps.pageUrl} onChange={handleChange} />
                         </td>
                     </tr>
                     <tr>
