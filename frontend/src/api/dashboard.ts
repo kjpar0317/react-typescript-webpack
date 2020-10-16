@@ -13,10 +13,11 @@ export const getPublicLayout: any = (username: string) => {
             minH: 2,
             maxH: 6,
             static: true,
-            wgGb: 'T',
+            wgGb: 'CPA',
             wgType: 'N',
-            wgTitle: '고정 위젯 테스트',
-            option1: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.',
+            wgTitle: '차트 테스트',
+            method: 'GET',
+            jsonUrl: 'dummy'
         },
         {
             i: '2',
@@ -29,12 +30,12 @@ export const getPublicLayout: any = (username: string) => {
             maxH: 6,
             wgGb: 'CA',
             wgType: 'N',
-            wgTitle: '차트 테스트',
+            wgTitle: '데이터 센터 차트',
             method: 'GET',
             option1: 'date',
-            option2: ['powerOn', 'powerOff'],
-            option3: [],
-            option4: ['#323232', '#464646'],
+            option2: 'powerOn, powerOff',
+            option3: '',
+            option4: '#323232, #464646',
             jsonUrl: '/api/clouds/vmware/datacenter/metric?cloudId=ce5a00e2-f4a3-4c3e-bed7-f8f8e56341f4&id=Datacenter&metricNames=Number1,Number2&hour=1',
             respObjNm: 'data'
         },
@@ -52,10 +53,10 @@ export const getPublicLayout: any = (username: string) => {
             wgTitle: '클러스터 차트',
             method: 'GET',
             option1: 'date',
-            option2: ['cpuUsage', 'cpuMhz', 'cpuTotal'],
-            option3: [],
-            option4: ['#323232', '#464646'],
-            jsonUrl: '/api/clouds/vmware/cluster/metric?cloudId=a68bc3ea-195b-4faa-b6c8-a9d251d21e17&id=ING-DC:ING-MGMT:ing-esxi01.ing.lab&metricNames=CPU1,CPU2,CPU4&hour=1',
+            option2: 'cpuUsage, cpuMhz, memoryUsage',
+            option3: '',
+            option4: '#323232, #464646',
+            jsonUrl: '/api/clouds/vmware/cluster/metric?cloudId=a68bc3ea-195b-4faa-b6c8-a9d251d21e17&id=ING-DC:ING-MGMT:ing-esxi01.ing.lab&metricNames=CPU1,CPU2,Memory1&hour=1',
             respObjNm: 'data'
         },
         {
@@ -72,10 +73,10 @@ export const getPublicLayout: any = (username: string) => {
             wgTitle: '가상머신 차트',
             method: 'GET',
             option1: 'date',
-            option2: ['cpuUsage', 'cpuMhz'],
-            option3: [],
-            option4: ['#323232', '#464646'],
-            jsonUrl: '/api/clouds/vmware/vm/metric?cloudId=a68bc3ea-195b-4faa-b6c8-a9d251d21e17&id=cda45465-dcf7-4566-8bcc-f955b890c965:52f2de7a-dda8-3f4e-70ec-f9b7d40e0b92&metricNames=CPU1,CPU2&hour=1',
+            option2: 'cpuUsage, cpuMhz, cpuReady',
+            option3: '',
+            option4: '#323232, #464646',
+            jsonUrl: '/api/clouds/vmware/vm/metric?cloudId=a68bc3ea-195b-4faa-b6c8-a9d251d21e17&id=cda45465-dcf7-4566-8bcc-f955b890c965:52f2de7a-dda8-3f4e-70ec-f9b7d40e0b92&metricNames=CPU1,CPU2,CPU3&hour=1',
             respObjNm: 'data'
         },
         {
@@ -87,12 +88,11 @@ export const getPublicLayout: any = (username: string) => {
             minW: 3,
             minH: 2,
             maxH: 6,
-            wgGb: 'I',
+            wgGb: 'CT',
             wgType: 'N',
-            wgTitle: '테스트5',
-            pathUrl: 'https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fs3-eu-west-1.amazonaws.com%2Ffta-ez-prod%2Fez%2Fimages%2F1%2F9%2F7%2F1%2F1481791-4-eng-GB%2Farchitecture-camera-city-827209+%281%29.jpg%3Fv1?width=700&source=ftadviser',
-            option1: '멋진 도시 풍경',
-            option2: 'For advisers, the turbulent economic waters of recent years have been difficult to navigate – Brexit uncertainty, trade wars and monetary policy all continue to add pressure.'
+            wgTitle: '토폴로지 테스트',
+            method: 'GET',
+            jsonUrl: 'dummy'
         },
         {
             i: '6',
@@ -103,13 +103,11 @@ export const getPublicLayout: any = (username: string) => {
             minW: 3,
             minH: 2,
             maxH: 6,
-            wgGb: 'I',
+            wgGb: 'CS',
             wgType: 'N',
-            wgTitle: '테스트6',
-            pathUrl: 'https://image.shutterstock.com/image-photo/mountains-during-sunset-beautiful-natural-600w-407021107.jpg',
-            option1: '해가 지는 동안 산들.여름의 아름다운 자연 풍경',
-            option2: '좋네'
-
+            wgTitle: 'Scatter 테스트',
+            method: 'GET',
+            jsonUrl: 'dummy'
         },
         {
             i: '7',
@@ -120,10 +118,11 @@ export const getPublicLayout: any = (username: string) => {
             minW: 3,
             minH: 2,
             maxH: 6,
-            wgGb: 'T',
+            wgGb: 'CR',
             wgType: 'N',
-            wgTitle: '테스트7',
-            option1: 'Wow. Failed!!',
+            wgTitle: 'Raidal 테스트',
+            method: 'GET',
+            jsonUrl: 'dummy'
         },
     ];
 };
@@ -141,10 +140,11 @@ export const getPrivateLayouts: any = (username: string) => {
                 minH: 2,
                 maxH: 6,
                 static: true,
-                wgGb: 'T',
+                wgGb: 'CPA',
                 wgType: 'N',
-                wgTitle: '고정 위젯 테스트',
-                option1: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.',
+                wgTitle: '차트 테스트',
+                method: 'GET',
+                jsonUrl: 'dummy'
             },
             {
                 i: '2',
@@ -160,9 +160,9 @@ export const getPrivateLayouts: any = (username: string) => {
                 wgTitle: '데이터 센터 차트',
                 method: 'GET',
                 option1: 'date',
-                option2: ['powerOn', 'powerOff'],
-                option3: [],
-                option4: ['#323232', '#464646'],
+                option2: 'powerOn, powerOff',
+                option3: '',
+                option4: '#323232, #464646',
                 jsonUrl: '/api/clouds/vmware/datacenter/metric?cloudId=ce5a00e2-f4a3-4c3e-bed7-f8f8e56341f4&id=Datacenter&metricNames=Number1,Number2&hour=1',
                 respObjNm: 'data'
             },
@@ -180,9 +180,9 @@ export const getPrivateLayouts: any = (username: string) => {
                 wgTitle: '클러스터 차트',
                 method: 'GET',
                 option1: 'date',
-                option2: ['cpuUsage', 'cpuMhz', 'memoryUsage'],
-                option3: [],
-                option4: ['#323232', '#464646'],
+                option2: 'cpuUsage, cpuMhz, memoryUsage',
+                option3: '',
+                option4: '#323232, #464646',
                 jsonUrl: '/api/clouds/vmware/cluster/metric?cloudId=a68bc3ea-195b-4faa-b6c8-a9d251d21e17&id=ING-DC:ING-MGMT:ing-esxi01.ing.lab&metricNames=CPU1,CPU2,Memory1&hour=1',
                 respObjNm: 'data'
             },
@@ -200,9 +200,9 @@ export const getPrivateLayouts: any = (username: string) => {
                 wgTitle: '가상머신 차트',
                 method: 'GET',
                 option1: 'date',
-                option2: ['cpuUsage', 'cpuMhz', 'cpuReady'],
-                option3: [],
-                option4: ['#323232', '#464646'],
+                option2: 'cpuUsage, cpuMhz, cpuReady',
+                option3: '',
+                option4: '#323232, #464646',
                 jsonUrl: '/api/clouds/vmware/vm/metric?cloudId=a68bc3ea-195b-4faa-b6c8-a9d251d21e17&id=cda45465-dcf7-4566-8bcc-f955b890c965:52f2de7a-dda8-3f4e-70ec-f9b7d40e0b92&metricNames=CPU1,CPU2,CPU3&hour=1',
                 respObjNm: 'data'
             },
@@ -215,12 +215,11 @@ export const getPrivateLayouts: any = (username: string) => {
                 minW: 3,
                 minH: 2,
                 maxH: 6,
-                wgGb: 'I',
+                wgGb: 'CT',
                 wgType: 'N',
-                wgTitle: '테스트5',
-                pageUrl: 'https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fs3-eu-west-1.amazonaws.com%2Ffta-ez-prod%2Fez%2Fimages%2F1%2F9%2F7%2F1%2F1481791-4-eng-GB%2Farchitecture-camera-city-827209+%281%29.jpg%3Fv1?width=700&source=ftadviser',
-                option1: '멋진 도시 풍경',
-                option2: 'For advisers, the turbulent economic waters of recent years have been difficult to navigate – Brexit uncertainty, trade wars and monetary policy all continue to add pressure.'
+                wgTitle: '토폴로지 테스트',
+                method: 'GET',
+                jsonUrl: 'dummy'
             },
             {
                 i: '6',
@@ -231,13 +230,11 @@ export const getPrivateLayouts: any = (username: string) => {
                 minW: 3,
                 minH: 2,
                 maxH: 6,
-                wgGb: 'I',
+                wgGb: 'CS',
                 wgType: 'N',
-                wgTitle: '테스트6',
-                pageUrl: 'https://image.shutterstock.com/image-photo/mountains-during-sunset-beautiful-natural-600w-407021107.jpg',
-                option1: '해가 지는 동안 산들.여름의 아름다운 자연 풍경',
-                option2: '좋네'
-
+                wgTitle: 'Scatter 테스트',
+                method: 'GET',
+                jsonUrl: 'dummy'
             },
             {
                 i: '7',
@@ -248,11 +245,11 @@ export const getPrivateLayouts: any = (username: string) => {
                 minW: 3,
                 minH: 2,
                 maxH: 6,
-                wgGb: 'T',
+                wgGb: 'CR',
                 wgType: 'N',
-                wgTitle: '테스트7',
-                option1: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.',
-                option2: '마지막 업데이트: 2020-01-01 13:45:44',
+                wgTitle: 'Raidal 테스트',
+                method: 'GET',
+                jsonUrl: 'dummy'
             },
         ],
     ];
@@ -273,7 +270,7 @@ export const getLayouts: any = (wgId?: string, wgType?: string) => {
             wgType: 'N',
             wgTitle: '차트 테스트',
             option1: 'name',
-            option2: ['pv', 'amt'],
+            option2: 'pv, amt',
             wgDefault: [
                     {
                         name: 'Page A',
