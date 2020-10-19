@@ -62,7 +62,7 @@ const RightThemeBuilder: React.FC<TargetBoxProps> = () => {
                 }
             });
 
-            console.log(cloneItems);
+            // console.log(cloneItems);
 
             dispatch(dashboardAction.setTempLayout(cloneItems));
 
@@ -76,9 +76,13 @@ const RightThemeBuilder: React.FC<TargetBoxProps> = () => {
             layouts.map((layout: any) => {
                 if (includes(layout.i, ',')) {
                     const tarr = layout.i.split(',');
+
                     merge(layout, getLayouts(Number(tarr[1])));
 
-                    // setTLayout(layout);
+                    // Radial item의 경우 object 중 하나의 property가 key임.... 안됨
+                    if(layout.wgId === 6) {
+                        layout.wgDefault = [];
+                    }
                 } else if (layout.i === '__dropping-elem__') {
                     // 드롭 중인 것??
                     bDropped = true;
