@@ -35,16 +35,21 @@ const ReactGridLayouts = React.memo<GridLayoutProps>((props) => {
     useEffect(() => {
         if (items.length > 0) {
             setLayouts(items);
-            const tempObj = maxBy(items, (o : any) => {
-                const splited = split(o.i, ',');
+            // const tempObj = maxBy(items, (o : any) => {
+            //     const splited = split(o.i, ',');
 
-                if(splited.length > 1) {
-                    return splited[0];
-                } else {
-                    return o.i;
-                }
-            })
-            setMaxCount(Number(tempObj.i) + 1);
+            //     if(splited.length > 1) {
+            //         return splited[0];
+            //     } else {
+            //         return o.i;
+            //     }
+            // })
+
+            // setMaxCount(Number(tempObj.i) + 1);
+
+            let maxCnt = Number(items[items.length - 1].i) + 1;
+            // console.log(maxCnt);
+            setMaxCount(maxCnt);
         }
     }, [items]);
 
@@ -112,9 +117,8 @@ const ReactGridLayouts = React.memo<GridLayoutProps>((props) => {
                 cols={{ lg: 12, md: 12, sm: 12, xs: 12, xxs: 12 }}
                 marin={[10, 10]}
                 measureBeforeMount={false}
-                mounted={mounted}
-                // useCSSTransforms={mounted}
-                isBounded={true}
+                useCSSTransforms={mounted}
+                isBounded={false}
                 isDroppable={isDroppable}
             >
                 {layouts &&
