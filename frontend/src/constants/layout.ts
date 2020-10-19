@@ -1,0 +1,12 @@
+export const LAYOUT_TYPE_BOARD = 'B';
+export const LAYOUT_TYPE_JSON = 'J';
+export const LAYOUT_TYPE_CHART_AREA = 'CA';
+export const LAYOUT_TYPE_CHART_PIE = 'CP';
+export const LAYOUT_TYPE_CHART_PIE_ACTIVESHAPE = 'CPA';
+export const LAYOUT_TYPE_CHART_RADIAL = 'CR';
+export const LAYOUT_TYPE_CHART_SCATTER = 'CS';
+export const LAYOUT_TYPE_CHART_TOPOLOGY = 'CT';
+export const LAYOUT_TYPE_IMAGE = 'I';
+export const LAYOUT_TYPE_HTML = 'H';
+export const LAYOUT_TYPE_TEXT = 'T';
+export const LAYOUT_TYPE_O_TIMELINE = 'OT';
