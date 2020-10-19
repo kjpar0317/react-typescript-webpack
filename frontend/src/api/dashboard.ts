@@ -140,9 +140,9 @@ export const getPrivateLayouts: any = (username: string) => {
                 minH: 2,
                 maxH: 6,
                 static: true,
-                wgGb: 'CPA',
+                wgGb: 'B',
                 wgType: 'N',
-                wgTitle: '차트 테스트',
+                wgTitle: '보드 테스트',
                 method: 'GET',
                 jsonUrl: 'dummy'
             },
@@ -155,16 +155,11 @@ export const getPrivateLayouts: any = (username: string) => {
                 minW: 3,
                 minH: 2,
                 maxH: 6,
-                wgGb: 'CA',
+                wgGb: 'CPA',
                 wgType: 'N',
-                wgTitle: '데이터 센터 차트',
+                wgTitle: '차트 테스트',
                 method: 'GET',
-                option1: 'date',
-                option2: 'powerOn, powerOff',
-                option3: '',
-                option4: '#323232, #464646',
-                jsonUrl: '/api/clouds/vmware/datacenter/metric?cloudId=ce5a00e2-f4a3-4c3e-bed7-f8f8e56341f4&id=Datacenter&metricNames=Number1,Number2&hour=1',
-                respObjNm: 'data'
+                jsonUrl: 'dummy'
             },
             {
                 i: '3',
@@ -175,16 +170,11 @@ export const getPrivateLayouts: any = (username: string) => {
                 minW: 3,
                 minH: 2,
                 maxH: 6,
-                wgGb: 'CA',
+                wgGb: 'OT',
                 wgType: 'N',
-                wgTitle: '클러스터 차트',
+                wgTitle: '타임라인 테스트',
                 method: 'GET',
-                option1: 'date',
-                option2: 'cpuUsage, cpuMhz, memoryUsage',
-                option3: '',
-                option4: '#323232, #464646',
-                jsonUrl: '/api/clouds/vmware/cluster/metric?cloudId=a68bc3ea-195b-4faa-b6c8-a9d251d21e17&id=ING-DC:ING-MGMT:ing-esxi01.ing.lab&metricNames=CPU1,CPU2,Memory1&hour=1',
-                respObjNm: 'data'
+                jsonUrl: 'dummy',
             },
             {
                 i: '4',
@@ -210,7 +200,7 @@ export const getPrivateLayouts: any = (username: string) => {
                 i: '5',
                 x: 0,
                 y: 2,
-                w: 6,
+                w: 3,
                 h: 2,
                 minW: 3,
                 minH: 2,
@@ -223,6 +213,21 @@ export const getPrivateLayouts: any = (username: string) => {
             },
             {
                 i: '6',
+                x: 3,
+                y: 2,
+                w: 3,
+                h: 2,
+                minW: 3,
+                minH: 2,
+                maxH: 6,
+                wgGb: 'CP',
+                wgType: 'N',
+                wgTitle: 'PIE 차트',
+                method: 'GET',
+                jsonUrl: 'dummy',
+            },
+            {
+                i: '7',
                 x: 6,
                 y: 2,
                 w: 6,
@@ -237,7 +242,7 @@ export const getPrivateLayouts: any = (username: string) => {
                 jsonUrl: 'dummy'
             },
             {
-                i: '7',
+                i: '8',
                 x: 0,
                 y: 4,
                 w: 12,
@@ -255,7 +260,7 @@ export const getPrivateLayouts: any = (username: string) => {
     ];
 };
 
-export const getLayouts: any = (wgId?: string, wgType?: string) => {
+export const getLayouts: any = (wgId?: number, wgType?: string) => {
     const layouts = [
         {
             wgId: 1,
@@ -266,6 +271,34 @@ export const getLayouts: any = (wgId?: string, wgType?: string) => {
         },
         {
             wgId: 2,
+            wgGb: 'B',
+            wgType: 'N',
+            wgTitle: 'Board Title (default)',
+            wgDefault: [
+                {
+                    "title": "테스트 입니다.1",
+                    "date": "2020-01-01"
+                },
+                {
+                    "title": "테스트 입니다.2",
+                    "date": "2020-01-02"
+                },
+                {
+                    "title": "테스트 입니다.3",
+                    "date": "2020-01-03"
+                },
+                {
+                    "title": "테스트 입니다.4",
+                    "date": "2020-01-04"
+                },
+                {
+                    "title": "테스트 입니다.5",
+                    "date": "2020-01-05"
+                },
+            ],
+        },
+        {
+            wgId: 3,
             wgGb: 'CA',
             wgType: 'N',
             wgTitle: '차트 테스트',
@@ -317,12 +350,160 @@ export const getLayouts: any = (wgId?: string, wgType?: string) => {
                 ],
         },
         {
-            wgId: 3,
-            wgGb: 'I',
+            wgId: 4,
+            wgGb: 'CP',
             wgType: 'N',
-            wgTitle: 'Image Title (Default)',
-            pageUrl: 'https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fs3-eu-west-1.amazonaws.com%2Ffta-ez-prod%2Fez%2Fimages%2F1%2F9%2F7%2F1%2F1481791-4-eng-GB%2Farchitecture-camera-city-827209+%281%29.jpg%3Fv1?width=700&source=ftadviser',
-            option1: 'Default Text',
+            wgTitle: 'Pie Title (Default)',
+            wgDefault: [
+                {
+                    "key": "Phishing Attack",
+                    "data": 10
+                  },
+                  {
+                    "key": "IDS",
+                    "data": 14
+                  },
+                  {
+                    "key": "Malware",
+                    "data": 5
+                  },
+                  {
+                    "key": "DLP",
+                    "data": 18
+                  }
+            ]
+        },
+        {
+            wgId: 5,
+            wgGb: 'CPA',
+            wgType: 'N',
+            wgTitle: 'Pie Title (Default)',
+            wgDefault: [
+                { name: 'Group A', value: 400 },
+                { name: 'Group B', value: 300 },
+                { name: 'Group C', value: 300 },
+                { name: 'Group D', value: 200 },
+            ]
+        },
+        {
+            wgId: 6,
+            wgGb: 'CR',
+            wgType: 'N',
+            wgTitle: 'Radial Title (Default)',
+            wgDefault: [
+                {
+                    "key": "Phishing Attack",
+                    "data": 10
+                },
+                {
+                    "key": "IDS",
+                    "data": 14
+                },
+                {
+                    "key": "Malware",
+                    "data": 5
+                },
+                {
+                    "key": "DLP",
+                    "data": 18
+                }
+            ]
+        },
+        {
+            wgId: 7,
+            wgGb: 'CS',
+            wgType: 'N',
+            wgTitle: 'Scatter Title (Default)',
+            wgDefault: [
+                {
+                    id: '5',
+                    key: new Date('2020-02-27T08:00:00.000Z'),
+                    data: 19
+                },
+                {
+                    id: '4',
+                    key: new Date('2020-02-28T08:00:00.000Z'),
+                    data: 17
+                },
+                {
+                    id: '3',
+                    key: new Date('2020-02-29T08:00:00.000Z'),
+                    data: 25
+                },
+                {
+                    id: '2',
+                    key: new Date('2020-03-01T08:00:00.000Z'),
+                    data: 45
+                },
+                {
+                    id: '1',
+                    key: new Date('2020-03-02T08:00:00.000Z'),
+                    data: 25
+                }
+            ]
+        },
+        {
+            wgId: 8,
+            wgGb: 'CT',
+            wgType: 'N',
+            wgTitle: 'Topology Title (Default)',
+            wgDefault: {
+                nodes: [
+                    { id: 1, label: 'Server', shape: 'image', imageGb: 'server' },
+                    { id: 2, label: 'Storage', shape: 'image', imageGb: 'storage' },
+                    { id: 3, label: 'Backup', shape: 'image', imageGb: 'backup' },
+                    { id: 4, label: 'Software', shape: 'image', imageGb: 'software' },
+                    { id: 5, label: 'Database', shape: 'image', imageGb: 'database' }
+                ],
+                edges: [
+                    { from: 1, to: 2 },
+                    { from: 1, to: 3 },
+                    { from: 2, to: 4 },
+                    { from: 2, to: 5 }
+                ]
+            }
+        },
+        {
+            wgId: 9,
+            wgGb: 'OT',
+            wgType: 'N',
+            wgTitle: 'Timeline Title (Default)',
+            wgDefault: [
+                {
+                    variant: 'outlined',
+                    type: 'ctimeline2',
+                    icon: 'Android',
+                    content: '정상 시작',
+                    revert: {
+                        title: '08:00',
+                    },
+                },
+                {
+                    variant: 'outlined',
+                    content: '장애 예측',
+                    revert: {
+                        title: '09:00',
+                    },
+                },
+                {
+                    icon: 'Apple',
+                    type: 'ctimeline4',
+                    variant: 'outlined',
+                    content: '장애 발생',
+                    revert: {
+                        title: '09:30',
+                    },
+                },
+                {
+                    icon: 'Done',
+                    type: 'ctimeline1',
+                    variant: 'outlined',
+                    content: '정상 복구되었습니다.',
+                    revert: {
+                        title: '12:00',
+                    },
+                },
+            ]
         },
     ];
 
