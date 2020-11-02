@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<settings>
+		<!--  
+		<setting name="logImpl" value="LOG4J" />
+		-->
+		<setting name="cacheEnabled" value="true"/>
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<setting name="useColumnLabel" value="true" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="defaultExecutorType" value="SIMPLE" />
+		<setting name="defaultStatementTimeout" value="100" />
+		<!-- 전통적인 데이터 컬럼명 형태인 A_COLUMN을 CamleCase형태의 자바 프로퍼티 형태인 aColumn으로 자동 매핑 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+
+</configuration>
