@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-public class TiberoBatchConfigurer extends DefaultBatchConfigurer {
+public class TiberoBatchConfig extends DefaultBatchConfigurer {
 	@Resource(name = "tiberodbDatasource")
 	private DataSource dataSource;
 	
@@ -24,6 +24,7 @@ public class TiberoBatchConfigurer extends DefaultBatchConfigurer {
 		
 		factory.setDataSource(dataSource);
 		factory.setDatabaseType(DatabaseType.ORACLE.getProductName());
+		factory.setIsolationLevelForCreate("ISOLATION_READ_COMMITTED");
 		factory.setTransactionManager(tiberodbTransactionManager);
 		factory.afterPropertiesSet();
 		
