@@ -1,6 +1,9 @@
 spring:
   profiles:
-    active: dev
+      active: dev
+  
+  thymeleaf:
+    enabled: false
 
   output:
     ansi:
@@ -12,3 +15,42 @@ spring:
         
   main:
     allow-bean-definition-overriding: true
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic    
+      vmware-api:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+#        errorDecoder: com.example.SimpleErrorDecoder
+#        retryer: com.example.SimpleRetryer
+#        requestInterceptors:
+#          - com.example.FooRequestInterceptor
+#          - com.example.BarRequestInterceptor
+#        decode404: false
+#        encoder: com.example.SimpleEncoder
+#        decoder: com.example.SimpleDecoder
+#        contract: com.example.SimpleContract
+  http-api.url: http://localhost:9400
+  hystrix:
+    enabled: false
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          
+cloudit:
+  encrypt:
+    key: www.innogrid.com
+          
+batch:
+  chunk-size: 1000
+  partition-size: 10
