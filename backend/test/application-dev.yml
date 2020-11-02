@@ -1,16 +1,30 @@
 datasource:
-  local:
-    driver-class-name: org.mariadb.jdbc.Driver
-    jdbc-url: jdbc:mariadb://localhost:3306/test?characterEncoding=UTF-8&serverTimezone=UTC
-    username: test
-    password: qwer!2345
-    testOnBorrow: true
-  mariadb:
-    driver-class-name: org.mariadb.jdbc.Driver
-    jdbc-url: jdbc:mariadb://192.168.130.8:3306/cmp?characterEncoding=UTF-8&serverTimezone=UTC
+  tiberodb:
+    driver-class-name: com.tmax.tibero.jdbc.TbDriver
+    jdbc-url: jdbc:tibero:thin:@192.168.130.30:8629:tibero
     username: cloudit
     password: cloudit
     testOnBorrow: true
-    
-server:
-  port: 8083
+  mariadb:
+    driver-class-name: org.mariadb.jdbc.Driver
+    jdbc-url: jdbc:mariadb://192.168.130.8:3306/cmp?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: cloudit
+    password: cloudit
+    testOnBorrow: true
+      
+#server:
+#  port: 8083
+
+logging:
+#  file:  /logs/application-debug.log
+  pattern:
+    #console: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-30.30logger{29}){cyan} [%F:%L] %clr(:){faint} %msg%n"
+#    file: %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+  level:
+    ROOT: INFO
+    org.springframework.cloud.config: INFO
+    com.zaxxer.hikari.HikariDataSource: ERROR
+    com.innogrid.tabcloudit.batch: INFO
+    com.innogrid.tabcloudit.batch.tiberodb: DEBUG
+    com.innogrid.tabcloudit.batch.mariadb: DEBUG
