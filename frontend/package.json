@@ -22,7 +22,7 @@
     "@reduxjs/toolkit": "^1.4.0",
     "ag-grid-community": "^23.2.1",
     "ag-grid-react": "^23.2.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "lodash": "^4.17.19",
     "moment": "^2.29.1",
